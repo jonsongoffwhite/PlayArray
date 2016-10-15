@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
 		BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6571DB279B300D1604F /* AppDelegate.swift */; };
 		BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6591DB279B300D1604F /* ViewController.swift */; };
 		BF4FD65D1DB279B300D1604F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4FD65B1DB279B300D1604F /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOfDay.swift; sourceTree = "<group>"; };
 		BF4FD6541DB279B300D1604F /* PlayArray.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayArray.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4FD6571DB279B300D1604F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF4FD6591DB279B300D1604F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E78D53B1DB27D4E00D268C0 /* Criteria */ = {
+			isa = PBXGroup;
+			children = (
+				7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */,
+			);
+			name = Criteria;
+			sourceTree = "<group>";
+		};
 		BF4FD64B1DB279B300D1604F = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +107,7 @@
 		BF4FD6561DB279B300D1604F /* PlayArray */ = {
 			isa = PBXGroup;
 			children = (
+				7E78D53B1DB27D4E00D268C0 /* Criteria */,
 				BF4FD6571DB279B300D1604F /* AppDelegate.swift */,
 				BF4FD6591DB279B300D1604F /* ViewController.swift */,
 				BF4FD65B1DB279B300D1604F /* Main.storyboard */,
@@ -260,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */,
 				BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */,
 				BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */,
 			);
@@ -508,6 +520,7 @@
 				BF4FD67E1DB279B300D1604F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BF4FD67F1DB279B300D1604F /* Build configuration list for PBXNativeTarget "PlayArrayTests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +529,7 @@
 				BF4FD6811DB279B300D1604F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BF4FD6821DB279B300D1604F /* Build configuration list for PBXNativeTarget "PlayArrayUITests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +538,7 @@
 				BF4FD6841DB279B300D1604F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
