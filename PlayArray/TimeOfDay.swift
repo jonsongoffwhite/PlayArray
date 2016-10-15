@@ -8,7 +8,8 @@
 
 import Foundation
 
-enum TimesOfDay: Criteria {
+// Represents all options of time of day
+enum TimeOfDay: Criteria {
     case Dawn
     case Morning
     case Day
@@ -16,4 +17,8 @@ enum TimesOfDay: Criteria {
     case Dusk
     case Night
     case LateNight
+}
+
+// Category for time of day
+class TimeOfDayCategory: Category {
 }

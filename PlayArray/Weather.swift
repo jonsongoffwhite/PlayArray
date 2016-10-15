@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Represents all possible options for weather
 enum Weather: Criteria {
     case Sunny
     case Raining
@@ -15,3 +16,6 @@ enum Weather: Criteria {
     case Snow
     case Windy
 }
+
+// Category for weather
+class WeatherCategory: Category {}

@@ -9,3 +9,11 @@
 import Foundation
 
 protocol Criteria {}
+
+class Category {
+    var criteria: [Criteria] = []
+    
+    func addCriteria(criterion: Criteria) {
+        criteria.append(criterion)
+    }
+}
