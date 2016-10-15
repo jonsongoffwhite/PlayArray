@@ -21,6 +21,8 @@
 		BF4FD7491DB28C7300D1604F /* RequestManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7331DB28C7300D1604F /* RequestManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF4FD7521DB28C7C00D1604F /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7511DB28C7C00D1604F /* RequestManager.swift */; };
 		BF4FD7551DB28C9F00D1604F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; };
+		BF4FD7571DB28EE600D1604F /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7561DB28EE600D1604F /* RequestProtocol.swift */; };
+		BF4FD7591DB292BE00D1604F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7581DB292BE00D1604F /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		BF4FD7441DB28C7300D1604F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF4FD7511DB28C7C00D1604F /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		BF4FD7541DB28C9F00D1604F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = PlayArray/Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		BF4FD7561DB28EE600D1604F /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
+		BF4FD7581DB292BE00D1604F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +206,8 @@
 			children = (
 				BF4FD7351DB28C7300D1604F /* RequestManager.h */,
 				BF4FD7511DB28C7C00D1604F /* RequestManager.swift */,
+				BF4FD7561DB28EE600D1604F /* RequestProtocol.swift */,
+				BF4FD7581DB292BE00D1604F /* Router.swift */,
 				BF4FD7361DB28C7300D1604F /* Info.plist */,
 			);
 			path = RequestManager;
@@ -462,6 +468,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF4FD7521DB28C7C00D1604F /* RequestManager.swift in Sources */,
+				BF4FD7591DB292BE00D1604F /* Router.swift in Sources */,
+				BF4FD7571DB28EE600D1604F /* RequestProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

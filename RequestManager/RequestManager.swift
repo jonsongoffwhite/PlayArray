@@ -9,6 +9,23 @@
 import Foundation
 import Alamofire
 
-class RequestManager {
+class RequestManager: RequestProtocol {
     
+    let manager: Alamofire.SessionManager = SessionManager(configuration: .default)
+    
+    func request(_ router: Router) -> DataRequest {
+        return manager.request(router).validate()
+    }
+    
+    func getPlaylist(from request: Data, completion: @escaping () -> ()) {
+        self.request(.getPlaylist).responseJSON { response in
+        }
+    }
+    
+    // MARK: Singleton
+    static let sharedInstance = RequestManager()
+    
+    private init() {
+        
+    }
 }
