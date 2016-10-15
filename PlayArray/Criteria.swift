@@ -16,4 +16,9 @@ class Category {
     func addCriteria(criterion: Criteria) {
         criteria.append(criterion)
     }
+    
+    func getData() {
+        preconditionFailure("This method must be overridden")
+    }
+    
 }

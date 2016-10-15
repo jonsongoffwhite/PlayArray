@@ -10,15 +10,39 @@ import Foundation
 
 // Represents all options of time of day
 enum TimeOfDay: Criteria {
-    case Dawn
-    case Morning
-    case Day
-    case Evening
-    case Dusk
-    case Night
-    case LateNight
+    case dawn
+    case morning
+    case afternoon
+    case evening
+    case dusk
+    case night
+    case lateNight
+    
+    init(from hour: Int) {
+        if hour < 2 { self = .night }
+        else if hour < 5 { self = .lateNight }
+        else if hour < 7 { self = .dawn }
+        else if hour < 12 { self = .morning }
+        else if hour < 18 { self = .afternoon }
+        else if hour < 21 { self = .evening }
+        else if hour < 23 { self = .dusk }
+        else { self = .night }
+    }
+    
 }
 
 // Category for time of day
 class TimeOfDayCategory: Category {
+    
+    override func getData() {
+
+        let date = NSDate()
+        let calendar = NSCalendar.current
+        
+        let hour = calendar.component(.hour, from: date as Date)
+        
+        criteria.append(TimeOfDay(from: hour))
+        
+    }
+    
 }

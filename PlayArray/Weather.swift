@@ -18,4 +18,10 @@ enum Weather: Criteria {
 }
 
 // Category for weather
-class WeatherCategory: Category {}
+class WeatherCategory: Category {
+    
+    override func getData() {
+        // Get the current weather for the user's location using some API
+    }
+    
+}
