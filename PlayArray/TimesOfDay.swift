@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TimeOfDay {
+enum TimesOfDay {
     case Dawn
     case Morning
     case Day

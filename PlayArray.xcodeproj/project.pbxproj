@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
+		7E78D53A1DB27CA200D268C0 /* TimesOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimesOfDay.swift */; };
 		BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6571DB279B300D1604F /* AppDelegate.swift */; };
 		BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6591DB279B300D1604F /* ViewController.swift */; };
 		BF4FD65D1DB279B300D1604F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4FD65B1DB279B300D1604F /* Main.storyboard */; };
@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOfDay.swift; sourceTree = "<group>"; };
+		7E78D5391DB27CA200D268C0 /* TimesOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimesOfDay.swift; sourceTree = "<group>"; };
 		BF4FD6541DB279B300D1604F /* PlayArray.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayArray.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4FD6571DB279B300D1604F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF4FD6591DB279B300D1604F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		7E78D53B1DB27D4E00D268C0 /* Criteria */ = {
 			isa = PBXGroup;
 			children = (
-				7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */,
+				7E78D5391DB27CA200D268C0 /* TimesOfDay.swift */,
 			);
 			name = Criteria;
 			sourceTree = "<group>";
@@ -271,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */,
+				7E78D53A1DB27CA200D268C0 /* TimesOfDay.swift in Sources */,
 				BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */,
 				BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */,
 			);
