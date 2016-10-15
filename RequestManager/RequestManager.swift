@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import PlayArray
 
 /// RequestManager is used by PlayArray to create API calls, including creating and retrieving playlists
 public class RequestManager: RequestProtocol {
