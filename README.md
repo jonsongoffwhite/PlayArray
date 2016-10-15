@@ -3,7 +3,9 @@
 ## Installs Required
 
 XCode 8.0
+
 Swift 3
+
 Carthage
 
 ### Carthage
