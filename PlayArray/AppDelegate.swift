@@ -9,6 +9,9 @@
 import UIKit
 import RequestManager
 
+/// Request is PlayArray's reference to the RequestManager, used to create calls to the API
+var Request: RequestProtocol = RequestManager.sharedInstance
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

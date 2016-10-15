@@ -8,7 +8,8 @@
 
 import Foundation
 
-protocol RequestProtocol {
+/// The public protocol which lists available API calls to be used by PlayArray
+public protocol RequestProtocol {
     // criteria: Data will probably change to a custom class in future
     func getPlaylist(from criteria: Data, completion: @escaping () -> ())
 }
