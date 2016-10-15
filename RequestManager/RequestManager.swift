@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import PlayArray
 
 /// RequestManager is used by PlayArray to create API calls, including creating and retrieving playlists
 public class RequestManager: RequestProtocol {
@@ -35,7 +36,7 @@ public class RequestManager: RequestProtocol {
             - criteria: The criteria selected by the user, used to choose songs for the playlist
             - completion: Called with the servers response, will contain a list of songs or an error
      */
-    public func getPlaylist(from criteria: Data, completion: @escaping () -> ()) {
+    public func getPlaylist(from criteria: Data, completion: @escaping ([Song], NSError?) -> Void) {
         self.request(.getPlaylist).responseJSON { response in
         }
     }

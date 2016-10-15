@@ -23,6 +23,8 @@
 		BF4FD7551DB28C9F00D1604F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; };
 		BF4FD7571DB28EE600D1604F /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7561DB28EE600D1604F /* RequestProtocol.swift */; };
 		BF4FD7591DB292BE00D1604F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7581DB292BE00D1604F /* Router.swift */; };
+		BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD75C1DB2A66200D1604F /* Song.swift */; };
+		BF4FD75E1DB2A83D00D1604F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD75C1DB2A66200D1604F /* Song.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,7 @@
 		BF4FD7541DB28C9F00D1604F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = PlayArray/Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		BF4FD7561DB28EE600D1604F /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		BF4FD7581DB292BE00D1604F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		BF4FD75C1DB2A66200D1604F /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,7 @@
 			children = (
 				BF4FD6571DB279B300D1604F /* AppDelegate.swift */,
 				BF4FD6591DB279B300D1604F /* ViewController.swift */,
+				BF4FD75C1DB2A66200D1604F /* Song.swift */,
 				BF4FD65B1DB279B300D1604F /* Main.storyboard */,
 				BF4FD65E1DB279B300D1604F /* Assets.xcassets */,
 				BF4FD6601DB279B300D1604F /* LaunchScreen.storyboard */,
@@ -442,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */,
 				BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */,
 				BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */,
 			);
@@ -467,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF4FD75E1DB2A83D00D1604F /* Song.swift in Sources */,
 				BF4FD7521DB28C7C00D1604F /* RequestManager.swift in Sources */,
 				BF4FD7591DB292BE00D1604F /* Router.swift in Sources */,
 				BF4FD7571DB28EE600D1604F /* RequestProtocol.swift in Sources */,
