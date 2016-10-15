@@ -44,7 +44,7 @@ enum Router: URLRequestConvertible {
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
         
-        // Set parameters
+        // Set parameters where necessary
         
         return urlRequest
     }

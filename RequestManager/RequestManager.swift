@@ -29,6 +29,8 @@ public class RequestManager: RequestProtocol {
         return manager.request(router).validate()
     }
     
+    // MARK: API Calls
+    
     /**
         Creates a GET request for a playlist, passing criteria as a parameter
      
