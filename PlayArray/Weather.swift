@@ -8,7 +8,7 @@
 
 import Foundation
 
-// Represents all possible options for weather
+/// Represents all possible options for weather
 enum Weather: Criteria {
     case Sunny
     case Raining
@@ -20,8 +20,8 @@ enum Weather: Criteria {
 // Category for weather
 class WeatherCategory: Category {
     
+    /// Get the current weather for the user's location using some API
     override func getData() {
-        // Get the current weather for the user's location using some API
+        
     }
-    
 }

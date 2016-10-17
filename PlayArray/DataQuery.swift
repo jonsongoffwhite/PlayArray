@@ -8,16 +8,16 @@
 
 import Foundation
 
-// Object that represents all the information in a query to the server.
-// It stores a list of each of the things the user has chosen to narrow down their
-// search for a playlist.
+/// Object that represents all the information in a query to the server.
+/// It stores a list of each of the things the user has chosen to narrow down their
+/// search for a playlist.
 class DataQuery {
     
-    // List of all categories to be queried
+    /// List of all categories to be queried
     var categories: [Category] = []
     
-    // Add a category to the request
-    func addCategory(category: Category) {
+    /// Add a category to the request
+    func add(_ category: Category) {
         categories.append(category)
     }
 }

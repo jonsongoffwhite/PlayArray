@@ -28,21 +28,16 @@ enum TimeOfDay: Criteria {
         else if hour < 23 { self = .dusk }
         else { self = .night }
     }
-    
 }
 
 // Category for time of day
 class TimeOfDayCategory: Category {
     
     override func getData() {
-
         let date = NSDate()
         let calendar = NSCalendar.current
-        
         let hour = calendar.component(.hour, from: date as Date)
-        
         criteria.append(TimeOfDay(from: hour))
-        
     }
     
 }
