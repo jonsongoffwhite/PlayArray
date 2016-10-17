@@ -20,7 +20,4 @@ class DataQuery {
     func addCategory(category: Category) {
         categories.append(category)
     }
-    
-    // Once the request is fully formed, convert to a server interpretable request
-    func makeRequest() {}
 }

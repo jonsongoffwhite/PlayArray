@@ -13,6 +13,10 @@ protocol Criteria {}
 class Category {
     var criteria: [Criteria] = []
     
+    init () {
+        getData()
+    }
+    
     func addCriteria(criterion: Criteria) {
         criteria.append(criterion)
     }
