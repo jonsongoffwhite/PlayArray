@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 /// RequestManager is used by PlayArray to create API calls, including creating and retrieving playlists
 public class RequestManager: RequestProtocol {
@@ -28,7 +29,7 @@ public class RequestManager: RequestProtocol {
         return manager.request(router).validate()
     }
     
-    // MARK: API Calls
+    // MARK: Playlist API Calls
     
     /**
         Creates a GET request for a playlist, passing criteria as a parameter
@@ -39,6 +40,46 @@ public class RequestManager: RequestProtocol {
      */
     public func getPlaylist(from criteria: Data, completion: @escaping ([Song], NSError?) -> Void) {
         self.request(.getPlaylist).responseJSON { response in
+        }
+    }
+    
+    // MARK: Weather API Calls
+    
+    /// The base URL to look up the user's current city using latitude and longitude
+    let geoLookupBaseURL = "https://api.wunderground.com/api/d0c9667a28371bd1/geolookup/q/"
+    /// The base URL to look up the weather at the user's current city
+    let weatherBaseURL = "https://api.wunderground.com/api/d0c9667a28371bd1/conditions/q/"
+    
+    /**
+        Uses Wunderground to get the weather at a given location
+     
+        - Parameters:
+            - lat: The user's latitude
+            - lon: The user's longitude
+            - completion: Returns the Weather enum value and a possible error when the information is got from the Wunderground service
+     */
+    public func getWeather(_ lat: Double, lon: Double, completion: @escaping (Weather, NSError?) -> Void) {
+        let geoLookupURLString = geoLookupBaseURL + String(format:"%f", lat) + "," + String(format:"%f", lon) as String + ".json"
+        let geoLookupURL = URL(string: geoLookupURLString)
+        Alamofire.request(geoLookupURL!)
+        .response { response in
+            let json = JSON(data: response.data!)
+            let location = json["location"].dictionary!
+            let city = location["city"]?.stringValue
+            print(city!)
+            
+            // Get information about the city
+            
+            let weatherURLString = self.weatherBaseURL // Add information about city
+            let weatherURL = URL(string: weatherURLString)
+            Alamofire.request(weatherURL!)
+                .response { response in
+                    let json = JSON(data: response.data!)
+                    
+                    // Convert response into weather enum value
+                    
+                    completion(.Sunny, nil)
+            }
         }
     }
     

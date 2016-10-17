@@ -12,4 +12,6 @@ import Foundation
 public protocol RequestProtocol {
     // criteria: Data will probably change to a custom class in future
     func getPlaylist(from criteria: Data, completion: @escaping ([Song], NSError?) -> Void)
+    
+    func getWeather(_ lat: Double, lon: Double, completion: @escaping (Weather, NSError?) -> Void)
 }

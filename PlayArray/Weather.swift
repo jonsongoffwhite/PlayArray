@@ -9,7 +9,7 @@
 import Foundation
 
 /// Represents all possible options for weather
-enum Weather: Criteria {
+public enum Weather: Criteria {
     case Sunny
     case Raining
     case Overcast
