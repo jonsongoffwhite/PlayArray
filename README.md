@@ -22,3 +22,29 @@ carthage update --platform ios
 ```
 
 `carthage update` must be run in the same directory as the Cartfile
+
+## API Communication
+
+Communicating with the API is done through the RequestManager framework. The RequestManager is accessed in PlayArray by calling the `Request` object, e.g. `Request.getPlaylist(...)`.
+
+Our communication is RESTful. Currently implemented API calls are as follows:
+
+
+| Function | Description | HTTP Method | Path |
+| --- | --- |:---:| --- |
+| getPlaylist | Obtains a playlist from the server based on passed criteria | GET | /playlist (placeholder?) |
+
+### Data Format
+
+Data is sent in JSON format
+
+#### getPlaylist
+
+```json
+[
+    {
+        "local_time" : String,
+        "weather" : [String]
+    }
+]
+```
