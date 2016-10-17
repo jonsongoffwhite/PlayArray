@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MapKit
+import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -26,7 +26,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+            //locationManager.startUpdatingLocation()
         }
         
     }
