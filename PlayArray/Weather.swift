@@ -18,10 +18,14 @@ enum Weather: Criteria {
 }
 
 // Category for weather
-class WeatherCategory: Category {
+class WeatherCategory: LocationCategory {
+    
+    
     
     /// Get the current weather for the user's location using some API
     override func getData() {
-        
+        let location = self.locationManager.location!.coordinate
+        // Request using location (latitude and longitude)
+        // Convert answer of call into enum value(s)
     }
 }

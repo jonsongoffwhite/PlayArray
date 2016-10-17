@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol Criteria {}
 
@@ -24,5 +25,17 @@ class Category {
     func getData() {
         preconditionFailure("This method must be overridden")
     }
+}
+
+class LocationCategory: Category {
+    
+    let locationManager: CLLocationManager
+    
+    init(locationManager: CLLocationManager) {
+        self.locationManager = locationManager
+        super.init()
+    }
     
 }
+
+

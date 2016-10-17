@@ -29,6 +29,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             //locationManager.startUpdatingLocation()
         }
         
+        let query = DataQuery()
+        
     }
 
     override func didReceiveMemoryWarning() {
