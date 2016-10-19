@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        Request.getWeather(37.776289, lon: -122.395234) { (weather, error) in
+        //sf: 37.776289, -122.395234
+        Request.getWeather(51.5032520, lon:-0.1278990) { (weather, error) in
             print(weather)
         }
         

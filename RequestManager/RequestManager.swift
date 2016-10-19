@@ -46,9 +46,9 @@ public class RequestManager: RequestProtocol {
     // MARK: Weather API Calls
     
     /// The base URL to look up the user's current city using latitude and longitude
-    let geoLookupBaseURL = "https://api.wunderground.com/api/d0c9667a28371bd1/geolookup/q/"
+    let geoLookupBaseURL = "http://api.wunderground.com/api/d0c9667a28371bd1/geolookup/q/"
     /// The base URL to look up the weather at the user's current city
-    let weatherBaseURL = "https://api.wunderground.com/api/d0c9667a28371bd1/conditions/q/"
+    let weatherBaseURL = "http://api.wunderground.com/api/d0c9667a28371bd1/conditions/q/"
     
     /**
         Uses Wunderground to get the weather at a given location
@@ -66,15 +66,17 @@ public class RequestManager: RequestProtocol {
             let json = JSON(data: response.data!)
             let location = json["location"].dictionary!
             let city = location["city"]?.stringValue
-            print(city!)
+            let country = location["country"]?.stringValue
+             print(json)
             
             // Get information about the city
             
-            let weatherURLString = self.weatherBaseURL // Add information about city
+            let weatherURLString = self.weatherBaseURL + country! + "/" + city! + ".json" // Add information about city
             let weatherURL = URL(string: weatherURLString)
             Alamofire.request(weatherURL!)
                 .response { response in
                     let json = JSON(data: response.data!)
+//                    print(json)
                     
                     // Convert response into weather enum value
                     
