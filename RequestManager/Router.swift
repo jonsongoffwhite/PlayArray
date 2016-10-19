@@ -15,12 +15,15 @@ enum Router: URLRequestConvertible {
     /// The base URL of the API
     static let baseURLString = "http://cloud-vm-46-57.doc.ic.ac.uk:3000/api/v1/playlist?"
     
-    case getPlaylist(time: TimeOfDay) //(params)
+    case getPlaylistFromTime(time: TimeOfDay)
+    case getPlaylistFromWeather(weather: Weather)
     
     /// The HTTP method related to the call we are making
     var method: HTTPMethod {
         switch self {
-        case .getPlaylist(_):
+        case .getPlaylistFromTime(_):
+            return .get
+        case .getPlaylistFromWeather(_):
             return .get
         }
     }
@@ -28,8 +31,10 @@ enum Router: URLRequestConvertible {
     /// The URL extension related to the call we are making
     var path: String {
         switch self {
-        case .getPlaylist(let time):
+        case .getPlaylistFromTime(let time):
             return "local_time=" + time.stringValue
+        case .getPlaylistFromWeather(let weather):
+            return "weather=" + weather.stringValue
         }
     }
     
