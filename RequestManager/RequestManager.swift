@@ -56,7 +56,7 @@ public class RequestManager: RequestProtocol {
             - lon: The user's longitude
             - completion: Returns the Weather enum value and a possible error when the information is got from the weather service
      */
-    public func getWeather(_ lat: Double, lon: Double, completion: @escaping (Weather, NSError?) -> Void) {
+    public func getWeather(_ lat: Double, lon: Double, completion: @escaping (String, NSError?) -> Void) {
         let weatherURLString = weatherBaseURL + "&lat=" + String(format:"%f", lat) + "&lon=" + String(format:"%f", lon)
         let weatherURL = URL(string: weatherURLString)
         Alamofire.request(weatherURL!)
@@ -65,9 +65,7 @@ public class RequestManager: RequestProtocol {
             let weather = json["weather"].arrayValue.first
             let mainWeather = weather?["main"].stringValue
             
-            print(mainWeather)
-            
-            // Needs to be converted into Weather enum value
+            completion(mainWeather!, nil)
         }
     }
     
