@@ -32,14 +32,23 @@ public class RequestManager: RequestProtocol {
     // MARK: Playlist API Calls
     
     /**
+        OUTDATED DOCUMENTATION: This will eventually be a general getPlaylist function. They are only separate for this sprint (hopefully not for too long)
         Creates a GET request for a playlist, passing criteria as a parameter
      
         - Parameters:
             - criteria: The criteria selected by the user, used to choose songs for the playlist
             - completion: Called with the servers response, will contain a list of songs or an error
      */
-    public func getPlaylist(from criteria: Data, completion: @escaping ([Song], NSError?) -> Void) {
-        self.request(.getPlaylist).responseJSON { response in
+    
+    public func getPlaylist(from time: TimeOfDay, completion: @escaping ([Song], NSError?) -> Void) {
+        request(.getPlaylistFromTime(time: time)).responseJSON { response in
+            print(response)
+        }
+    }
+    
+    public func getPlaylist(from weather: Weather, completion: @escaping ([Song], NSError?) -> Void) {
+        request(.getPlaylistFromWeather(weather: weather)).responseJSON { response in
+            print(response)
         }
     }
     

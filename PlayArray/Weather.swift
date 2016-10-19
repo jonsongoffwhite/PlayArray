@@ -10,11 +10,21 @@ import Foundation
 
 /// Represents all possible options for weather
 public enum Weather: Criteria {
-    case Sunny
-    case Raining
-    case Overcast
-    case Snow
-    case Windy
+    case sunny
+    case raining
+    case overcast
+    case snow
+    case windy
+    
+    var stringValue: String {
+        switch self {
+        case .sunny: return "sunny"
+        case .raining: return "raining"
+        case .overcast: return "overcast"
+        case .snow: return "snow"
+        case .windy: return "windy"
+        }
+    }
 }
 
 // Category for weather

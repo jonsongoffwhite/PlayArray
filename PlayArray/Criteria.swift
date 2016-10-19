@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-protocol Criteria {}
+public protocol Criteria {}
 
 class Category {
     var criteria: [Criteria] = []

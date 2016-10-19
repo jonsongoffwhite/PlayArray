@@ -13,7 +13,6 @@
 		7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
 		BF066F421DB528C80086396E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF066F411DB528C80086396E /* SwiftyJSON.framework */; };
 		BF066F441DB530ED0086396E /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A31DB29202007183ED /* Weather.swift */; };
-		BF066F451DB531900086396E /* Criteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A11DB2910E007183ED /* Criteria.swift */; };
 		BF066F471DB537600086396E /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF066F411DB528C80086396E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF066F481DB537600086396E /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6571DB279B300D1604F /* AppDelegate.swift */; };
@@ -34,6 +33,8 @@
 		BF4FD7591DB292BE00D1604F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7581DB292BE00D1604F /* Router.swift */; };
 		BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD75C1DB2A66200D1604F /* Song.swift */; };
 		BF4FD75E1DB2A83D00D1604F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD75C1DB2A66200D1604F /* Song.swift */; };
+		BF961AAB1DB80CB00067F6AF /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
+		BF961AAC1DB8191B0067F6AF /* Criteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A11DB2910E007183ED /* Criteria.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -516,9 +517,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF066F451DB531900086396E /* Criteria.swift in Sources */,
 				BF4FD75E1DB2A83D00D1604F /* Song.swift in Sources */,
+				BF961AAB1DB80CB00067F6AF /* TimeOfDay.swift in Sources */,
 				BF4FD7521DB28C7C00D1604F /* RequestManager.swift in Sources */,
+				BF961AAC1DB8191B0067F6AF /* Criteria.swift in Sources */,
 				BF4FD7591DB292BE00D1604F /* Router.swift in Sources */,
 				BF4FD7571DB28EE600D1604F /* RequestProtocol.swift in Sources */,
 				BF066F441DB530ED0086396E /* Weather.swift in Sources */,
