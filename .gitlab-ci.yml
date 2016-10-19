@@ -4,7 +4,9 @@ stages:
 build_project:
   stage: build
   script:
-    - xcodebuild clean -project PlayArray.xcodeproj -scheme PlayArray | xcpretty
-    - xcodebuild test -project PlayArray.xcodeproj -scheme PlayArray  | xcpretty -c
+    - xcodebuild clean -project ProjectName.xcodeproj -scheme SchemeName | xcpretty
+    - xcodebuild test -project ProjectName.xcodeproj -scheme SchemeName -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.0' | xcpretty -s
   tags:
-    - ios
+    - ios_10-0
+    - xcode_8-0
+    - osx_10-11
