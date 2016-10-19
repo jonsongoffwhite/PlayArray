@@ -38,8 +38,11 @@ public class RequestManager: RequestProtocol {
             - criteria: The criteria selected by the user, used to choose songs for the playlist
             - completion: Called with the servers response, will contain a list of songs or an error
      */
-    public func getPlaylist(from criteria: Data, completion: @escaping ([Song], NSError?) -> Void) {
-        self.request(.getPlaylist).responseJSON { response in
+    public func getPlaylist(from time: TimeOfDay, completion: @escaping ([Song], NSError?) -> Void) {
+        print("getting playlist")
+        self.request(.getPlaylist(time: time)).responseJSON { response in
+            print("response")
+            print(response)
         }
     }
     
