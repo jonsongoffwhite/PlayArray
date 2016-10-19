@@ -11,6 +11,7 @@
 		7E4430A41DB29202007183ED /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A31DB29202007183ED /* Weather.swift */; };
 		7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A71DB299E9007183ED /* DataQuery.swift */; };
 		7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
+		7E7C575E1DB7EE2F00B77A84 /* Alamofire.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6571DB279B300D1604F /* AppDelegate.swift */; };
 		BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6591DB279B300D1604F /* ViewController.swift */; };
 		BF4FD65D1DB279B300D1604F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4FD65B1DB279B300D1604F /* Main.storyboard */; };
@@ -70,6 +71,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7E7C575D1DB7EE2000B77A84 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7E7C575E1DB7EE2F00B77A84 /* Alamofire.framework in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BF4FD74F1DB28C7300D1604F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,6 +343,7 @@
 				BF4FD72F1DB28C7300D1604F /* Frameworks */,
 				BF4FD7301DB28C7300D1604F /* Headers */,
 				BF4FD7311DB28C7300D1604F /* Resources */,
+				7E7C575D1DB7EE2000B77A84 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -863,6 +876,7 @@
 				BF4FD74B1DB28C7300D1604F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BF4FD7501DB28C7300D1604F /* Build configuration list for PBXNativeTarget "RequestManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -871,6 +885,7 @@
 				BF4FD74D1DB28C7300D1604F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
