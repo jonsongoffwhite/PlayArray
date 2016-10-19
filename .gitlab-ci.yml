@@ -1,0 +1,10 @@
+stages:
+  - build
+
+build_project:
+  stage: build
+  script:
+    - xcodebuild clean -project PlayArray.xcodeproj -scheme PlayArray | xcpretty
+    - xcodebuild test -project PlayArray.xcodeproj -scheme PlayArray  | xcpretty -c
+  tags:
+    - ios
