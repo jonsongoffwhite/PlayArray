@@ -25,6 +25,8 @@ carthage update --platform ios
 
 ## API Communication
 
+Server URL: `http://cloud-vm-46-57.doc.ic.ac.uk:3000/api/v1/`
+
 Communicating with the API is done through the RequestManager framework. The RequestManager is accessed in PlayArray by calling the `Request` object, e.g. `Request.getPlaylist(...)`.
 
 Our communication is RESTful. Currently implemented API calls are as follows:
