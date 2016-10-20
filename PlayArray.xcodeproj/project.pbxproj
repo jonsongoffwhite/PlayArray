@@ -13,6 +13,8 @@
 		AF6551EF1DB666DC0076DD80 /* Alamofire.framework in Resources */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; };
 		AF6551F01DB667240076DD80 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; };
 		AF6551F11DB667B80076DD80 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AF6551F51DB674840076DD80 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */; };
 		AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */; };
 		BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6571DB279B300D1604F /* AppDelegate.swift */; };
 		BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6591DB279B300D1604F /* ViewController.swift */; };
@@ -73,6 +75,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		AF6551F41DB674790076DD80 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AF6551F51DB674840076DD80 /* Alamofire.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BF4FD74F1DB28C7300D1604F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -91,6 +103,7 @@
 		7E4430A11DB2910E007183ED /* Criteria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Criteria.swift; sourceTree = "<group>"; };
 		7E4430A31DB29202007183ED /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		7E78D5391DB27CA200D268C0 /* TimesOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimesOfDay.swift; sourceTree = "<group>"; };
+		AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		BF4FD6541DB279B300D1604F /* PlayArray.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayArray.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4FD6571DB279B300D1604F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +217,7 @@
 				BF4FD6591DB279B300D1604F /* ViewController.swift */,
 				BF4FD75C1DB2A66200D1604F /* Song.swift */,
 				AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */,
+				AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */,
 				BF4FD65B1DB279B300D1604F /* Main.storyboard */,
 				BF4FD65E1DB279B300D1604F /* Assets.xcassets */,
 				BF4FD6601DB279B300D1604F /* LaunchScreen.storyboard */,
@@ -336,6 +350,7 @@
 				BF4FD72F1DB28C7300D1604F /* Frameworks */,
 				BF4FD7301DB28C7300D1604F /* Headers */,
 				BF4FD7311DB28C7300D1604F /* Resources */,
+				AF6551F41DB674790076DD80 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -473,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */,
+				AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */,
 				7E4430A21DB2910E007183ED /* Criteria.swift in Sources */,
 				AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */,
 				7E78D53A1DB27CA200D268C0 /* TimesOfDay.swift in Sources */,

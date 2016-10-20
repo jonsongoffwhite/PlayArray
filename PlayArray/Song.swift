@@ -17,3 +17,13 @@ public struct Song {
     var album: String
     
 }
+
+
+/// Contains information describing a playlist
+// Contains playlist name and a list of songs
+public struct Playlist {
+    
+    var name: String
+    var songs: [Song]
+    
+}

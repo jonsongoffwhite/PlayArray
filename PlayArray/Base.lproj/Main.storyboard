@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Ds-j8-LMX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="baR-x6-K11">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,11 +18,60 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6s-x1-o3X">
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Make me a playlist"/>
+                                <connections>
+                                    <segue destination="1Ds-j8-LMX" kind="show" id="pVZ-0Y-A8P"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="G6s-x1-o3X" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="63" id="6Os-NU-f63"/>
+                            <constraint firstItem="G6s-x1-o3X" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="398" id="LLr-IB-JI3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="G6s-x1-o3X" secondAttribute="bottom" constant="134" id="e69-LF-gxS"/>
+                            <constraint firstItem="G6s-x1-o3X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hdT-H6-rIo"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Cup-yM-7oc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="4548" y="-718.29085457271367"/>
+        </scene>
+        <!--Saved Playlists Table View Controller-->
+        <scene sceneID="ahr-cm-g7X">
+            <objects>
+                <tableViewController id="OS5-wE-dx0" customClass="SavedPlaylistsTableViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="XoH-ZG-FJF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="playlistCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="playlistCell" id="9Vm-Ao-ozj">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Vm-Ao-ozj" id="NBh-74-rWc">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="1Ds-j8-LMX" kind="show" id="MRp-kP-uq6"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OS5-wE-dx0" id="v8r-pf-P4g"/>
+                            <outlet property="delegate" destination="OS5-wE-dx0" id="2dK-CB-Old"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="flJ-0u-W8J"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kAM-rK-hkk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4548" y="35.532233883058474"/>
         </scene>
         <!--Playlist Table View Controller-->
         <scene sceneID="qXy-WV-TMP">
@@ -33,21 +83,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="songCell" textLabel="ntP-pS-Ptd" detailTextLabel="nbb-FB-FYk" style="IBUITableViewCellStyleSubtitle" id="dYJ-Ff-Qi0">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dYJ-Ff-Qi0" id="dvf-7o-KEy">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ntP-pS-Ptd">
-                                            <frame key="frameInset" minX="15" minY="5" width="33.5" height="20.5"/>
+                                            <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nbb-FB-FYk">
-                                            <frame key="frameInset" minX="15" minY="25.5" width="44" height="14.5"/>
+                                            <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -62,10 +112,70 @@
                             <outlet property="delegate" destination="1Ds-j8-LMX" id="zXg-OI-B2S"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="iRT-4m-sT0"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0YD-Li-wxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1134" y="37"/>
+            <point key="canvasLocation" x="5455.1999999999998" y="35.532233883058474"/>
+        </scene>
+        <!--Saved Playlists-->
+        <scene sceneID="kyL-ti-GTV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ONA-47-b0K" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Saved Playlists" id="egv-zT-qhu"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jjq-Hx-Sd7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OS5-wE-dx0" kind="relationship" relationship="rootViewController" id="Q6B-Hp-sXX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="948-ir-8Lr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3608.8000000000002" y="35.532233883058474"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="wyB-WE-VaP">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="baR-x6-K11" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="P88-aC-nvd">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="kpx-I4-foW" kind="relationship" relationship="viewControllers" id="meW-rg-hgK"/>
+                        <segue destination="ONA-47-b0K" kind="relationship" relationship="viewControllers" id="xVO-Mc-dK4"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="beK-1O-DzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2626" y="-344"/>
+        </scene>
+        <!--Make Playlist-->
+        <scene sceneID="I5X-9C-cWS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kpx-I4-foW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Make Playlist" id="qi2-1g-wji"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N9V-cR-aqY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="pD2-qp-4ov"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="661-6i-FGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3608.8000000000002" y="-718.29085457271367"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="MRp-kP-uq6"/>
+    </inferredMetricsTieBreakers>
 </document>
