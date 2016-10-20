@@ -310,14 +310,14 @@ __TMLPs17CustomReflectable_
 l_OBJC_LABEL_PROTOCOL_$__TtPs9AnyObject_
 l_OBJC_PROTOCOL_REFERENCE_$__TtPs9AnyObject_
 Apple LLVM version 8.0.0 (clang-800.0.38)
--emit-bc /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Timeline.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/SessionDelegate.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/ParameterEncoding.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Request.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/ResponseSerialization.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/AFError.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/SessionManager.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Response.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Alamofire.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/MultipartFormData.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/ServerTrustPolicy.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/DispatchQueue+Alamofire.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/NetworkReachabilityManager.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/TaskDelegate.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Validation.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Notifications.swift /Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Result.swift -target armv7-apple-ios9.0 -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk -I /Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Products/Release-iphoneos -F /Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Products/Release-iphoneos -application-extension -g -import-underlying-module -module-cache-path /Users/louis/Library/Developer/Xcode/DerivedData/ModuleCache -serialize-debugging-options -Xcc "-I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/swift-overrides.hmap" -Xcc -iquote -Xcc "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Alamofire-generated-files.hmap" -Xcc "-I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Alamofire-own-target-headers.hmap" -Xcc "-I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Alamofire-all-non-framework-target-headers.hmap" -Xcc -ivfsoverlay -Xcc /Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/all-product-headers.yaml -Xcc -iquote -Xcc "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Alamofire-project-headers.hmap" -Xcc -I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Products/Release-iphoneos/include -Xcc "-I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/DerivedSources/armv7" -Xcc "-I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/DerivedSources" -Xcc -ivfsoverlay -Xcc "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/unextended-module-overlay.yaml" -Xcc -working-directory/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire -emit-module-doc-path "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Alamofire.swiftdoc" -O -module-name Alamofire -emit-module-path "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Alamofire.swiftmodule" -emit-objc-header-path "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Alamofire-Swift.h" -serialize-diagnostics-path "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Timeline.dia" -emit-dependencies-path "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Timeline.d" -num-threads 4 -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Timeline.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/SessionDelegate.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/ParameterEncoding.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Request.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/ResponseSerialization.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/AFError.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/SessionManager.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Response.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Alamofire.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/MultipartFormData.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/ServerTrustPolicy.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/DispatchQueue+Alamofire.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/NetworkReachabilityManager.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/TaskDelegate.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Validation.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Notifications.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Result.bc" -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift
+-emit-bc /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Timeline.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/SessionDelegate.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/ParameterEncoding.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Request.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/ResponseSerialization.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/AFError.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/SessionManager.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Response.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Alamofire.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/MultipartFormData.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/ServerTrustPolicy.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/DispatchQueue+Alamofire.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/NetworkReachabilityManager.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/TaskDelegate.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Validation.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Notifications.swift /Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Result.swift -target armv7-apple-ios9.0 -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk -I /Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Products/Release-iphoneos -F /Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Products/Release-iphoneos -application-extension -g -import-underlying-module -module-cache-path /Users/louis/Library/Developer/Xcode/DerivedData/ModuleCache -serialize-debugging-options -Xcc "-I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/swift-overrides.hmap" -Xcc -iquote -Xcc "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Alamofire-generated-files.hmap" -Xcc "-I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Alamofire-own-target-headers.hmap" -Xcc "-I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Alamofire-all-non-framework-target-headers.hmap" -Xcc -ivfsoverlay -Xcc /Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/all-product-headers.yaml -Xcc -iquote -Xcc "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Alamofire-project-headers.hmap" -Xcc -I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Products/Release-iphoneos/include -Xcc "-I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/DerivedSources/armv7" -Xcc "-I/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/DerivedSources" -Xcc -ivfsoverlay -Xcc "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/unextended-module-overlay.yaml" -Xcc -working-directory/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire -emit-module-doc-path "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Alamofire.swiftdoc" -O -module-name Alamofire -emit-module-path "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Alamofire.swiftmodule" -emit-objc-header-path "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Alamofire-Swift.h" -serialize-diagnostics-path "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Timeline.dia" -emit-dependencies-path "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Timeline.d" -num-threads 4 -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Timeline.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/SessionDelegate.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/ParameterEncoding.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Request.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/ResponseSerialization.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/AFError.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/SessionManager.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Response.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Alamofire.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/MultipartFormData.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/ServerTrustPolicy.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/DispatchQueue+Alamofire.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/NetworkReachabilityManager.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/TaskDelegate.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Validation.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Notifications.bc" -o "/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/Objects-normal/armv7/Result.bc" -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift
 <swift-imported-modules>
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire
 Apple Swift version 3.0 (swiftlang-800.0.46.2 clang-800.0.38)
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Timeline.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Timeline.swift
 _TMaGCs17_AnyCollectionBoxT5labelGSqSS_5valueP___
 Timeline.swift
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source
 _TMaT5labelGSqSS_5valueP__
 _TMaP_
 _TMaGSqSS_
@@ -1286,7 +1286,7 @@ l_OBJC_LABEL_PROTOCOL_$_NSObject
 l_OBJC_PROTOCOL_REFERENCE_$_NSObject
 _objc_classes
 _objc_categories
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/SessionDelegate.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/SessionDelegate.swift
 _TPA__TTRXFo_iTOCSo10URLSession24AuthChallengeDispositionGSqCSo13URLCredential___iT__XFo_dS0_oGSqS1____
 SessionDelegate.swift
 _TTRXFo_iTOCSo10URLSession24AuthChallengeDispositionGSqCSo13URLCredential___iT__XFo_dS0_oGSqS1____
@@ -1921,7 +1921,7 @@ __TMnOCSo25PropertyListSerialization18PropertyListFormat
 __TMOCSo25PropertyListSerialization18PropertyListFormat
 __TMLGCs23_ContiguousArrayStorageTSSSS__
 __TMLGSrSS_
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/ParameterEncoding.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/ParameterEncoding.swift
 _TTSf4g_n___TTSg5GSrSS_GSrSS_s17MutableCollectionsGSrSS_s22RandomAccessCollections___TFesRxs17MutableCollectionxs22RandomAccessCollectionrS_4sortfT2byFTWxPs10Collection8Iterator7Element_WxS2_S3___Sb_T_
 ParameterEncoding.swift
 _TTSg5GSrSS_GSrSS_s17MutableCollectionsGSrSS_s22RandomAccessCollections___TFs10_introSortuRxs17MutableCollectionxs22RandomAccessCollectionrFTRx8subRangeGVs5RangewxPs16MutableIndexable5Index_2byFTWxPs10Collection8Iterator7Element_WxS5_S6___Sb_T_
@@ -2504,7 +2504,7 @@ __TMVC9Alamofire11DataRequest11Requestable
 __TMOC9Alamofire15DownloadRequest12Downloadable
 __TMOC9Alamofire13UploadRequest10Uploadable
 __TMOC9Alamofire13StreamRequest10Streamable
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Request.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Request.swift
 _TTSf4g_g_n_n___TFZFC9Alamofire15DownloadRequest28suggestedDownloadDestinationFT3forOCSo11FileManager19SearchPathDirectory2inVS1_20SearchPathDomainMask_FTV10Foundation3URLCSo15HTTPURLResponse_T14destinationURLS5_7optionsVS0_15DownloadOptions_U_FTS5_S6__T14destinationURLS5_7optionsS7__
 _TTSg5V10Foundation3URL___TFSag9subscriptFSix
 _TTSg5V10Foundation3URL___TFSa11_getElementfTSi20wasNativeTypeCheckedSb22matchingSubscriptCheckVs16_DependenceToken_x
@@ -3084,7 +3084,7 @@ _block_descriptor.225
 __TWPurGV9Alamofire12DataResponsex_S_8ResponseS_
 _block_descriptor.231
 _block_descriptor.237
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/ResponseSerialization.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/ResponseSerialization.swift
 _TPA__TFFFC9Alamofire15DownloadRequest8responseFT5queueGSqCSo13DispatchQueue_17completionHandlerFVS_23DefaultDownloadResponseT__DS0_U_FT_T_U_FT_T_
 _TFFFC9Alamofire15DownloadRequest8responseFT5queueGSqCSo13DispatchQueue_17completionHandlerFVS_23DefaultDownloadResponseT__DS0_U_FT_T_U_FT_T_
 _TPA__TFFFC9Alamofire15DownloadRequest8responseuRxS_34DownloadResponseSerializerProtocolrFT5queueGSqCSo13DispatchQueue_18responseSerializerx17completionHandlerFGVS_16DownloadResponsewx16SerializedObject_T__DS0_U_FT_T_U_FT_T_
@@ -3371,7 +3371,7 @@ __TMLT6reasonOO9Alamofire7AFError30ParameterEncodingFailureReason_
 __TMLT6reasonOO9Alamofire7AFError30MultipartEncodingFailureReason_
 __TMLT6reasonOO9Alamofire7AFError31ResponseValidationFailureReason_
 __TMLT6reasonOO9Alamofire7AFError34ResponseSerializationFailureReason_
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/AFError.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/AFError.swift
 _TMaOO9Alamofire7AFError34ResponseSerializationFailureReason
 AFError.swift
 get_field_types_ResponseSerializationFailureReason
@@ -3581,7 +3581,7 @@ __TZvVE9AlamofireCSo10URLSessionP33_5086B0E684B07FD2C061AC50FDA3F8DD14Associated
 _block_descriptor.42
 __TMLGCs29_NativeDictionaryStorageOwnerSSSS_
 __TMLGCs18_HeapBufferStorageVs18_StringBufferIVarsVs6UInt16_
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/SessionManager.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/SessionManager.swift
 _TPA__TFFC9Alamofire14SessionManagerP33_83E574FCF6E88D5939C6CCAC18E767586uploadFOCS_13UploadRequest10UploadableS1_U_FTCSo10URLSessionCSo14URLSessionTask_GSqCSo11InputStream_
 _TFFC9Alamofire14SessionManagerP33_83E574FCF6E88D5939C6CCAC18E767586uploadFOCS_13UploadRequest10UploadableS1_U_FTCSo10URLSessionCSo14URLSessionTask_GSqCSo11InputStream_
 _TTSf4d_d_n___TFFC9Alamofire14SessionManagerP33_83E574FCF6E88D5939C6CCAC18E767586uploadFOCS_13UploadRequest10UploadableS1_U_FTCSo10URLSessionCSo14URLSessionTask_GSqCSo11InputStream_
@@ -3855,7 +3855,7 @@ __TMfV9Alamofire19DefaultDataResponse
 __TMfV9Alamofire23DefaultDownloadResponse
 __TMp9Alamofire8Response
 __TMLGSqPs9AnyObject__
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Response.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Response.swift
 create_generic_metadata_DownloadResponse
 _TwtTV9Alamofire16DownloadResponse
 _TwTtV9Alamofire16DownloadResponse
@@ -3954,7 +3954,7 @@ error.get
 _TMaV9Alamofire16DownloadResponse
 _TMaV9Alamofire12DataResponse
 __TF9Alamofire6uploadFTV10Foundation3URL2toPS_14URLConvertible_6methodOS_10HTTPMethod7headersGSqGVs10DictionarySSSS___CS_13UploadRequest_merged
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Alamofire.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Alamofire.swift
 _TWaV10Foundation13URLComponents9Alamofire14URLConvertibleS1_
 _TWaV10Foundation3URL9Alamofire14URLConvertibleS1_
 _TWaSS9Alamofire14URLConvertibleS_
@@ -4067,7 +4067,7 @@ __TMVC9Alamofire17MultipartFormData18EncodingCharacters
 __TMVC9Alamofire17MultipartFormData17BoundaryGenerator
 __TMOVC9Alamofire17MultipartFormData17BoundaryGenerator12BoundaryType
 __TMCC9Alamofire17MultipartFormData8BodyPart
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/MultipartFormData.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/MultipartFormData.swift
 initialize_metadata_BodyPart
 MultipartFormData.swift
 _TMaC9Alamofire17MultipartFormData
@@ -4418,7 +4418,7 @@ __TMLGCs21_NativeSetStorageImplSS_
 __TMLGCs23_ContiguousArrayStorageGSaSS__
 __TMLGCs23_ContiguousArrayStorageV10Foundation4Data_
 __TMLGCs23_ContiguousArrayStorageCSo6SecKey_
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/ServerTrustPolicy.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/ServerTrustPolicy.swift
 _TMaO9Alamofire17ServerTrustPolicy
 get_field_types_ServerTrustPolicy
 _TMaFTCSo8SecTrustSS_Sb
@@ -4836,7 +4836,7 @@ _TTSg5CSo14SecCertificate___TTWurGSax_s13IndexableBasesFS_g8endIndexwx5Index
 _TTSg5CSo14SecCertificate___TFSag8endIndexSi
 policies.get
 serverTrustPolicyManager.get
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/DispatchQueue+Alamofire.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/DispatchQueue+Alamofire.swift
 _TTSg5CSo14URLSessionTask___TFFE9AlamofireCSo13DispatchQueue10syncResulturFFT_xxU_FT_T_
 DispatchQueue+Alamofire.swift
 _TTSf4n_g___TTSg5CSo14URLSessionTask___TFFE9AlamofireCSo13DispatchQueue10syncResulturFFT_xxU_FT_T_
@@ -4880,7 +4880,7 @@ __TMLFOC9Alamofire26NetworkReachabilityManager25NetworkReachabilityStatusT_
 __TMLCSo21SCNetworkReachability
 __TMCSo21SCNetworkReachability
 __TMLGCs23_ContiguousArrayStorageVs4Int8_
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/NetworkReachabilityManager.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/NetworkReachabilityManager.swift
 _TTSf4g___TFFC9Alamofire26NetworkReachabilityManager14startListeningFT_SbU0_FT_T_
 NetworkReachabilityManager.swift
 notifyListener
@@ -5261,7 +5261,7 @@ _block_descriptor.143
 _block_descriptor.152
 _block_descriptor.162
 _block_descriptor.172
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/TaskDelegate.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/TaskDelegate.swift
 _TPA__TFFC9Alamofire18UploadTaskDelegate10URLSessionFTCSo10URLSession4taskCSo14URLSessionTask15didSendBodyDataVs5Int6414totalBytesSentS3_24totalBytesExpectedToSendS3__T_U_FT_T_
 TaskDelegate.swift
 _TFFC9Alamofire18UploadTaskDelegate10URLSessionFTCSo10URLSession4taskCSo14URLSessionTask15didSendBodyDataVs5Int6414totalBytesSentS3_24totalBytesExpectedToSendS3__T_U_FT_T_
@@ -5491,7 +5491,7 @@ __TMLVC9Alamofire7RequestP33_D31494FA2EF01BF9C61D2647648851CE8MIMEType
 __TMfVC9Alamofire7RequestP33_D31494FA2EF01BF9C61D2647648851CE8MIMEType
 __TMLGCs23_ContiguousArrayStorageFT_T__
 __TMVC9Alamofire7RequestP33_D31494FA2EF01BF9C61D2647648851CE8MIMEType
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Validation.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Validation.swift
 _TTSf4n_g_n_n_n_n_d___TTSg5GSaSS_GSaSS_s8Sequences___TFFC9Alamofire15DownloadRequest8validateuRxs8SequenceWx8Iterator7Element_zSSrFT11contentTypex_DS0_U_FTGSqV10Foundation10URLRequest_CSo15HTTPURLResponseGSqVS4_3URL_GSqS7___OCS_7Request16ValidationResult
 Validation.swift
 validate
@@ -5627,7 +5627,7 @@ __TWVVE9AlamofireVCSo14NSNotification4Name4Task
 __TMLVCSo14NSNotification4Name
 __TMfVE9AlamofireVCSo14NSNotification4Name4Task
 __TMfVE9AlamofireV10Foundation12Notification3Key
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Notifications.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Notifications.swift
 _TMaVE9AlamofireV10Foundation12Notification3Key
 Notifications.swift
 get_field_types_Key
@@ -5663,7 +5663,7 @@ __TwtTO9Alamofire6Result
 __TwugO9Alamofire6Result
 __TwupO9Alamofire6Result
 __TwuiO9Alamofire6Result
-/Users/louis/Documents/PlayArray/PlayArray/Carthage/Checkouts/Alamofire/Source/Result.swift
+/Users/louis/Documents/musicPlayerApp/PlayArray/Carthage/Checkouts/Alamofire/Source/Result.swift
 create_generic_metadata_Result
 Result.swift
 _TwuiO9Alamofire6Result
@@ -5695,4 +5695,4 @@ isFailure.get
 isSuccess.get
 _TFSSCurfT26stringInterpolationSegmentx_SS
 _TFSSCurfT10describingx_SS
-/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-hiyckhywaoswoofoapntzywoyccr/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/DerivedSources/Alamofire_vers.c
+/Users/louis/Library/Developer/Xcode/DerivedData/Alamofire-bfkxrjnkgcnhjodqitcprgqzbxwx/Build/Intermediates/Alamofire.build/Release-iphoneos/Alamofire iOS.build/DerivedSources/Alamofire_vers.c

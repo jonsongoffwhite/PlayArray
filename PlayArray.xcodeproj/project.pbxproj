@@ -16,6 +16,12 @@
 		AF6551F51DB674840076DD80 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */; };
 		AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */; };
+		7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A71DB299E9007183ED /* DataQuery.swift */; };
+		7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
+		BF066F421DB528C80086396E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF066F411DB528C80086396E /* SwiftyJSON.framework */; };
+		BF066F441DB530ED0086396E /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A31DB29202007183ED /* Weather.swift */; };
+		BF066F471DB537600086396E /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF066F411DB528C80086396E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BF066F481DB537600086396E /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6571DB279B300D1604F /* AppDelegate.swift */; };
 		BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6591DB279B300D1604F /* ViewController.swift */; };
 		BF4FD65D1DB279B300D1604F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4FD65B1DB279B300D1604F /* Main.storyboard */; };
@@ -34,6 +40,8 @@
 		BF4FD7591DB292BE00D1604F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7581DB292BE00D1604F /* Router.swift */; };
 		BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD75C1DB2A66200D1604F /* Song.swift */; };
 		BF4FD75E1DB2A83D00D1604F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD75C1DB2A66200D1604F /* Song.swift */; };
+		BF961AAB1DB80CB00067F6AF /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
+		BF961AAC1DB8191B0067F6AF /* Criteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A11DB2910E007183ED /* Criteria.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,13 +83,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AF6551F41DB674790076DD80 /* CopyFiles */ = {
+		BF066F461DB537460086396E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AF6551F51DB674840076DD80 /* Alamofire.framework in CopyFiles */,
+				BF066F471DB537600086396E /* SwiftyJSON.framework in CopyFiles */,
+				BF066F481DB537600086396E /* Alamofire.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +114,9 @@
 		7E78D5391DB27CA200D268C0 /* TimesOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimesOfDay.swift; sourceTree = "<group>"; };
 		AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
+		7E4430A71DB299E9007183ED /* DataQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataQuery.swift; sourceTree = "<group>"; };
+		7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOfDay.swift; sourceTree = "<group>"; };
+		BF066F411DB528C80086396E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = PlayArray/Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		BF4FD6541DB279B300D1604F /* PlayArray.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayArray.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4FD6571DB279B300D1604F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF4FD6591DB279B300D1604F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF066F421DB528C80086396E /* SwiftyJSON.framework in Frameworks */,
 				BF4FD7551DB28C9F00D1604F /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,7 +190,7 @@
 		7E78D53B1DB27D4E00D268C0 /* Criteria */ = {
 			isa = PBXGroup;
 			children = (
-				7E78D5391DB27CA200D268C0 /* TimesOfDay.swift */,
+				7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */,
 				7E4430A31DB29202007183ED /* Weather.swift */,
 				7E4430A11DB2910E007183ED /* Criteria.swift */,
 			);
@@ -222,6 +235,7 @@
 				BF4FD65E1DB279B300D1604F /* Assets.xcassets */,
 				BF4FD6601DB279B300D1604F /* LaunchScreen.storyboard */,
 				BF4FD6631DB279B300D1604F /* Info.plist */,
+				7E4430A71DB299E9007183ED /* DataQuery.swift */,
 			);
 			path = PlayArray;
 			sourceTree = "<group>";
@@ -268,6 +282,7 @@
 		BF4FD7531DB28C9F00D1604F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF066F411DB528C80086396E /* SwiftyJSON.framework */,
 				BF4FD7541DB28C9F00D1604F /* Alamofire.framework */,
 			);
 			name = Frameworks;
@@ -350,7 +365,7 @@
 				BF4FD72F1DB28C7300D1604F /* Frameworks */,
 				BF4FD7301DB28C7300D1604F /* Headers */,
 				BF4FD7311DB28C7300D1604F /* Resources */,
-				AF6551F41DB674790076DD80 /* CopyFiles */,
+				BF066F461DB537460086396E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -492,6 +507,8 @@
 				7E4430A21DB2910E007183ED /* Criteria.swift in Sources */,
 				AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */,
 				7E78D53A1DB27CA200D268C0 /* TimesOfDay.swift in Sources */,
+				7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */,
+				7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */,
 				BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */,
 				BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */,
 				7E4430A41DB29202007183ED /* Weather.swift in Sources */,
@@ -519,9 +536,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF4FD75E1DB2A83D00D1604F /* Song.swift in Sources */,
+				BF961AAB1DB80CB00067F6AF /* TimeOfDay.swift in Sources */,
 				BF4FD7521DB28C7C00D1604F /* RequestManager.swift in Sources */,
+				BF961AAC1DB8191B0067F6AF /* Criteria.swift in Sources */,
 				BF4FD7591DB292BE00D1604F /* Router.swift in Sources */,
 				BF4FD7571DB28EE600D1604F /* RequestProtocol.swift in Sources */,
+				BF066F441DB530ED0086396E /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

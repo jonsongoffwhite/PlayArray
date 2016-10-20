@@ -13,14 +13,17 @@ import Alamofire
 /// so we don't have to
 enum Router: URLRequestConvertible {
     /// The base URL of the API
-    static let baseURLString = ""
+    static let baseURLString = "http://cloud-vm-46-57.doc.ic.ac.uk:3000/api/v1/playlist?"
     
-    case getPlaylist //(params)
+    case getPlaylistFromTime(time: TimeOfDay)
+    case getPlaylistFromWeather(weather: Weather)
     
     /// The HTTP method related to the call we are making
     var method: HTTPMethod {
         switch self {
-        case .getPlaylist:
+        case .getPlaylistFromTime(_):
+            return .get
+        case .getPlaylistFromWeather(_):
             return .get
         }
     }
@@ -28,8 +31,10 @@ enum Router: URLRequestConvertible {
     /// The URL extension related to the call we are making
     var path: String {
         switch self {
-        case .getPlaylist:
-            return ""
+        case .getPlaylistFromTime(let time):
+            return "local_time=" + time.stringValue
+        case .getPlaylistFromWeather(let weather):
+            return "weather=" + weather.stringValue
         }
     }
     
@@ -40,8 +45,8 @@ enum Router: URLRequestConvertible {
             A URLRequest created using information provided by the router, specific to the current API call
      */
     func asURLRequest() throws -> URLRequest {
-        let url = try Router.baseURLString.asURL()
-        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        let url = try (Router.baseURLString + path).asURL()
+        var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         
         // Set parameters where necessary

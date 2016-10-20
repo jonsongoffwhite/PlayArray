@@ -8,10 +8,34 @@
 
 import Foundation
 
-enum Weather: Criteria {
-    case Sunny
-    case Raining
-    case Overcast
-    case Snow
-    case Windy
+/// Represents all possible options for weather
+public enum Weather: Criteria {
+    case sunny
+    case raining
+    case overcast
+    case snow
+    case windy
+    
+    var stringValue: String {
+        switch self {
+        case .sunny: return "sunny"
+        case .raining: return "raining"
+        case .overcast: return "overcast"
+        case .snow: return "snow"
+        case .windy: return "windy"
+        }
+    }
+}
+
+// Category for weather
+class WeatherCategory: LocationCategory {
+    
+    
+    
+    /// Get the current weather for the user's location using some API
+    override func getData() {
+        let location = self.locationManager.location!.coordinate
+        // Request using location (latitude and longitude)
+        // Convert answer of call into enum value(s)
+    }
 }
