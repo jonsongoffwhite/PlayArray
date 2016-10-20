@@ -42,13 +42,17 @@ public class RequestManager: RequestProtocol {
     
     public func getPlaylist(from time: TimeOfDay, completion: @escaping ([Song], NSError?) -> Void) {
         request(.getPlaylistFromTime(time: time)).responseJSON { response in
-            print(response)
+            let json = JSON(response.result.value)
+            let playlist = self.parsePlaylist(from: json)
+            completion(playlist, nil)
         }
     }
     
     public func getPlaylist(from weather: Weather, completion: @escaping ([Song], NSError?) -> Void) {
         request(.getPlaylistFromWeather(weather: weather)).responseJSON { response in
-            print(response)
+            let json = JSON(response.result.value)
+            let playlist = self.parsePlaylist(from: json)
+            completion(playlist, nil)
         }
     }
     
@@ -76,6 +80,30 @@ public class RequestManager: RequestProtocol {
             
             completion(mainWeather!, nil)
         }
+    }
+    
+    // MARK: Parsing
+    
+    /**
+        Returns a list of songs from JSON representing the songs
+     
+        - Parameters:
+            - json: The JSON (from the server) containing information about the songs
+        - Returns:
+            A list of Song, to be used by PlayArray
+     */
+    func parsePlaylist(from json: JSON) -> [Song] {
+        var playlist: [Song] = []
+        let songs = json["songs"].arrayValue
+        
+        songs.forEach { songJSON in
+            let title = songJSON["title"].stringValue
+            let artist = songJSON["artist"].stringValue
+            let album = songJSON["album"].stringValue
+            playlist.append(Song(title: title, artist: artist, album: album))
+        }
+        
+        return playlist
     }
     
     // MARK: Singleton
