@@ -11,5 +11,13 @@ import Foundation
 /// Contains information describing a song
 // Will eventually need to contain links to be used by Spotify etc.
 public class Song {
+    let title: String
+    let artist: String
+    let album: String
     
+    init(title: String, artist: String, album: String) {
+        self.title = title
+        self.artist = artist
+        self.album = album
+    }
 }
