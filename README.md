@@ -42,7 +42,8 @@ Here, `getPlaylist` only contains separate functions in this sprint. Eventually 
 
 ### Data Format
 
-** This does not apply to checkpoint 1 **
+**This does not apply to checkpoint 1**
+
 Data is sent in JSON format
 
 #### getPlaylist
