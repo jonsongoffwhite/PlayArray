@@ -45,11 +45,12 @@ public enum TimeOfDay: Criteria {
 // Category for time of day
 class TimeOfDayCategory: Category {
     
-    override func getData() {
+    override func getData(completion: @escaping () -> Void) {
         let date = NSDate()
         let calendar = NSCalendar.current
         let hour = calendar.component(.hour, from: date as Date)
         criteria.append(TimeOfDay(from: hour))
+        completion()
     }
     
 }

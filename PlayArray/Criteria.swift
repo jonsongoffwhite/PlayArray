@@ -14,15 +14,11 @@ public protocol Criteria {}
 class Category {
     var criteria: [Criteria] = []
     
-    init() {
-        getData()
-    }
-    
     func add(criteria criterion: Criteria) {
         criteria.append(criterion)
     }
     
-    func getData() {
+    public func getData(completion: @escaping () -> Void) {
         preconditionFailure("This method must be overridden")
     }
 }
