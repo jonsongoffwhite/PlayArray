@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="baR-x6-K11">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="baR-x6-K11">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -19,9 +19,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6s-x1-o3X">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Suy-hJ-rb3">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="MJf-zl-hk5"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Make me a playlist"/>
+                                <state key="normal" title="Make me a playlist from time"/>
+                                <connections>
+                                    <action selector="makePlaylistFromTime:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dfy-mj-f7S"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6s-x1-o3X">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="IdV-Hb-lcf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Make me a playlist from weather"/>
                                 <connections>
                                     <action selector="makePlaylist:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gNq-NG-ILg"/>
                                 </connections>
@@ -29,10 +42,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="G6s-x1-o3X" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="63" id="6Os-NU-f63"/>
-                            <constraint firstItem="G6s-x1-o3X" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="398" id="LLr-IB-JI3"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="G6s-x1-o3X" secondAttribute="bottom" constant="134" id="e69-LF-gxS"/>
-                            <constraint firstItem="G6s-x1-o3X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hdT-H6-rIo"/>
+                            <constraint firstItem="G6s-x1-o3X" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="2Il-mX-rfs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="G6s-x1-o3X" secondAttribute="trailing" constant="-2" id="W0l-UA-qFc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Suy-hJ-rb3" secondAttribute="trailing" constant="11" id="Xv4-Um-GdI"/>
+                            <constraint firstItem="Suy-hJ-rb3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="187" id="bwo-U3-glF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="G6s-x1-o3X" secondAttribute="bottom" constant="134" id="lk4-ab-CzW"/>
+                            <constraint firstItem="Suy-hJ-rb3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="wK4-AS-oO5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Cup-yM-7oc"/>
@@ -54,7 +69,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Vm-Ao-ozj" id="NBh-74-rWc">
-                                    <frame key="frameInset" width="375" height="44"/>
+                                    <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>

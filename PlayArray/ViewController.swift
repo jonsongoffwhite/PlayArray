@@ -55,13 +55,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print(error.localizedDescription)
     }
     
+    @IBAction func makePlaylistFromTime(_ sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController
+        
+        let time = TimeOfDayCategory()
+        time.getData {
+            let timeEnum = time.criteria.first as! TimeOfDay
+            PlaylistManager.getPlaylist(from: timeEnum) { (playlist, error) in
+                self.playlist = playlist
+                self.playlist!.name = timeEnum.stringValue
+                vc.playlist = self.playlist ?? Playlist(name: "no playlist", songs: [])
+                self.show(vc, sender: sender)
+            }
+        }
+    }
+    
     @IBAction func makePlaylist(_ sender: AnyObject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController
-
-//        let vc = PlaylistTableViewController()
-//        vc.tableView.delegate
-        
         
         let weather = WeatherCategory(locationManager: locationManager)
         weather.getData {
@@ -69,17 +81,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             print("weather: \(weatherEnum)")
             PlaylistManager.getPlaylist(from: weatherEnum) { (playlist, error) in
                 self.playlist = playlist
-                // Set destination etc. The prepare function gets called before this callback occurs.
-                
+                self.playlist!.name = weatherEnum.rawValue
                 vc.playlist = self.playlist ?? Playlist(name: "no playlist", songs: [])
-                
-                
                 self.show(vc, sender: sender)
-               // self.performSegue(withIdentifier: self.MAKE_PLAYLIST_SEGUE, sender: self)
             }
         }
-        
-
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
