@@ -56,8 +56,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func makePlaylist(_ sender: AnyObject) {
+        var tempSongs: [AnyObject] = []
         Request.getPlaylist(from: .dawn) { (songs, error) in
-            // assign values to playlist variable
+            if songs.count > 0 {
+                for song in songs.enumerated() {
+                    tempSongs.append(song as AnyObject)
+                }
+                
+                self.playlist.songs = tempSongs as! [Song]
+            }
         }
     }
     
