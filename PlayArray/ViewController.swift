@@ -11,9 +11,9 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
-    let locationManager = CLLocationManager()
     let MAKE_PLAYLIST_SEGUE = "makePlaylistSegue"
 
+    let locationManager = CLLocationManager()
     var playlist: Playlist?
 
     override func viewDidLoad() {
