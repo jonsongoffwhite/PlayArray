@@ -41,8 +41,6 @@ class PlaylistTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
-//        let song = songs[indexPath.row]
-//        let songs = playlist?.songs
         let song = playlist.songs[indexPath.row]
         cell.textLabel?.text = song.title
         cell.detailTextLabel?.text = String(format: "%@ - %@", song.artist, song.album)

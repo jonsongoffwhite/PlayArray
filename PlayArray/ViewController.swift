@@ -33,11 +33,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         //USE `locationManager.requestLocation() to receive one-time user location data
-        
-//        playlist = Playlist(name: "Test playlist", songs: [])
-        
-//        playlist.name = "Test playlist"
-//        playlist.songs.append(contentsOf: [Song(title: "May You Never", artist: "Lou Lou", album: "Smokey Folkey"), Song(title: "Test", artist: "Lou", album: "Louis's 1st Album")])
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,8 +41,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        
+        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
         // Do something with current location
     }
     
@@ -64,7 +58,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let timeEnum = time.criteria.first as! TimeOfDay
             PlaylistManager.getPlaylist(from: timeEnum) { (playlist, error) in
                 self.playlist = playlist
-                self.playlist!.name = timeEnum.stringValue
+                self.playlist!.name = timeEnum.rawValue
                 vc.playlist = self.playlist ?? Playlist(name: "no playlist", songs: [])
                 self.show(vc, sender: sender)
             }
@@ -87,8 +81,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
+
 }
 

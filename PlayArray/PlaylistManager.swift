@@ -15,7 +15,7 @@ class PlaylistManager {
     private static var Request: RequestProtocol = RequestManager.sharedInstance
 
     static func getPlaylist(from time: TimeOfDay, completion: @escaping (Playlist, NSError?) -> Void) {
-        Request.getPlaylistFromTime(from: time.stringValue) { (json, error) in
+        Request.getPlaylistFromTime(from: time.rawValue) { (json, error) in
             let playlist = parsePlaylist(from: json)
             completion(playlist, nil)
         }
@@ -29,13 +29,12 @@ class PlaylistManager {
     }
     
     /**
-        OUTDATED DOCUMENTATION
-        Returns a list of songs from JSON representing the songs
+        Parses the servers JSON into a Playlist
      
         - Parameters:
-            - json: The JSON (from the server) containing information about the songs
+            - json: The JSON (from the server) containing information about the playlist
         - Returns:
-            A list of Song, to be used by PlayArray
+            The Playlist object containing the server's passed playlist
      */
     static func parsePlaylist(from json: JSON) -> Playlist {
         var songs_: [Song] = []

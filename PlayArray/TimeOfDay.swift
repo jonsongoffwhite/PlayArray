@@ -9,14 +9,14 @@
 import Foundation
 
 // Represents all options of time of day
-public enum TimeOfDay: Criteria {
-    case dawn
-    case morning
-    case afternoon
-    case evening
-    case dusk
-    case night
-    case lateNight
+public enum TimeOfDay: String, Criteria {
+    case dawn = "dawn"
+    case morning = "morning"
+    case afternoon = "afternoon"
+    case evening = "evening"
+    case dusk = "dusk"
+    case night = "night"
+    case lateNight = "lateNight"
     
     init(from hour: Int) {
         if hour < 2 { self = .night }
@@ -27,18 +27,6 @@ public enum TimeOfDay: Criteria {
         else if hour < 21 { self = .evening }
         else if hour < 23 { self = .dusk }
         else { self = .night }
-    }
-    
-    var stringValue: String {
-        switch self {
-        case .dawn: return "dawn"
-        case .morning: return "morning"
-        case .afternoon: return "afternoon"
-        case .evening: return "evening"
-        case .dusk: return "dusk"
-        case .night: return "night"
-        case .lateNight: return "lateNight"
-        }
     }
 }
 

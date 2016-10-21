@@ -11,14 +11,13 @@ import RequestManager
 
 /// Represents all possible options for weather
 public enum Weather: String, Criteria {
-    
     case sunny = "sunny"
     case raining = "raining"
     case overcast = "overcast"
     case snow = "snow"
     case windy = "windy"
     
-    /*
+    /* The Open Weather Map weather categories
     case thunderstorm = "thunderstorm"
     case drizzle = "drizzle"
     case rain = "rain"
@@ -42,16 +41,16 @@ class WeatherCategory: LocationCategory {
         // Maybe move this api call into a WeatherManager or something
         let Request: RequestProtocol = RequestManager.sharedInstance
         Request.getWeather(location.latitude, lon: location.longitude) { (weather, error) in
-            var tempWeather: String = weather.lowercased()
+            // We shouldn't have to do this conversion when we agree on the weather categories
+            var weather_: String = weather.lowercased()
             switch weather.lowercased() {
-            case "clear": tempWeather = "sunny"
-            case "rain": tempWeather = "raining"
-            case "extreme": tempWeather = "windy"
-            default: tempWeather = "overcast"
+            case "clear": weather_ = "sunny"
+            case "rain": weather_ = "raining"
+            case "extreme": weather_ = "windy"
+            default: weather_ = "overcast"
             }
 
-//            self.criteria.append(Weather(rawValue: weather.lowercased())!)
-            self.criteria.append(Weather(rawValue: tempWeather)!)
+            self.criteria.append(Weather(rawValue: weather_)!)
             completion()
         }
     }

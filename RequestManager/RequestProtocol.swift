@@ -11,7 +11,6 @@ import SwiftyJSON
 
 /// The public protocol which lists available API calls to be used by PlayArray
 public protocol RequestProtocol {
-    // criteria: Data will probably change to a custom class in future
     func getPlaylistFromTime(from time: String, completion: @escaping (JSON, NSError?) -> Void)
     func getPlaylistFromWeather(from weather: String, completion: @escaping (JSON, NSError?) -> Void)
     

@@ -9,7 +9,6 @@
 import Foundation
 
 /// Contains information describing a playlist
-// Contains playlist name and a list of songs
 class Playlist {
     var name: String
     var songs: [Song]
