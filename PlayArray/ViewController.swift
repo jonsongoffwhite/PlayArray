@@ -56,7 +56,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func makePlaylist(_ sender: AnyObject) {
-        let vc = PlaylistTableViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController
+
+//        let vc = PlaylistTableViewController()
+//        vc.tableView.delegate
         
         
         let weather = WeatherCategory(locationManager: locationManager)
@@ -71,6 +75,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 
                 
                 self.show(vc, sender: sender)
+               // self.performSegue(withIdentifier: self.MAKE_PLAYLIST_SEGUE, sender: self)
             }
         }
         

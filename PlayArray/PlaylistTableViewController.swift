@@ -10,19 +10,12 @@ import UIKit
 
 class PlaylistTableViewController: UITableViewController {
     
-//    let songs : [Song] = [Song(title: "May You Never", artist: "Lou Lou", album: "Smokey Folkey"), Song(title: "Test", artist: "Lou", album: "Louis's 1st Album")]    
     var playlist: Playlist = Playlist(name: "", songs: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = playlist.name
-        
-//        playlist.songs.append(Song(title: "May You Never", artist: "Lou Lou", album: "Smokey Folkey"))
-        
-        print("count: ")
-        print(playlist.songs.count)
-        print("...")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
