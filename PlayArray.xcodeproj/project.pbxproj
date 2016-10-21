@@ -9,11 +9,6 @@
 /* Begin PBXBuildFile section */
 		7E4430A21DB2910E007183ED /* Criteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A11DB2910E007183ED /* Criteria.swift */; };
 		7E4430A41DB29202007183ED /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A31DB29202007183ED /* Weather.swift */; };
-		7E78D53A1DB27CA200D268C0 /* TimesOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimesOfDay.swift */; };
-		AF6551EF1DB666DC0076DD80 /* Alamofire.framework in Resources */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; };
-		AF6551F01DB667240076DD80 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; };
-		AF6551F11DB667B80076DD80 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AF6551F51DB674840076DD80 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */; };
 		AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */; };
 		7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A71DB299E9007183ED /* DataQuery.swift */; };
@@ -111,7 +106,6 @@
 /* Begin PBXFileReference section */
 		7E4430A11DB2910E007183ED /* Criteria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Criteria.swift; sourceTree = "<group>"; };
 		7E4430A31DB29202007183ED /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
-		7E78D5391DB27CA200D268C0 /* TimesOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimesOfDay.swift; sourceTree = "<group>"; };
 		AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		7E4430A71DB299E9007183ED /* DataQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataQuery.swift; sourceTree = "<group>"; };
@@ -148,7 +142,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF6551F01DB667240076DD80 /* Alamofire.framework in Frameworks */,
 				BF4FD7481DB28C7300D1604F /* RequestManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,7 +453,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF6551EF1DB666DC0076DD80 /* Alamofire.framework in Resources */,
 				BF4FD6621DB279B300D1604F /* LaunchScreen.storyboard in Resources */,
 				BF4FD65F1DB279B300D1604F /* Assets.xcassets in Resources */,
 				BF4FD65D1DB279B300D1604F /* Main.storyboard in Resources */,
@@ -506,7 +498,6 @@
 				AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */,
 				7E4430A21DB2910E007183ED /* Criteria.swift in Sources */,
 				AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */,
-				7E78D53A1DB27CA200D268C0 /* TimesOfDay.swift in Sources */,
 				7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */,
 				7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */,
 				BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */,

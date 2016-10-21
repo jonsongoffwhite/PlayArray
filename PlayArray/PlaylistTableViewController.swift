@@ -10,10 +10,19 @@ import UIKit
 
 class PlaylistTableViewController: UITableViewController {
     
-    let songs : [Song] = [Song(name: "May You Never", artist: "Lou Lou", album: "Smokey Folkey"), Song(name: "Test", artist: "Lou", album: "Louis's 1st Album")]
+//    let songs : [Song] = [Song(title: "May You Never", artist: "Lou Lou", album: "Smokey Folkey"), Song(title: "Test", artist: "Lou", album: "Louis's 1st Album")]    
+    var playlist: Playlist = Playlist(name: "", songs: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = playlist.name
+        
+//        playlist.songs.append(Song(title: "May You Never", artist: "Lou Lou", album: "Smokey Folkey"))
+        
+        print("count: ")
+        print(playlist.songs.count)
+        print("...")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -34,15 +43,15 @@ class PlaylistTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+        return playlist.songs.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
-        let song = songs[indexPath.row] 
-
-        cell.textLabel?.text = song.name
+//        let song = songs[indexPath.row]
+//        let songs = playlist?.songs
+        let song = playlist.songs[indexPath.row]
+        cell.textLabel?.text = song.title
         cell.detailTextLabel?.text = String(format: "%@ - %@", song.artist, song.album)
 
         return cell

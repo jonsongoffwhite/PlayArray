@@ -25,9 +25,12 @@ public class Song {
 
 /// Contains information describing a playlist
 // Contains playlist name and a list of songs
-public struct Playlist {
-    
+public class Playlist {
     var name: String
     var songs: [Song]
     
+    init(name: String, songs: [Song]) {
+        self.name = name
+        self.songs = songs
+    }
 }

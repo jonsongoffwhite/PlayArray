@@ -12,6 +12,9 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
+    let MAKE_PLAYLIST_SEGUE = "makePlaylistSegue"
+//    var playlist: Playlist!
+    var playlist: Playlist = Playlist(name: "", songs: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +34,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         //USE `locationManager.requestLocation() to receive one-time user location data
         
+//        playlist = Playlist(name: "Test playlist", songs: [])
         
+        playlist.name = "Test playlist"
+        playlist.songs.append(contentsOf: [Song(title: "May You Never", artist: "Lou Lou", album: "Smokey Folkey"), Song(title: "Test", artist: "Lou", album: "Louis's 1st Album")])
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,5 +55,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print(error.localizedDescription)
     }
     
+    @IBAction func makePlaylist(_ sender: AnyObject) {
+        Request.getPlaylist(from: .dawn) { (songs, error) in
+            // assign values to playlist variable
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == MAKE_PLAYLIST_SEGUE {
+            let dest = segue.destination as! PlaylistTableViewController
+            dest.playlist = playlist
+        }
+    }
 }
 
