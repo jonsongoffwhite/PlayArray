@@ -22,7 +22,7 @@ class PlaylistManager {
     }
     
     static func getPlaylist(from weather: Weather, completion: @escaping (Playlist, NSError?) -> Void) {
-        Request.getPlaylistFromWeather(from: weather.stringValue) { (json, error) in
+        Request.getPlaylistFromWeather(from: weather.rawValue) { (json, error) in
         }
     }
     

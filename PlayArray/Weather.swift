@@ -10,22 +10,16 @@ import Foundation
 import RequestManager
 
 /// Represents all possible options for weather
-public enum Weather: Criteria {
-    case sunny
-    case raining
-    case overcast
-    case snow
-    case windy
+public enum Weather: String, Criteria {
     
-    var stringValue: String {
-        switch self {
-        case .sunny: return "sunny"
-        case .raining: return "raining"
-        case .overcast: return "overcast"
-        case .snow: return "snow"
-        case .windy: return "windy"
-        }
-    }
+    case thunderstorm = "thunderstorm"
+    case drizzle = "drizzle"
+    case rain = "rain"
+    case snow = "snow"
+    case clear = "clear"
+    case clouds = "clouds"
+    case extreme = "extreme"
+    case atmosphere = "atmosphere"
 }
 
 // Category for weather
@@ -40,7 +34,7 @@ class WeatherCategory: LocationCategory {
         // Maybe move this api call into a WeatherManager or something
         let Request: RequestProtocol = RequestManager.sharedInstance
         Request.getWeather(location.latitude, lon: location.longitude) { (weather, error) in
-            // fill in criteria
+            self.criteria.append(Weather(rawValue: weather.lowercased())!)
         }
     }
     
