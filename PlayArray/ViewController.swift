@@ -56,24 +56,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func makePlaylist(_ sender: AnyObject) {
+        let vc = PlaylistTableViewController()
         
+        
+        let weather = WeatherCategory(locationManager: locationManager)
+        weather.getData {
+            let weatherEnum = weather.criteria.first as! Weather
+            print("weather: \(weatherEnum)")
+            PlaylistManager.getPlaylist(from: weatherEnum) { (playlist, error) in
+                self.playlist = playlist
+                // Set destination etc. The prepare function gets called before this callback occurs.
+                
+                vc.playlist = self.playlist ?? Playlist(name: "no playlist", songs: [])
+                
+                
+                self.show(vc, sender: sender)
+            }
+        }
+        
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == MAKE_PLAYLIST_SEGUE {
-            let weather = WeatherCategory(locationManager: locationManager)
-            weather.getData {
-                let weatherEnum = weather.criteria.first as! Weather
-                print("weather: \(weatherEnum)")
-                PlaylistManager.getPlaylist(from: weatherEnum) { (playlist, error) in
-                    self.playlist = playlist
-                    // Set destination etc. The prepare function gets called before this callback occurs.
-                    
-                    let dest = segue.destination as! PlaylistTableViewController
-                    dest.playlist = self.playlist ?? Playlist(name: "no playlist", songs: [])
-                }
-            }
-        }
     }
 }
 

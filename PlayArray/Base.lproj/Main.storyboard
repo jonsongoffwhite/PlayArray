@@ -24,7 +24,6 @@
                                 <state key="normal" title="Make me a playlist"/>
                                 <connections>
                                     <action selector="makePlaylist:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gNq-NG-ILg"/>
-                                    <segue destination="1Ds-j8-LMX" kind="show" identifier="makePlaylistSegue" id="pVZ-0Y-A8P"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -177,7 +176,4 @@
             <point key="canvasLocation" x="3608.8000000000002" y="-718.29085457271367"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="pVZ-0Y-A8P"/>
-    </inferredMetricsTieBreakers>
 </document>
