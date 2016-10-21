@@ -10,7 +10,7 @@ import Foundation
 
 /// Contains information describing a song
 // Will eventually need to contain links to be used by Spotify etc.
-public class Song {
+class Song {
     let title: String
     let artist: String
     let album: String

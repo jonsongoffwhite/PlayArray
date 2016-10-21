@@ -15,8 +15,8 @@ enum Router: URLRequestConvertible {
     /// The base URL of the API
     static let baseURLString = "http://cloud-vm-46-57.doc.ic.ac.uk:3000/api/v1/playlist?"
     
-    case getPlaylistFromTime(time: TimeOfDay)
-    case getPlaylistFromWeather(weather: Weather)
+    case getPlaylistFromTime(time: String)
+    case getPlaylistFromWeather(weather: String)
     
     /// The HTTP method related to the call we are making
     var method: HTTPMethod {
@@ -32,9 +32,9 @@ enum Router: URLRequestConvertible {
     var path: String {
         switch self {
         case .getPlaylistFromTime(let time):
-            return "local_time=" + time.stringValue
+            return "local_time=" + time
         case .getPlaylistFromWeather(let weather):
-            return "weather=" + weather.stringValue
+            return "weather=" + weather
         }
     }
     
