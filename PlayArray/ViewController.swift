@@ -13,8 +13,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     let MAKE_PLAYLIST_SEGUE = "makePlaylistSegue"
-//    var playlist: Playlist!
-    var playlist: Playlist = Playlist(name: "", songs: [])
+
+    var playlist: Playlist?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +36,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
 //        playlist = Playlist(name: "Test playlist", songs: [])
         
-        playlist.name = "Test playlist"
-        playlist.songs.append(contentsOf: [Song(title: "May You Never", artist: "Lou Lou", album: "Smokey Folkey"), Song(title: "Test", artist: "Lou", album: "Louis's 1st Album")])
+//        playlist.name = "Test playlist"
+//        playlist.songs.append(contentsOf: [Song(title: "May You Never", artist: "Lou Lou", album: "Smokey Folkey"), Song(title: "Test", artist: "Lou", album: "Louis's 1st Album")])
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,22 +56,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func makePlaylist(_ sender: AnyObject) {
-        var tempSongs: [AnyObject] = []
-        Request.getPlaylist(from: .dawn) { (songs, error) in
-            if songs.count > 0 {
-                for song in songs.enumerated() {
-                    tempSongs.append(song as AnyObject)
-                }
-                
-                self.playlist.songs = tempSongs as! [Song]
-            }
+        PlaylistManager.getPlaylist(from: .dawn) { (playlist, error) in
+            self.playlist = playlist
+            // Set destination etc. The prepare function gets called before this callback occurs.
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == MAKE_PLAYLIST_SEGUE {
             let dest = segue.destination as! PlaylistTableViewController
-            dest.playlist = playlist
+            dest.playlist = playlist ?? Playlist(name: "no playlist", songs: [])
         }
     }
 }

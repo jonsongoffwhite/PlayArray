@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 /// The public protocol which lists available API calls to be used by PlayArray
 public protocol RequestProtocol {
     // criteria: Data will probably change to a custom class in future
-    func getPlaylist(from time: TimeOfDay, completion: @escaping ([Song], NSError?) -> Void)
-    func getPlaylist(from weather: Weather, completion: @escaping ([Song], NSError?) -> Void)
+    func getPlaylistFromTime(from time: String, completion: @escaping (JSON, NSError?) -> Void)
+    func getPlaylistFromWeather(from weather: String, completion: @escaping (JSON, NSError?) -> Void)
     
     func getWeather(_ lat: Double, lon: Double, completion: @escaping (String, NSError?) -> Void)
 }

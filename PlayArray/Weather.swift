@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RequestManager
 
 /// Represents all possible options for weather
 public enum Weather: Criteria {
@@ -30,12 +31,17 @@ public enum Weather: Criteria {
 // Category for weather
 class WeatherCategory: LocationCategory {
     
-    
-    
     /// Get the current weather for the user's location using some API
     override func getData() {
         let location = self.locationManager.location!.coordinate
         // Request using location (latitude and longitude)
         // Convert answer of call into enum value(s)
+        
+        // Maybe move this api call into a WeatherManager or something
+        let Request: RequestProtocol = RequestManager.sharedInstance
+        Request.getWeather(location.latitude, lon: location.longitude) { (weather, error) in
+            // fill in criteria
+        }
     }
+    
 }

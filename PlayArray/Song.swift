@@ -10,7 +10,7 @@ import Foundation
 
 /// Contains information describing a song
 // Will eventually need to contain links to be used by Spotify etc.
-public class Song {
+class Song: Any {
     let title: String
     let artist: String
     let album: String
@@ -19,18 +19,5 @@ public class Song {
         self.title = title
         self.artist = artist
         self.album = album
-    }
-}
-
-
-/// Contains information describing a playlist
-// Contains playlist name and a list of songs
-public class Playlist {
-    var name: String
-    var songs: [Song]
-    
-    init(name: String, songs: [Song]) {
-        self.name = name
-        self.songs = songs
     }
 }
