@@ -12,9 +12,9 @@ import RequestManager
 /// Represents all possible options for weather
 public enum Weather: String, Criteria {
     case sunny = "sunny"
-    case raining = "raining"
-    case overcast = "overcast"
-    case snow = "snow"
+    case rainy = "rainy"
+    case cloudy = "cloudy"
+    case snowy = "snowy"
     case windy = "windy"
     
     /* The Open Weather Map weather categories
@@ -45,9 +45,11 @@ class WeatherCategory: LocationCategory {
             var weather_: String = weather.lowercased()
             switch weather.lowercased() {
             case "clear": weather_ = "sunny"
-            case "rain": weather_ = "raining"
             case "extreme": weather_ = "windy"
-            default: weather_ = "overcast"
+            case "rain": weather_ = "rainy"
+            case "snow": weather_ = "snowy"
+            case "thunderstorm": break
+            default: weather_ = "cloudy"
             }
 
             self.criteria.append(Weather(rawValue: weather_)!)
