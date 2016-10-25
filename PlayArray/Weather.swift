@@ -15,18 +15,7 @@ public enum Weather: String, Criteria {
     case rainy = "rainy"
     case cloudy = "cloudy"
     case snowy = "snowy"
-    case windy = "windy"
-    
-    /* The Open Weather Map weather categories
     case thunderstorm = "thunderstorm"
-    case drizzle = "drizzle"
-    case rain = "rain"
-    case snow = "snow"
-    case clear = "clear"
-    case clouds = "clouds"
-    case extreme = "extreme"
-    case atmosphere = "atmosphere"
- */
 }
 
 // Category for weather
@@ -38,17 +27,15 @@ class WeatherCategory: LocationCategory {
         // Request using location (latitude and longitude)
         // Convert answer of call into enum value(s)
         
-        // Maybe move this api call into a WeatherManager or something
+        // Maybe move this api call into a WeatherManager
         let Request: RequestProtocol = RequestManager.sharedInstance
         Request.getWeather(location.latitude, lon: location.longitude) { (weather, error) in
-            // We shouldn't have to do this conversion when we agree on the weather categories
             var weather_: String = weather.lowercased()
             switch weather.lowercased() {
             case "clear": weather_ = "sunny"
-            case "extreme": weather_ = "windy"
             case "rain": weather_ = "rainy"
             case "snow": weather_ = "snowy"
-            case "thunderstorm": break
+            case "thunderstorm", "extreme": weather_ = "thunderstorm"
             default: weather_ = "cloudy"
             }
 
