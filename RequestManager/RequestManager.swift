@@ -40,14 +40,8 @@ public class RequestManager: RequestProtocol {
             - completion: Called with the servers response, will contain a list of songs or an error
      */
     
-    public func getPlaylistFromTime(from time: String, completion: @escaping (JSON, NSError?) -> Void) {
-        request(.getPlaylistFromTime(time: time)).responseJSON { response in
-            completion(JSON(response.result.value), nil)
-        }
-    }
-    
-    public func getPlaylistFromWeather(from weather: String, completion: @escaping (JSON, NSError?) -> Void) {
-        request(.getPlaylistFromWeather(weather: weather)).responseJSON { response in
+    public func getPlaylist(from criteria: [(String, String)], completion: @escaping (JSON, NSError?) -> Void) {
+        request(.getPlaylist(criteria: criteria)).responseJSON { response in
             completion(JSON(response.result.value), nil)
         }
     }

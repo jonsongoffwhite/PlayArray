@@ -14,18 +14,27 @@ class PlaylistManager {
     /// Request is PlaylistManager's reference to the RequestManager, used to create calls to the API
     private static var Request: RequestProtocol = RequestManager.sharedInstance
 
-    static func getPlaylist(from time: TimeOfDay, completion: @escaping (Playlist, NSError?) -> Void) {
-        Request.getPlaylistFromTime(from: time.rawValue) { (json, error) in
+    static func getPlaylist(from categories: [Category], completion: @escaping (Playlist, NSError?) -> Void) {
+        let dictionary = getDictionary(from: categories)
+        Request.getPlaylist(from: dictionary) { (json, error) in
+            print("got response: \(json)")
             let playlist = parsePlaylist(from: json)
             completion(playlist, nil)
         }
     }
     
-    static func getPlaylist(from weather: Weather, completion: @escaping (Playlist, NSError?) -> Void) {
-        Request.getPlaylistFromWeather(from: weather.rawValue) { (json, error) in
-            let playlist = parsePlaylist(from: json)
-            completion(playlist, nil)
+    static func getDictionary(from categories: [Category]) -> [(String, String)] {
+        var dictionary: [(String, String)] = []
+        
+        categories.forEach { category in
+            let id = category.getIdentifier()
+            let criteria: [String] = category.getCriteria()
+            criteria.forEach({ c in
+                dictionary.append((id, c))
+            })   
         }
+        
+        return dictionary
     }
     
     /**

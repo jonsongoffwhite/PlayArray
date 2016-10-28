@@ -8,22 +8,21 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 /// Router contains information about a request, and provides information for specific requests
 /// so we don't have to
 enum Router: URLRequestConvertible {
+
     /// The base URL of the API
     static let baseURLString = "http://cloud-vm-46-57.doc.ic.ac.uk:3000/api/v1/playlist?"
     
-    case getPlaylistFromTime(time: String)
-    case getPlaylistFromWeather(weather: String)
+    case getPlaylist(criteria: [(String, String)])
     
     /// The HTTP method related to the call we are making
     var method: HTTPMethod {
         switch self {
-        case .getPlaylistFromTime(_):
-            return .get
-        case .getPlaylistFromWeather(_):
+        case .getPlaylist(_):
             return .get
         }
     }
@@ -31,10 +30,8 @@ enum Router: URLRequestConvertible {
     /// The URL extension related to the call we are making
     var path: String {
         switch self {
-        case .getPlaylistFromTime(let time):
-            return "local_time=" + time
-        case .getPlaylistFromWeather(let weather):
-            return "weather=" + weather
+        case .getPlaylist(let criteria):
+            return pathFrom(criteria: criteria)
         }
     }
     
@@ -52,5 +49,15 @@ enum Router: URLRequestConvertible {
         // Set parameters where necessary
         
         return urlRequest
+    }
+    
+    func pathFrom(criteria: [(String, String)]) -> String {
+        var path = ""
+        criteria.forEach { (id, value) in
+            path += id + "=" + value + "&"
+        }
+        path = path.substring(to: path.index(before: path.endIndex))
+        print("path: \(path)")
+        return path
     }
 }

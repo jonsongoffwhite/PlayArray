@@ -39,9 +39,22 @@ class WeatherCategory: LocationCategory {
             default: weather_ = "cloudy"
             }
 
-            self.criteria.append(Weather(rawValue: weather_)!)
+            self.add(criteria: Weather(rawValue: weather_)!)
             completion()
         }
+    }
+    
+    override func getCriteria() -> [String] {
+        var criteriaStrings: [String] = []
+        criteria.forEach { c in
+            let weatherCriteria = c as! Weather
+            criteriaStrings.append(weatherCriteria.rawValue)
+        }
+        return criteriaStrings
+    }
+    
+    override func getIdentifier() -> String {
+        return "weather"
     }
     
 }

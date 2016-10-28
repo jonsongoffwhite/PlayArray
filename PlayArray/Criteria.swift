@@ -12,15 +12,24 @@ import CoreLocation
 public protocol Criteria {}
 
 class Category {
-    var criteria: [Criteria] = []
+    internal var criteria: [Criteria] = []
     
     func add(criteria criterion: Criteria) {
         criteria.append(criterion)
     }
     
-    public func getData(completion: @escaping () -> Void) {
+    func getCriteria() -> [String] {
         preconditionFailure("This method must be overridden")
     }
+    
+    func getData(completion: @escaping () -> Void) {
+        preconditionFailure("This method must be overridden")
+    }
+    
+    func getIdentifier() -> String {
+        preconditionFailure("This method must be overridden")
+    }
+    
 }
 
 class LocationCategory: Category {
@@ -30,6 +39,10 @@ class LocationCategory: Category {
     init(locationManager: CLLocationManager) {
         self.locationManager = locationManager
         super.init()
+    }
+    
+    override func getIdentifier() -> String {
+        return "location"
     }
     
 }
