@@ -88,13 +88,35 @@
                                     <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="criteriaCell" id="jPe-SI-g3B">
-                                        <rect key="frame" x="20" y="20" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="criteriaCell" id="jPe-SI-g3B" customClass="CriteriaCell" customModule="PlayArray" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="20" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BI-p4-mQz">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="78" id="QoH-aG-H4N"/>
+                                                        <constraint firstAttribute="width" constant="134" id="wIK-KX-clN"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
+                                        <color key="backgroundColor" red="0.0" green="0.60784313729999995" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="1BI-p4-mQz" firstAttribute="top" secondItem="jPe-SI-g3B" secondAttribute="topMargin" constant="28" id="6nT-o6-Y4v"/>
+                                            <constraint firstItem="1BI-p4-mQz" firstAttribute="trailing" secondItem="jPe-SI-g3B" secondAttribute="trailingMargin" id="FvJ-B4-JEi"/>
+                                            <constraint firstItem="1BI-p4-mQz" firstAttribute="leading" secondItem="jPe-SI-g3B" secondAttribute="leadingMargin" id="Qgp-GH-i6a"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="1BI-p4-mQz" secondAttribute="bottom" constant="28" id="YFd-dP-BMb"/>
+                                        </constraints>
+                                        <size key="customSize" width="150" height="150"/>
+                                        <connections>
+                                            <outlet property="label" destination="1BI-p4-mQz" id="KTe-eg-qPP"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -124,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beq-VV-HC4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5455" y="-718"/>
+            <point key="canvasLocation" x="5453.6000000000004" y="-718.29085457271367"/>
         </scene>
         <!--Saved Playlists Table View Controller-->
         <scene sceneID="ahr-cm-g7X">
@@ -171,18 +193,18 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dYJ-Ff-Qi0" id="dvf-7o-KEy">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ntP-pS-Ptd">
-                                            <frame key="frameInset" minX="15" minY="5" width="33.5" height="20.5"/>
+                                            <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nbb-FB-FYk">
-                                            <frame key="frameInset" minX="15" minY="25.5" width="44" height="14.5"/>
+                                            <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>

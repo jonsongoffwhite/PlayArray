@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
 
 private let reuseIdentifier = "criteriaCell"
 private let cellsPerRow: CGFloat = 2
+private var criteria: [Category] = []
+private var selectedCriteria: [Category] = []
 
 class SelectViewController: UIViewController {
 
@@ -18,11 +21,15 @@ class SelectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        criteria = [WeatherCategory.self, TimeOfDayCategory.self]
+        let locationManager = CLLocationManager()
+        criteria.append(WeatherCategory(locationManager: locationManager))
+        criteria.append(TimeOfDayCategory())
+        
+        collectionView.allowsMultipleSelection = true
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         // Do any additional setup after loading the view.
     }
@@ -41,42 +48,6 @@ class SelectViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
-    // MARK: UICollectionViewDataSource
-    
-
-    
-    // MARK: UICollectionViewDelegate
-    
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
-    
 }
 
 extension SelectViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -87,15 +58,30 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 9
+        return criteria.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CriteriaCell
         
-        cell.backgroundColor = UIColor.black
+        let criterion = criteria[indexPath.row]
+        cell.label.text = criterion.getIdentifier()
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = UIColor.red
+        let criterion = criteria[indexPath.row]
+        selectedCriteria.append(criterion)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = UIColor(colorLiteralRed: 0, green: 155/255, blue: 205/255, alpha: 1)
+        let criterion = criteria[indexPath.row]
+        selectedCriteria.append(criterion)
     }
 }
 
