@@ -17,6 +17,7 @@ private var selectedCriteria: [Category] = []
 class SelectViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var makePlaylistButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class SelectViewController: UIViewController {
         criteria.append(TimeOfDayCategory())
         
         collectionView.allowsMultipleSelection = true
-        
+                
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -71,6 +72,9 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if selectedCriteria.count == 0 {
+            makePlaylistButton.isHidden = false
+        }
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor.red
         let criterion = criteria[indexPath.row]
@@ -78,10 +82,14 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if selectedCriteria.count == 1 {
+            makePlaylistButton.isHidden = true
+        }
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor(colorLiteralRed: 0, green: 155/255, blue: 205/255, alpha: 1)
         let criterion = criteria[indexPath.row]
-        selectedCriteria.append(criterion)
+        let index = selectedCriteria.index(where: {$0.getIdentifier() == criterion.getIdentifier()})
+        selectedCriteria.remove(at: index!)
     }
 }
 
