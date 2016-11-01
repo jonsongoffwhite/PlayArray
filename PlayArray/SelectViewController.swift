@@ -8,11 +8,13 @@
 
 import UIKit
 import CoreLocation
+import AVFoundation
 
 private let reuseIdentifier = "criteriaCell"
 private let cellsPerRow: CGFloat = 2
 private var criteria: [Category] = []
 private var selectedCriteria: [Category] = []
+private var player: AVAudioPlayer!
 
 class SelectViewController: UIViewController {
 
@@ -73,7 +75,16 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if selectedCriteria.count == 0 {
-            makePlaylistButton.isHidden = false
+            let upSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "WHOOP", ofType: "wav")!)
+            do {
+                player = try AVAudioPlayer(contentsOf: upSound as URL)
+            } catch {
+                
+            }
+            UIView.animate(withDuration: 0.3, animations: {
+                player.play()
+                self.makePlaylistButton.frame = CGRect(x: self.makePlaylistButton.frame.origin.x, y: self.makePlaylistButton.frame.origin.y - 55, width: self.makePlaylistButton.frame.size.width, height: self.makePlaylistButton.frame.size.height)
+            })
         }
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor.red
@@ -83,7 +94,16 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if selectedCriteria.count == 1 {
-            makePlaylistButton.isHidden = true
+            let downSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "AWHOOP", ofType: "wav")!)
+            do {
+                player = try AVAudioPlayer(contentsOf: downSound as URL)
+            } catch {
+                
+            }
+            UIView.animate(withDuration: 0.3, animations: {
+                player.play()
+                self.makePlaylistButton.frame = CGRect(x: self.makePlaylistButton.frame.origin.x, y: self.makePlaylistButton.frame.origin.y + 55, width: self.makePlaylistButton.frame.size.width, height: self.makePlaylistButton.frame.size.height)
+            })
         }
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor(colorLiteralRed: 0, green: 155/255, blue: 205/255, alpha: 1)

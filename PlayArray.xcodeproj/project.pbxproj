@@ -11,6 +11,8 @@
 		7E4430A41DB29202007183ED /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A31DB29202007183ED /* Weather.swift */; };
 		7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A71DB299E9007183ED /* DataQuery.swift */; };
 		7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
+		AF1C18DE1DC8E391003A3B18 /* AWHOOP.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */; };
+		AF1C18DF1DC8E391003A3B18 /* WHOOP.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */; };
 		AF360B291DC7D3E100981E53 /* CriteriaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF360B281DC7D3E100981E53 /* CriteriaCell.swift */; };
 		AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */; };
 		AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */; };
@@ -110,6 +112,8 @@
 		7E4430A31DB29202007183ED /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		7E4430A71DB299E9007183ED /* DataQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataQuery.swift; sourceTree = "<group>"; };
 		7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOfDay.swift; sourceTree = "<group>"; };
+		AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AWHOOP.wav; sourceTree = "<group>"; };
+		AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WHOOP.wav; sourceTree = "<group>"; };
 		AF360B281DC7D3E100981E53 /* CriteriaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CriteriaCell.swift; sourceTree = "<group>"; };
 		AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +201,15 @@
 			name = Criteria;
 			sourceTree = "<group>";
 		};
+		AF1C18E01DC8E611003A3B18 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */,
+				AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		BF4FD64B1DB279B300D1604F = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +245,7 @@
 				BF1CFC391DBA1ED4009BDB7B /* Playlist.swift */,
 				BF4FD6591DB279B300D1604F /* ViewController.swift */,
 				AFE627571DC7BC870030B0B4 /* SelectViewController.swift */,
+				AF1C18E01DC8E611003A3B18 /* Sounds */,
 				AF360B281DC7D3E100981E53 /* CriteriaCell.swift */,
 				AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */,
 				AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */,
@@ -464,6 +478,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1C18DE1DC8E391003A3B18 /* AWHOOP.wav in Resources */,
+				AF1C18DF1DC8E391003A3B18 /* WHOOP.wav in Resources */,
 				BF4FD6621DB279B300D1604F /* LaunchScreen.storyboard in Resources */,
 				BF4FD65F1DB279B300D1604F /* Assets.xcassets in Resources */,
 				BF4FD65D1DB279B300D1604F /* Main.storyboard in Resources */,
