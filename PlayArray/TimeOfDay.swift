@@ -54,4 +54,8 @@ class TimeOfDayCategory: Category {
         return "local_time"
     }
     
+    override func getStringValue() -> String {
+        return "Current Time"
+    }
+    
 }

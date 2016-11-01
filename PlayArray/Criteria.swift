@@ -30,6 +30,10 @@ class Category {
         preconditionFailure("This method must be overridden")
     }
     
+    func getStringValue() -> String {
+        preconditionFailure("This method must be overriden")
+    }
+    
 }
 
 class LocationCategory: Category {

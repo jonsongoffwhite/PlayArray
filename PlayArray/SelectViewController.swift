@@ -65,7 +65,7 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CriteriaCell
         
         let criterion = criteria[indexPath.row]
-        cell.label.text = criterion.getIdentifier()
+        cell.label.text = criterion.getStringValue()
         
         return cell
     }
