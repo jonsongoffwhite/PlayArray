@@ -56,7 +56,7 @@
             </objects>
             <point key="canvasLocation" x="3951" y="-1471"/>
         </scene>
-        <!--Select View Controller-->
+        <!--Select Criteria-->
         <scene sceneID="ZVf-40-elM">
             <objects>
                 <viewController id="Ftv-qj-mrz" customClass="SelectViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
@@ -146,7 +146,7 @@
                             <constraint firstItem="tdS-ix-eKI" firstAttribute="trailing" secondItem="D60-Yl-5iK" secondAttribute="trailingMargin" id="ocI-GP-2ON"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cpj-tY-ytA"/>
+                    <navigationItem key="navigationItem" title="Select Criteria" id="cpj-tY-ytA"/>
                     <connections>
                         <outlet property="collectionView" destination="O08-2B-7EG" id="DuB-mr-hbT"/>
                         <outlet property="makePlaylistButton" destination="tdS-ix-eKI" id="MTY-jD-mZl"/>

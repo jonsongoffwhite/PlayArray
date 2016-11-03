@@ -25,7 +25,6 @@ class SelectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        criteria = [WeatherCategory.self, TimeOfDayCategory.self]
         let locationManager = CLLocationManager()
         criteria.append(WeatherCategory(locationManager: locationManager))
         criteria.append(TimeOfDayCategory())
@@ -57,8 +56,18 @@ class SelectViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController
         
+        var playlistName: String = ""
+        
+        for (index, item) in selectedCriteria.enumerated() {
+            playlistName.append(item.getCriteria().first!)
+            if index < selectedCriteria.count - 1 {
+                playlistName.append(", ")
+            }
+        }
+        
         PlaylistManager.getPlaylist(from: selectedCriteria) { (playlist, error) in
             vc.playlist = playlist
+            vc.playlist.name = playlistName
             self.show(vc, sender: sender)
         }
     }
@@ -71,7 +80,6 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return criteria.count
     }
     
@@ -106,7 +114,7 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
             return criterion.getIdentifier() == category.getIdentifier()
         }
         
-        if (!inArray) {
+        if !inArray {
             criterion.getData {
                 cumulativeSelectedCriteria.append(criterion)
                 self.makePlaylistButton.isEnabled = true
@@ -132,6 +140,7 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor(colorLiteralRed: 0, green: 155/255, blue: 205/255, alpha: 1)
+        
         let criterion = criteria[indexPath.row]
         let index = selectedCriteria.index(where: {$0.getIdentifier() == criterion.getIdentifier()})
         selectedCriteria.remove(at: index!)
