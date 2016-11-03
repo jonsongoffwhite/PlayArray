@@ -17,7 +17,6 @@ class PlaylistManager {
     static func getPlaylist(from categories: [Category], completion: @escaping (Playlist, NSError?) -> Void) {
         let dictionary = getDictionary(from: categories)
         Request.getPlaylist(from: dictionary) { (json, error) in
-            print("got response: \(json)")
             let playlist = parsePlaylist(from: json)
             completion(playlist, nil)
         }
