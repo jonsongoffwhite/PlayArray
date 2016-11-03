@@ -37,7 +37,9 @@ class SpotifyManager {
                 self.accessToken = session?.accessToken
                 self.username = session?.canonicalUsername
                 
-                self.getPlaylists()
+                //self.getPlaylists()
+                self.makePlaylist()
+                
             })
         }
     }
@@ -60,6 +62,23 @@ class SpotifyManager {
                 print(error)
             }
         }
+    }
+    
+    func makePlaylist() {
+        let playlistRequest: URLRequest
+        do {
+            playlistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName: "Empty Playlist", forUser: username, withPublicFlag: false, accessToken: accessToken)
+        } catch {
+            print("error: \(error)")
+            return
+        }
+        
+        Alamofire.request(playlistRequest)
+        .response { response in
+            print("BASS")
+            print(response)
+        }
+        
     }
     
     // MARK: Singleton
