@@ -53,7 +53,7 @@ class SelectViewController: UIViewController {
      */
     
     @IBAction func makePlaylistButtonPressed(_ sender: AnyObject) {
-        let spotify = SpotifyManager()
+        let spotify = SpotifyManager.sharedInstance
         spotify.login()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

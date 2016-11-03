@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        print("got callback")
+        let spotify = SpotifyManager.sharedInstance
+        spotify.respondToAuth(url: url)
         return true
     }
 

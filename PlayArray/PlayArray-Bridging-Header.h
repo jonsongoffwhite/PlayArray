@@ -3,3 +3,4 @@
 //
 
 #import <SpotifyAuthentication/SpotifyAuthentication.h>
+#import <SpotifyMetadata/SpotifyMetadata.h>
