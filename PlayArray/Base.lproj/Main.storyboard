@@ -107,7 +107,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yd8-Jt-ar5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yd8-Jt-ar5"/>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jU-a9-T2r">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="82Y-u8-lev"/>
@@ -133,7 +133,7 @@
                                         <size key="customSize" width="150" height="150"/>
                                         <connections>
                                             <outlet property="detailLabel" destination="4jU-a9-T2r" id="kwQ-Ne-peQ"/>
-                                            <outlet property="image" destination="yd8-Jt-ar5" id="xtN-CE-50v"/>
+                                            <outlet property="imageView" destination="yd8-Jt-ar5" id="4Kt-YY-fST"/>
                                             <outlet property="mainLabel" destination="1BI-p4-mQz" id="1vq-QL-GYn"/>
                                         </connections>
                                     </collectionViewCell>

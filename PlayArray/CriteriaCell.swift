@@ -11,6 +11,6 @@ import UIKit
 class CriteriaCell: UICollectionViewCell {
     
     @IBOutlet var mainLabel: UILabel!
-    @IBOutlet var image: UIImageView!
+    @IBOutlet var imageView: UIImageView!
     @IBOutlet var detailLabel: UILabel!
 }

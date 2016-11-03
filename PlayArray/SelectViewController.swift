@@ -89,7 +89,17 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         let criterion = criteria[indexPath.row]
         cell.mainLabel.text = criterion.getStringValue()
         criterion.getData {
-            cell.detailLabel.text = criterion.getCriteria().first
+            let weatherType: String = criterion.getCriteria().first!
+            cell.detailLabel.text = weatherType
+            var imagePath: String = ""
+            
+            if criterion.getIdentifier() == "weather" {
+                imagePath = String(format: "%@.png", weatherType)
+            } else if criterion.getIdentifier() == "local_time" {
+                imagePath = "time.png"
+            }
+            
+            cell.imageView.image = UIImage(named: imagePath)
         }
         
         return cell
