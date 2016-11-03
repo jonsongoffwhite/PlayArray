@@ -29,7 +29,10 @@ class SpotifyManager {
         }
     }
     
-    func handleAuthCallbackWithTriggeredAuthURL(url: NSURL, callback: SPTAuthCallback) {
-        print("got callback")
-    }
+    /*
+     make singleton
+     call something when we get the callback, try get the parameters
+     get access token
+     get ready for real calls
+     */
 }
