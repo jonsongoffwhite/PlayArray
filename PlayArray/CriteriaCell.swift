@@ -10,6 +10,7 @@ import UIKit
 
 class CriteriaCell: UICollectionViewCell {
     
-    @IBOutlet var label: UILabel!
-    
+    @IBOutlet var mainLabel: UILabel!
+    @IBOutlet var image: UIImageView!
+    @IBOutlet var detailLabel: UILabel!
 }
