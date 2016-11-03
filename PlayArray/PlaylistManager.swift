@@ -50,10 +50,11 @@ class PlaylistManager {
         let songs = json["songs"].arrayValue
         
         songs.forEach { songJSON in
+            let id = songJSON["_id"].stringValue
             let title = songJSON["title"].stringValue
             let artist = songJSON["artist"].stringValue
             let album = songJSON["album"].stringValue
-            songs_.append(Song(title: title, artist: artist, album: album))
+            songs_.append(Song(id: id, title: title, artist: artist, album: album))
         }
         
         return Playlist(name: "Test Playlist Name", songs: songs_)
