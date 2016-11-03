@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SpotifyManager {
     static let clientID = "ab0607417c0c4a13bb87262583255500"
