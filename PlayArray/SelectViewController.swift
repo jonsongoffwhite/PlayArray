@@ -14,6 +14,7 @@ private let reuseIdentifier = "criteriaCell"
 private let cellsPerRow: CGFloat = 2
 private var criteria: [Category] = []
 private var selectedCriteria: [Category] = []
+private var cumulativeSelectedCriteria: [Category] = []
 private var player: AVAudioPlayer!
 
 class SelectViewController: UIViewController {
@@ -51,6 +52,16 @@ class SelectViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+    @IBAction func makePlaylistButtonPressed(_ sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController
+        
+        PlaylistManager.getPlaylist(from: selectedCriteria) { (playlist, error) in
+            vc.playlist = playlist
+            self.show(vc, sender: sender)
+        }
+    }
 }
 
 extension SelectViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -86,9 +97,22 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
                 self.makePlaylistButton.frame = CGRect(x: self.makePlaylistButton.frame.origin.x, y: self.makePlaylistButton.frame.origin.y - 55, width: self.makePlaylistButton.frame.size.width, height: self.makePlaylistButton.frame.size.height)
             })
         }
+        
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor.red
         let criterion = criteria[indexPath.row]
+        
+        let inArray: Bool = cumulativeSelectedCriteria.contains { category -> Bool in
+            return criterion.getIdentifier() == category.getIdentifier()
+        }
+        
+        if (!inArray) {
+            criterion.getData {
+                cumulativeSelectedCriteria.append(criterion)
+                self.makePlaylistButton.isEnabled = true
+            }
+        }
+        
         selectedCriteria.append(criterion)
     }
     
@@ -105,6 +129,7 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
                 self.makePlaylistButton.frame = CGRect(x: self.makePlaylistButton.frame.origin.x, y: self.makePlaylistButton.frame.origin.y + 55, width: self.makePlaylistButton.frame.size.width, height: self.makePlaylistButton.frame.size.height)
             })
         }
+        
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor(colorLiteralRed: 0, green: 155/255, blue: 205/255, alpha: 1)
         let criterion = criteria[indexPath.row]
