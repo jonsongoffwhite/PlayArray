@@ -37,8 +37,25 @@ class TimeOfDayCategory: Category {
         let date = NSDate()
         let calendar = NSCalendar.current
         let hour = calendar.component(.hour, from: date as Date)
-        criteria.append(TimeOfDay(from: hour))
+        self.add(criteria: TimeOfDay(from: hour))
         completion()
+    }
+    
+    override func getCriteria() -> [String] {
+        var criteriaStrings: [String] = []
+        criteria.forEach { c in
+            let timeCriteria = c as! TimeOfDay
+            criteriaStrings.append(timeCriteria.rawValue)
+        }
+        return criteriaStrings
+    }
+    
+    override func getIdentifier() -> String {
+        return "local_time"
+    }
+    
+    override func getStringValue() -> String {
+        return "Current Time"
     }
     
 }

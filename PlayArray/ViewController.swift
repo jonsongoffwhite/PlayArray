@@ -49,36 +49,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print(error.localizedDescription)
     }
     
-    @IBAction func makePlaylistFromTime(_ sender: AnyObject) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController
-        
-        let time = TimeOfDayCategory()
-        time.getData {
-            let timeEnum = time.criteria.first as! TimeOfDay
-            PlaylistManager.getPlaylist(from: timeEnum) { (playlist, error) in
-                self.playlist = playlist
-                self.playlist!.name = timeEnum.rawValue
-                vc.playlist = self.playlist ?? Playlist(name: "no playlist", songs: [])
-                self.show(vc, sender: sender)
-            }
-        }
-    }
-    
     @IBAction func makePlaylist(_ sender: AnyObject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController
         
+        /*
         let weather = WeatherCategory(locationManager: locationManager)
         weather.getData {
-            let weatherEnum = weather.criteria.first as! Weather
-            print("weather: \(weatherEnum)")
-            PlaylistManager.getPlaylist(from: weatherEnum) { (playlist, error) in
+            let time = TimeOfDayCategory()
+            time.getData {
+                PlaylistManager.getPlaylist(from: [time, weather], completion: { (playlist, error) in
+                    self.playlist = playlist
+                    vc.playlist = self.playlist ?? Playlist(name: "no playlist", songs: [])
+                    self.show(vc, sender: sender)
+                })
+            }
+        }
+        */
+        
+        let weather = WeatherCategory(locationManager: locationManager)
+        weather.getData {
+            PlaylistManager.getPlaylist(from: [weather], completion: { (playlist, error) in
                 self.playlist = playlist
-                self.playlist!.name = weatherEnum.rawValue
                 vc.playlist = self.playlist ?? Playlist(name: "no playlist", songs: [])
                 self.show(vc, sender: sender)
-            }
+            })
         }
     }
 

@@ -11,8 +11,14 @@
 		7E4430A41DB29202007183ED /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A31DB29202007183ED /* Weather.swift */; };
 		7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A71DB299E9007183ED /* DataQuery.swift */; };
 		7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
+		AF1C18DE1DC8E391003A3B18 /* AWHOOP.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */; };
+		AF1C18DF1DC8E391003A3B18 /* WHOOP.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */; };
+		AF360B291DC7D3E100981E53 /* CriteriaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF360B281DC7D3E100981E53 /* CriteriaCell.swift */; };
+		AF3A38401DCA933B008479EB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AF47AE311DCABDBB0014BE5D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; };
 		AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */; };
 		AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */; };
+		AFE627581DC7BC870030B0B4 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE627571DC7BC870030B0B4 /* SelectViewController.swift */; };
 		BF066F421DB528C80086396E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF066F411DB528C80086396E /* SwiftyJSON.framework */; };
 		BF066F471DB537600086396E /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF066F411DB528C80086396E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF066F481DB537600086396E /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -95,6 +101,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AF3A38401DCA933B008479EB /* Alamofire.framework in Embed Frameworks */,
 				BF1CFC3F1DBA25B6009BDB7B /* SwiftyJSON.framework in Embed Frameworks */,
 				BF4FD7491DB28C7300D1604F /* RequestManager.framework in Embed Frameworks */,
 			);
@@ -108,8 +115,12 @@
 		7E4430A31DB29202007183ED /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		7E4430A71DB299E9007183ED /* DataQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataQuery.swift; sourceTree = "<group>"; };
 		7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOfDay.swift; sourceTree = "<group>"; };
+		AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AWHOOP.wav; sourceTree = "<group>"; };
+		AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WHOOP.wav; sourceTree = "<group>"; };
+		AF360B281DC7D3E100981E53 /* CriteriaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CriteriaCell.swift; sourceTree = "<group>"; };
 		AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
+		AFE627571DC7BC870030B0B4 /* SelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		BF066F411DB528C80086396E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = PlayArray/Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		BF1CFC391DBA1ED4009BDB7B /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		BF1CFC3C1DBA237A009BDB7B /* PlaylistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistManager.swift; sourceTree = "<group>"; };
@@ -144,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF47AE311DCABDBB0014BE5D /* Alamofire.framework in Frameworks */,
 				BF1CFC3E1DBA25B6009BDB7B /* SwiftyJSON.framework in Frameworks */,
 				BF4FD7481DB28C7300D1604F /* RequestManager.framework in Frameworks */,
 			);
@@ -193,6 +205,15 @@
 			name = Criteria;
 			sourceTree = "<group>";
 		};
+		AF1C18E01DC8E611003A3B18 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */,
+				AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		BF4FD64B1DB279B300D1604F = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +248,9 @@
 				BF1CFC3C1DBA237A009BDB7B /* PlaylistManager.swift */,
 				BF1CFC391DBA1ED4009BDB7B /* Playlist.swift */,
 				BF4FD6591DB279B300D1604F /* ViewController.swift */,
+				AFE627571DC7BC870030B0B4 /* SelectViewController.swift */,
+				AF1C18E01DC8E611003A3B18 /* Sounds */,
+				AF360B281DC7D3E100981E53 /* CriteriaCell.swift */,
 				AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */,
 				AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */,
 				BF4FD65B1DB279B300D1604F /* Main.storyboard */,
@@ -405,7 +429,7 @@
 				TargetAttributes = {
 					BF4FD6531DB279B300D1604F = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 9966EZPA3G;
+						DevelopmentTeam = XWGGWSE7DA;
 						ProvisioningStyle = Automatic;
 					};
 					BF4FD6671DB279B300D1604F = {
@@ -458,6 +482,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1C18DE1DC8E391003A3B18 /* AWHOOP.wav in Resources */,
+				AF1C18DF1DC8E391003A3B18 /* WHOOP.wav in Resources */,
 				BF4FD6621DB279B300D1604F /* LaunchScreen.storyboard in Resources */,
 				BF4FD65F1DB279B300D1604F /* Assets.xcassets in Resources */,
 				BF4FD65D1DB279B300D1604F /* Main.storyboard in Resources */,
@@ -500,11 +526,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */,
+				AF360B291DC7D3E100981E53 /* CriteriaCell.swift in Sources */,
 				AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */,
 				7E4430A21DB2910E007183ED /* Criteria.swift in Sources */,
 				AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */,
 				7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */,
 				BF1CFC3D1DBA237A009BDB7B /* PlaylistManager.swift in Sources */,
+				AFE627581DC7BC870030B0B4 /* SelectViewController.swift in Sources */,
 				7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */,
 				BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */,
 				BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */,
@@ -695,14 +723,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9966EZPA3G;
+				DEVELOPMENT_TEAM = XWGGWSE7DA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PlayArray/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = PlayArray/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = PlayArray.PlayArray;
+				PRODUCT_BUNDLE_IDENTIFIER = PlayArray.PlayArray1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -713,14 +741,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9966EZPA3G;
+				DEVELOPMENT_TEAM = XWGGWSE7DA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PlayArray/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = PlayArray/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = PlayArray.PlayArray;
+				PRODUCT_BUNDLE_IDENTIFIER = PlayArray.PlayArray1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
