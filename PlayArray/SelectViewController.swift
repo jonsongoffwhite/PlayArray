@@ -29,6 +29,10 @@ class SelectViewController: UIViewController {
         criteria.append(TimeOfDayCategory())
         
         collectionView.allowsMultipleSelection = true
+        
+        SpotifyManager.sharedInstance.login {
+            //
+        }
                 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -52,8 +56,6 @@ class SelectViewController: UIViewController {
      */
     
     @IBAction func makePlaylistButtonPressed(_ sender: AnyObject) {
-        let spotify = SpotifyManager.sharedInstance
-        spotify.login()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController

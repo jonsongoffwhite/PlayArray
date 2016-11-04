@@ -20,7 +20,7 @@ class SpotifyManager {
     var accessToken: String?
     var username: String?
     
-    func login() {
+    func login(completion: @escaping () -> Void) {
         auth?.clientID = SpotifyManager.clientID
         auth?.redirectURL = URL(string: SpotifyManager.redirectURL)
         auth?.requestedScopes = SpotifyManager.scopes
@@ -28,6 +28,7 @@ class SpotifyManager {
         let loginURL = auth?.spotifyWebAuthenticationURL()
         UIApplication.shared.open(loginURL!, options: [:]) { (success) in
             // handle error
+            completion()
         }
     }
     
