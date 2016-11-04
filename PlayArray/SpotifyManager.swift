@@ -36,12 +36,6 @@ class SpotifyManager {
             auth?.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error, session) in
                 self.accessToken = session?.accessToken
                 self.username = session?.canonicalUsername
-                
-                //self.getPlaylists()
-                //self.makePlaylist()
-                
-                let song = Song(id: "0I44VUwpPiJwZGIGIJTtT1", title: "A", artist: "B", album: "C")
-                self.makePlaylist(with: [song], called: "dunkno bass")
             })
         }
     }
@@ -66,45 +60,24 @@ class SpotifyManager {
         }
     }
     
-    func makePlaylist() {
-        let playlistRequest: URLRequest
-        do {
-            playlistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName: "Empty Playlist", forUser: username, withPublicFlag: false, accessToken: accessToken)
-        } catch {
-            print("error: \(error)")
-            return
-        }
-        
-        Alamofire.request(playlistRequest)
-        .response { response in
-            print("BASS")
-            print(response)
-        }
-    }
-    
     func makePlaylist(with songs: [Song], called name: String) {
         let createPlaylistRequest: URLRequest?
         
         do {
-            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: username, withPublicFlag: false, accessToken: accessToken)
+            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: username,
+                                                                                         withPublicFlag: false, accessToken: accessToken)
         } catch {
             print("error: \(error)")
             return
         }
         
-        var playlist: SPTPlaylistSnapshot?
-        
         Alamofire.request(createPlaylistRequest!)
-        .response { (response) in
-            print("Created playlist response")
-            print(response)
-            
+        .response { response in
             do {
-                playlist = try SPTPlaylistSnapshot(from: response.data, with: response.response)
-                self.add(songs: songs, to: playlist!)
+                let playlist = try SPTPlaylistSnapshot(from: response.data, with: response.response)
+                self.add(songs: songs, to: playlist)
             } catch {
                 print("playlist creation response error: \(error)")
-                return
             }
         }
     }
@@ -126,8 +99,7 @@ class SpotifyManager {
         
         Alamofire.request(addSongsToPlaylistRequest!)
             .response { (response) in
-                print("Adding songs response")
-                print(response)
+                print("Added \(songs.count) songs to playlist")
         }
     }
     
