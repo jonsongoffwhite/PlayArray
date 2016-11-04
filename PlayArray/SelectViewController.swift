@@ -14,7 +14,6 @@ private let reuseIdentifier = "criteriaCell"
 private let cellsPerRow: CGFloat = 2
 private var criteria: [Category] = []
 private var selectedCriteria: [Category] = []
-private var cumulativeSelectedCriteria: [Category] = []
 private var player: AVAudioPlayer!
 
 class SelectViewController: UIViewController {
@@ -90,7 +89,20 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CriteriaCell
         
         let criterion = criteria[indexPath.row]
-        cell.label.text = criterion.getStringValue()
+        cell.mainLabel.text = criterion.getStringValue()
+        criterion.getData {
+            let weatherType: String = criterion.getCriteria().first!
+            cell.detailLabel.text = weatherType
+            var imagePath: String = ""
+            
+            if criterion.getIdentifier() == "weather" {
+                imagePath = String(format: "%@.png", weatherType)
+            } else if criterion.getIdentifier() == "local_time" {
+                imagePath = "time.png"
+            }
+            
+            cell.imageView.image = UIImage(named: imagePath)
+        }
         
         return cell
     }
@@ -112,18 +124,6 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor.red
         let criterion = criteria[indexPath.row]
-        
-        let inArray: Bool = cumulativeSelectedCriteria.contains { category -> Bool in
-            return criterion.getIdentifier() == category.getIdentifier()
-        }
-        
-        if !inArray {
-            criterion.getData {
-                cumulativeSelectedCriteria.append(criterion)
-                self.makePlaylistButton.isEnabled = true
-            }
-        }
-        
         selectedCriteria.append(criterion)
     }
     
