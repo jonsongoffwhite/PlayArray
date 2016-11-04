@@ -38,8 +38,10 @@ class SpotifyManager {
                 self.username = session?.canonicalUsername
                 
                 //self.getPlaylists()
-                self.makePlaylist()
+                //self.makePlaylist()
                 
+                let song = Song(id: "0I44VUwpPiJwZGIGIJTtT1", title: "A", artist: "B", album: "C")
+                self.makePlaylist(with: [song], called: "dunkno bass")
             })
         }
     }
@@ -49,7 +51,7 @@ class SpotifyManager {
         do {
             playlistRequest = try SPTPlaylistList.createRequestForGettingPlaylists(forUser: username, withAccessToken: accessToken)
         } catch {
-            print("fuck off \(error)")
+            print("error getting playlist: \(error)")
             return
         }
         
@@ -78,7 +80,55 @@ class SpotifyManager {
             print("BASS")
             print(response)
         }
+    }
+    
+    func makePlaylist(with songs: [Song], called name: String) {
+        let createPlaylistRequest: URLRequest?
         
+        do {
+            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: username, withPublicFlag: false, accessToken: accessToken)
+        } catch {
+            print("error: \(error)")
+            return
+        }
+        
+        var playlist: SPTPlaylistSnapshot?
+        
+        Alamofire.request(createPlaylistRequest!)
+        .response { (response) in
+            print("Created playlist response")
+            print(response)
+            
+            do {
+                playlist = try SPTPlaylistSnapshot(from: response.data, with: response.response)
+                self.add(songs: songs, to: playlist!)
+            } catch {
+                print("playlist creation response error: \(error)")
+                return
+            }
+        }
+    }
+    
+    func add(songs: [Song], to playlist: SPTPlaylistSnapshot) {
+        let addSongsToPlaylistRequest: URLRequest?
+        
+        do {
+            var tracks: [NSURL] = []
+            songs.forEach({ song in
+                tracks.append(NSURL(string: "spotify:track:\(song.id)")!)
+            })
+            
+            addSongsToPlaylistRequest = try SPTPlaylistSnapshot.createRequest(forAddingTracks: tracks, toPlaylist: playlist.uri, withAccessToken: accessToken)
+        } catch {
+            print("error adding songs to playlist: \(error)")
+            return
+        }
+        
+        Alamofire.request(addSongsToPlaylistRequest!)
+            .response { (response) in
+                print("Adding songs response")
+                print(response)
+        }
     }
     
     // MARK: Singleton
