@@ -16,12 +16,17 @@ class PlaylistTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = playlist.name
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // Add button in navigation bar for exporting
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open in Spotify", style: .plain, target: self, action: #selector(PlaylistTableViewController.openInSpotify))
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,5 +98,13 @@ class PlaylistTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+extension PlaylistTableViewController {
+
+    func openInSpotify() {
+        
+    }
 
 }
