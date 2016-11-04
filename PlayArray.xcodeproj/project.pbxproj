@@ -10,6 +10,10 @@
 		7E4430A21DB2910E007183ED /* Criteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A11DB2910E007183ED /* Criteria.swift */; };
 		7E4430A41DB29202007183ED /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A31DB29202007183ED /* Weather.swift */; };
 		7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A71DB299E9007183ED /* DataQuery.swift */; };
+		7E60DEFF1DCBFCC500AD40FF /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60DEFD1DCBFCC500AD40FF /* SpotifyManager.swift */; };
+		7E60DF161DCBFDE900AD40FF /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E60DF131DCBFDE900AD40FF /* SpotifyAudioPlayback.framework */; };
+		7E60DF171DCBFDE900AD40FF /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E60DF141DCBFDE900AD40FF /* SpotifyAuthentication.framework */; };
+		7E60DF181DCBFDE900AD40FF /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E60DF151DCBFDE900AD40FF /* SpotifyMetadata.framework */; };
 		7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
 		AF1C18DE1DC8E391003A3B18 /* AWHOOP.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */; };
 		AF1C18DF1DC8E391003A3B18 /* WHOOP.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */; };
@@ -114,6 +118,11 @@
 		7E4430A11DB2910E007183ED /* Criteria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Criteria.swift; sourceTree = "<group>"; };
 		7E4430A31DB29202007183ED /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		7E4430A71DB299E9007183ED /* DataQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataQuery.swift; sourceTree = "<group>"; };
+		7E60DEFD1DCBFCC500AD40FF /* SpotifyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
+		7E60DF091DCBFD5B00AD40FF /* PlayArray-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlayArray-Bridging-Header.h"; sourceTree = "<group>"; };
+		7E60DF131DCBFDE900AD40FF /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
+		7E60DF141DCBFDE900AD40FF /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
+		7E60DF151DCBFDE900AD40FF /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
 		7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOfDay.swift; sourceTree = "<group>"; };
 		AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AWHOOP.wav; sourceTree = "<group>"; };
 		AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WHOOP.wav; sourceTree = "<group>"; };
@@ -155,8 +164,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E60DF171DCBFDE900AD40FF /* SpotifyAuthentication.framework in Frameworks */,
 				AF47AE311DCABDBB0014BE5D /* Alamofire.framework in Frameworks */,
+				7E60DF161DCBFDE900AD40FF /* SpotifyAudioPlayback.framework in Frameworks */,
 				BF1CFC3E1DBA25B6009BDB7B /* SwiftyJSON.framework in Frameworks */,
+				7E60DF181DCBFDE900AD40FF /* SpotifyMetadata.framework in Frameworks */,
 				BF4FD7481DB28C7300D1604F /* RequestManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +254,7 @@
 		BF4FD6561DB279B300D1604F /* PlayArray */ = {
 			isa = PBXGroup;
 			children = (
+				7E60DEFD1DCBFCC500AD40FF /* SpotifyManager.swift */,
 				7E78D53B1DB27D4E00D268C0 /* Criteria */,
 				BF4FD6571DB279B300D1604F /* AppDelegate.swift */,
 				BF4FD75C1DB2A66200D1604F /* Song.swift */,
@@ -258,6 +271,7 @@
 				BF4FD6601DB279B300D1604F /* LaunchScreen.storyboard */,
 				BF4FD6631DB279B300D1604F /* Info.plist */,
 				7E4430A71DB299E9007183ED /* DataQuery.swift */,
+				7E60DF091DCBFD5B00AD40FF /* PlayArray-Bridging-Header.h */,
 			);
 			path = PlayArray;
 			sourceTree = "<group>";
@@ -304,6 +318,9 @@
 		BF4FD7531DB28C9F00D1604F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E60DF131DCBFDE900AD40FF /* SpotifyAudioPlayback.framework */,
+				7E60DF141DCBFDE900AD40FF /* SpotifyAuthentication.framework */,
+				7E60DF151DCBFDE900AD40FF /* SpotifyMetadata.framework */,
 				BF066F411DB528C80086396E /* SwiftyJSON.framework */,
 				BF4FD7541DB28C9F00D1604F /* Alamofire.framework */,
 			);
@@ -430,6 +447,7 @@
 					BF4FD6531DB279B300D1604F = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = XWGGWSE7DA;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 					BF4FD6671DB279B300D1604F = {
@@ -533,6 +551,7 @@
 				7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */,
 				BF1CFC3D1DBA237A009BDB7B /* PlaylistManager.swift in Sources */,
 				AFE627581DC7BC870030B0B4 /* SelectViewController.swift in Sources */,
+				7E60DEFF1DCBFCC500AD40FF /* SpotifyManager.swift in Sources */,
 				7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */,
 				BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */,
 				BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */,
@@ -671,6 +690,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -713,6 +733,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -723,15 +744,20 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = XWGGWSE7DA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PlayArray/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/PlayArray/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PlayArray/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PlayArray.PlayArray1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PlayArray/PlayArray-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -741,15 +767,19 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = XWGGWSE7DA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PlayArray/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/PlayArray/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PlayArray/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PlayArray.PlayArray1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PlayArray/PlayArray-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

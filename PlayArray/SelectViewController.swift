@@ -53,6 +53,9 @@ class SelectViewController: UIViewController {
      */
     
     @IBAction func makePlaylistButtonPressed(_ sender: AnyObject) {
+        let spotify = SpotifyManager.sharedInstance
+        spotify.login()
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController
         
