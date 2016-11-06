@@ -68,12 +68,13 @@ class SelectViewController: UIViewController {
                 playlistName.append(", ")
             }
         }
-        
+
         PlaylistManager.getPlaylist(from: selectedCriteria) { (playlist, error) in
             vc.playlist = playlist
             vc.playlist.name = playlistName
             self.show(vc, sender: sender)
         }
+        
     }
 }
 

@@ -14,7 +14,7 @@ import SwiftyJSON
 class SpotifyManager {
     static let clientID = "ab0607417c0c4a13bb87262583255500"
     static let redirectURL = "playarray://spotify/callback"
-    static let scopes = ["playlist-modify-private"]
+    static let scopes = ["playlist-modify-private", "playlist-read-private", "playlist-modify-public"]
     
     let auth = SPTAuth.defaultInstance()
     var accessToken: String?
@@ -61,12 +61,43 @@ class SpotifyManager {
         }
     }
     
+    func getSpotifySongIds(with playlistURI: String, completion: @escaping ([String]) -> Void) {
+        let uri = URL(string: playlistURI)
+        let songsRequest: URLRequest
+        do {
+            songsRequest = try SPTPlaylistSnapshot.createRequestForPlaylist(withURI: uri, accessToken: accessToken)
+        } catch {
+            print("unable to get playlist from URI: \(error)")
+            return
+        }
+        
+        var snapshot: SPTPlaylistSnapshot?
+        Alamofire.request(songsRequest)
+            .response { response in
+                do {
+
+                    snapshot = try SPTPlaylistSnapshot(from: response.data, with: response.response)
+                    let tracks = snapshot?.firstTrackPage.items as! [SPTTrack]
+                    
+                    var songIds: [String] = []
+                    
+                    tracks.forEach({ (track) in
+                        songIds.append(track.identifier)
+                    })
+                   
+                    completion(songIds)    
+                } catch {
+                    print("unable to make request: \(error)")
+                }
+        }
+    }
+    
     func makePlaylist(with songs: [Song], called name: String) {
         let createPlaylistRequest: URLRequest?
         
         do {
             createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: username,
-                                                                                         withPublicFlag: false, accessToken: accessToken)
+                                                                                         withPublicFlag: true, accessToken: accessToken)
         } catch {
             print("error: \(error)")
             return
