@@ -45,6 +45,8 @@ class SelectViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     /*
      // MARK: - Navigation
      
@@ -98,9 +100,9 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
             var imagePath: String = ""
             
             if criterion.getIdentifier() == "weather" {
-                imagePath = String(format: "%@.png", weatherType)
+                imagePath = "\(weatherType)"
             } else if criterion.getIdentifier() == "local_time" {
-                imagePath = "time.png"
+                imagePath = "time"
             }
             
             cell.imageView.image = UIImage(named: imagePath)

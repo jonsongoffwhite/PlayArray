@@ -105,7 +105,6 @@ extension PlaylistTableViewController {
 
     func openInSpotify() {
         let spotify = SpotifyManager.sharedInstance
-        print(playlist.songs.first?.id)
         spotify.makePlaylist(with: self.playlist.songs, called: self.playlist.name)
         
     }

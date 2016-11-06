@@ -89,7 +89,11 @@ class SpotifyManager {
         do {
             var tracks: [NSURL] = []
             songs.forEach({ song in
-                tracks.append(NSURL(string: "spotify:track:\(song.id)")!)
+                if song.spotifyId != "Null" {
+                    tracks.append(NSURL(string: "spotify:track:\(song.spotifyId)")!)
+                } else {
+                    print("Unable to add \(song.title) by \(song.artist) to the playlist, as the given spotify id was Null")
+                }
             })
             
             addSongsToPlaylistRequest = try SPTPlaylistSnapshot.createRequest(forAddingTracks: tracks, toPlaylist: playlist.uri, withAccessToken: accessToken)
