@@ -18,12 +18,15 @@ enum Router: URLRequestConvertible {
     static let baseURLString = "http://cloud-vm-46-57.doc.ic.ac.uk:3000/api/v1/playlist?"
     
     case getPlaylist(criteria: [(String, String)])
+    case giveFeedback(songId: String, schema: String)
     
     /// The HTTP method related to the call we are making
     var method: HTTPMethod {
         switch self {
         case .getPlaylist(_):
             return .get
+        case .giveFeedback(_):
+            return .post
         }
     }
     
@@ -32,6 +35,8 @@ enum Router: URLRequestConvertible {
         switch self {
         case .getPlaylist(let criteria):
             return pathFrom(criteria: criteria)
+        case .giveFeedback(let songId, let schema):
+            return pathFrom(songId: songId, schema: schema)
         }
     }
     
@@ -57,7 +62,10 @@ enum Router: URLRequestConvertible {
             path += id + "=" + value + "&"
         }
         path = path.substring(to: path.index(before: path.endIndex))
-        print("path: \(path)")
         return path
+    }
+    
+    func pathFrom(songId: String, schema: String) -> String {
+        return ("id=" + songId + "&songDemeritSchema=" + schema)
     }
 }

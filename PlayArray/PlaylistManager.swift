@@ -14,6 +14,13 @@ class PlaylistManager {
     /// Request is PlaylistManager's reference to the RequestManager, used to create calls to the API
     private static var Request: RequestProtocol = RequestManager.sharedInstance
 
+    /**
+        Requests a playlist from the server which fits the given categories
+     
+        - Parameters: 
+            - categories: List of categories defining the playlist creation criteria
+            - completion: The completion handler which returns the playlist from the server when received
+     */
     static func getPlaylist(from categories: [Category], completion: @escaping (Playlist, NSError?) -> Void) {
         let dictionary = getDictionary(from: categories)
         Request.getPlaylist(from: dictionary) { (json, error) in
@@ -22,7 +29,15 @@ class PlaylistManager {
         }
     }
     
-    static func getDictionary(from categories: [Category]) -> [(String, String)] {
+    /**
+        Creates and returns a dictionary of keys to values used to send to the server
+     
+        - Parameters:
+            - categories: The categories to be turned into String values
+        - Returns:
+            A dictionary of [api_category_key, category_value]
+     */
+    static private func getDictionary(from categories: [Category]) -> [(String, String)] {
         var dictionary: [(String, String)] = []
         
         categories.forEach { category in
@@ -30,10 +45,22 @@ class PlaylistManager {
             let criteria: [String] = category.getCriteria()
             criteria.forEach({ c in
                 dictionary.append((id, c))
-            })   
+            })
         }
         
         return dictionary
+    }
+    
+    /**
+        Passes feedback for a song to the server to update the servers categorisation of songs
+     
+        - Parameters:
+            - songId: Database ID of the song
+            - categories: Suggested categories for the song
+            - completion: Returns possible error when request has completed on server     
+     */
+    static func giveFeedback(for songId: String, with categories: [Category], completion: @escaping (NSError?) -> Void) {
+        
     }
     
     /**
