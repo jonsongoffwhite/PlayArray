@@ -40,7 +40,8 @@ public class RequestManager: RequestProtocol {
             - completion: Called with the servers response, will contain a list of songs or an error
      */
     public func getPlaylist(from criteria: [(String, String)], completion: @escaping (JSON, NSError?) -> Void) {
-        request(.getPlaylist(criteria: criteria)).responseJSON { response in
+        request(.getPlaylist(criteria: criteria))
+        .responseJSON { response in
             completion(JSON(response.result.value), nil)
         }
     }
@@ -54,8 +55,13 @@ public class RequestManager: RequestProtocol {
             - completion: The completion handler which may return an error from the server, but is called when the server
                           has completed handling the feedback
      */
-    public func giveFeedback(for songId: String, with schema: String, completion: @escaping (NSError?) -> Void) {
-        
+    public func giveFeedback(for songId: String, with schema: [String: String], completion: @escaping (NSError?) -> Void) {
+        let parameters = schema as [String: Any]
+        request(.giveFeedback(songId: songId, schema: parameters))
+        .response { response in
+            print("response: \(response)")
+            completion(response.error as? NSError)
+        }
     }
     
     // MARK: Weather API Calls

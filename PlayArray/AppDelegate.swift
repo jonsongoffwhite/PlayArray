@@ -15,6 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let time = TimeOfDayCategory()
+        time.getData {
+            PlaylistManager.giveFeedback(for: "581d260a209c019b47639b1d", with: [time]) { (error) in
+            }
+        }
+        
         return true
     }
     

@@ -12,6 +12,7 @@ import SwiftyJSON
 /// The public protocol which lists available API calls to be used by PlayArray
 public protocol RequestProtocol {
     func getPlaylist(from criteria: [(String, String)], completion: @escaping (JSON, NSError?) -> Void)
-    
+    func giveFeedback(for songId: String, with schema: [String: String], completion: @escaping (NSError?) -> Void)
+
     func getWeather(_ lat: Double, lon: Double, completion: @escaping (String, NSError?) -> Void)
 }
