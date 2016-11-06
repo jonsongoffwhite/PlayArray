@@ -56,7 +56,7 @@ public class RequestManager: RequestProtocol {
                           has completed handling the feedback
      */
     public func giveFeedback(for songId: String, with schema: [String: String], completion: @escaping (NSError?) -> Void) {
-        let parameters = schema as [String: Any]
+        let parameters = schema as Parameters
         request(.giveFeedback(songId: songId, schema: parameters))
         .response { response in
             print("response: \(response)")

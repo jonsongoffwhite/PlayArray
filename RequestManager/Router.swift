@@ -48,18 +48,17 @@ enum Router: URLRequestConvertible {
      */
     func asURLRequest() throws -> URLRequest {
         let url = try (Router.baseURLString + path).asURL()
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
-        
+
         switch self {
         case .giveFeedback(_, let schema):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: schema)
         default:
             break
         }
-        
-        print("urlRequest: \(urlRequest)")
-        print(urlRequest.allHTTPHeaderFields)
+ 
         return urlRequest
     }
     
@@ -70,9 +69,5 @@ enum Router: URLRequestConvertible {
         }
         path = path.substring(to: path.index(before: path.endIndex))
         return path
-    }
-    
-    func pathFrom(songId: String, schema: String) -> String {
-        return ("id=" + songId + "&songDemeritSchema=" + schema)
     }
 }
