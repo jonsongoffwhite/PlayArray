@@ -56,7 +56,12 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            // Link to login with Spotify
+            SpotifyManager.sharedInstance.login {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
+//                cell.textLabel?.text = String(format: "Logged in as %@", SpotifyManager.sharedInstance.username!)
+                cell.textLabel?.text = "Logged in"
+                cell.textLabel?.textColor = .black
+            }
         }
     }
 
