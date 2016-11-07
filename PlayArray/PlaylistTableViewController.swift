@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PlaylistTableViewController: UITableViewController {
     
@@ -123,6 +124,47 @@ extension PlaylistTableViewController {
     
     func savePlaylist(uri: String, tracks: [String]) {
         let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+        let entity = NSEntityDescription.entity(forEntityName: "SpotifyPlaylist", in: context)
+        let playlist = NSManagedObject(entity: entity!, insertInto: context)
+        
+        playlist.setValue(uri, forKey: "uri")
+        save(tracks: tracks, context: context, into: playlist)
+        
+        do {
+            try context.save()
+            print("Playlist (\(uri)) saved to phone")
+        } catch {
+            print("Error saving playlist to phone: \(error)")
+        }
+    }
+    
+    func save(tracks URIs: [String], context: NSManagedObjectContext, into playlist: NSManagedObject) {
+        let entity = NSEntityDescription.entity(forEntityName: "SpotifyTrack", in: context)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SpotifyTrack")
+        URIs.forEach { uri in
+            fetchRequest.predicate = NSPredicate(format: "uri == %@", uri)
+            do {
+                let fetchResults = try context.fetch(fetchRequest)
+                var track: NSManagedObject = fetchResults.first as! NSManagedObject
+                if fetchResults.count == 0 { // Using nil check is better
+                    // Create a new entry for the track
+                    track = NSManagedObject(entity: entity!, insertInto: context)
+                    track.setValue(uri, forKey: "uri")
+                    print("Saved new track with URI: \(uri)")
+                }
+                
+                // Don't trust this... Hope we can do this without creating an NSManagedObject subclass:
+                
+                // Add `inPlaylist` relation
+//                track.setValue(NSSet(object: playlist), forKey: "inPlaylist")
+                
+                // Add `hasTrack` relation
+//                playlist.setValue(<#T##value: Any?##Any?#>, forKey: <#T##String#>)
+                
+            } catch {
+                print(error)
+            }
+        }
     }
 
 }

@@ -12,8 +12,7 @@ import CoreData
 /// Contains information describing a playlist
 class Playlist {
     var name: String
-    var songs: [Song]
-    var spotifyId: String?
+    var songs: [Song] = []
     
     init(name: String, songs: [Song]) {
         self.name = name
