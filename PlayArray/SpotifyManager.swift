@@ -17,6 +17,7 @@ class SpotifyManager {
     static let scopes = ["playlist-modify-private"]
     
     let auth = SPTAuth.defaultInstance()
+    var session: SPTSession?
     var accessToken: String?
     var username: String?
     
@@ -30,6 +31,20 @@ class SpotifyManager {
             // handle error
             completion()
         }
+    }
+    
+    func isLoggedIn() -> Bool {
+        let sessionData = UserDefaults.standard.object(forKey: "sessionData")
+        
+        if sessionData != nil {
+            session = NSKeyedUnarchiver.unarchiveObject(with: sessionData as! Data) as! SPTSession?
+            let valid = session?.isValid()
+            if valid != nil {
+                return valid!
+            }
+        }
+        
+        return false
     }
     
     func respondToAuth(url: URL) {
