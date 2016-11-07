@@ -118,7 +118,7 @@ extension PlaylistTableViewController {
         let playlist = NSManagedObject(entity: entity!, insertInto: context)
         
         playlist.setValue(uri, forKey: "uri")
-        save(tracks: tracks, context: context, into: playlist)
+        save(tracks: tracks, context: context, into: playlist, playlistURI: uri)
         
         do {
             try context.save()
@@ -128,7 +128,7 @@ extension PlaylistTableViewController {
         }
     }
     
-    func save(tracks URIs: [String], context: NSManagedObjectContext, into playlist: NSManagedObject) {
+    func save(tracks URIs: [String], context: NSManagedObjectContext, into playlist: NSManagedObject, playlistURI: String) {
         let entity = NSEntityDescription.entity(forEntityName: "SpotifyTrack", in: context)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SpotifyTrack")
         URIs.forEach { uri in
@@ -145,18 +145,41 @@ extension PlaylistTableViewController {
                     print("Found track with URI: \(uri)")
                 }
                 
-                // Don't trust this... Hope we can do this without creating an NSManagedObject subclass:
+                let playlists = track!.mutableSetValue(forKey: "inPlaylist")
+                playlists.add(playlist)
                 
-                // Add `inPlaylist` relation
-                track!.setValue(NSSet(object: playlist), forKey: "inPlaylist")
-                
-                // Add `hasTrack` relation
-//                playlist.setValue(<#T##value: Any?##Any?#>, forKey: <#T##String#>)
-                
+                let tracks = playlist.mutableSetValue(forKey: "hasTrack")
+                tracks.add(track!)
             } catch {
                 print(error)
             }
         }
+        
+        print("Track URIS for playlist \(playlistURI)")
+        print(getTrackURIs(for: playlistURI))
     }
-
+    
+    func getTrackURIs(for playlistURI: String) -> [String] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SpotifyPlaylist")
+        fetchRequest.predicate = NSPredicate(format: "uri == %@", playlistURI)
+        
+        var uris: [String] = []
+        
+        do {
+            let fetchResults = try context.fetch(fetchRequest)
+            if fetchResults.count == 0 { return [] }
+            
+            let playlist = fetchResults.first as! NSManagedObject
+            let trackRelation = playlist.mutableSetValue(forKey: "hasTrack")
+            trackRelation.forEach({ track_ in
+                let track = track_ as! NSManagedObject
+                uris.append(track.value(forKey: "uri") as! String)
+            })
+        } catch {
+            print(error)
+        }
+        
+        return uris
+    }
 }
