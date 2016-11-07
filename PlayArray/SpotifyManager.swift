@@ -61,7 +61,7 @@ class SpotifyManager {
         }
     }
     
-    func getSpotifySongIds(with playlistURI: String, completion: @escaping ([String]) -> Void) {
+    func getSpotifySongIds(with playlistURI: String, completion: @escaping (String?, [String]) -> Void) {
         let uri = URL(string: playlistURI)
         let songsRequest: URLRequest
         do {
@@ -85,7 +85,7 @@ class SpotifyManager {
                         songIds.append(track.identifier)
                     })
                    
-                    completion(songIds)    
+                    completion(snapshot?.name, songIds)
                 } catch {
                     print("unable to make request: \(error)")
                 }
