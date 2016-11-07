@@ -107,17 +107,7 @@ extension PlaylistTableViewController {
         let spotify = SpotifyManager.sharedInstance
         spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
             print("Created playlist with uri \(uri)")
-            
-            // Repeated code... can be refactored in some way
-            var tracks: [String] = []
-            self.playlist.songs.forEach({ song in
-                if song.spotifyId != "Null" {
-                    tracks.append(song.spotifyId)
-                } else {
-                    print("Unable to add \(song.title) by \(song.artist) to the playlist, as the given spotify id was Null")
-                }
-            })
-            
+            let tracks = SpotifyManager.getSpotifyIds(from: self.playlist.songs)
             self.savePlaylist(uri: uri, tracks: tracks)
         }
     }
@@ -145,18 +135,20 @@ extension PlaylistTableViewController {
             fetchRequest.predicate = NSPredicate(format: "uri == %@", uri)
             do {
                 let fetchResults = try context.fetch(fetchRequest)
-                var track: NSManagedObject = fetchResults.first as! NSManagedObject
+                var track: NSManagedObject? = fetchResults.first as? NSManagedObject
                 if fetchResults.count == 0 { // Using nil check is better
                     // Create a new entry for the track
                     track = NSManagedObject(entity: entity!, insertInto: context)
-                    track.setValue(uri, forKey: "uri")
+                    track!.setValue(uri, forKey: "uri")
                     print("Saved new track with URI: \(uri)")
+                } else {
+                    print("Found track with URI: \(uri)")
                 }
                 
                 // Don't trust this... Hope we can do this without creating an NSManagedObject subclass:
                 
                 // Add `inPlaylist` relation
-//                track.setValue(NSSet(object: playlist), forKey: "inPlaylist")
+                track!.setValue(NSSet(object: playlist), forKey: "inPlaylist")
                 
                 // Add `hasTrack` relation
 //                playlist.setValue(<#T##value: Any?##Any?#>, forKey: <#T##String#>)
