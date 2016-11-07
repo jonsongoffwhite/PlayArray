@@ -75,7 +75,6 @@ class SpotifyManager {
         Alamofire.request(songsRequest)
             .response { response in
                 do {
-
                     snapshot = try SPTPlaylistSnapshot(from: response.data, with: response.response)
                     let tracks = snapshot?.firstTrackPage.items as! [SPTTrack]
                     
@@ -92,7 +91,7 @@ class SpotifyManager {
         }
     }
     
-    func makePlaylist(with songs: [Song], called name: String) {
+    func makePlaylist(with songs: [Song], called name: String, completion: @escaping (String) -> Void) {
         let createPlaylistRequest: URLRequest?
         
         do {
@@ -107,6 +106,9 @@ class SpotifyManager {
         .response { response in
             do {
                 let playlist = try SPTPlaylistSnapshot(from: response.data, with: response.response)
+                let splitURI = playlist.uri.absoluteString.components(separatedBy: ":")
+                let uri = splitURI.last
+                completion(uri!)
                 self.add(songs: songs, to: playlist)
             } catch {
                 print("playlist creation response error: \(error)")
@@ -134,7 +136,7 @@ class SpotifyManager {
         }
         
         Alamofire.request(addSongsToPlaylistRequest!)
-            .response { (response) in
+        .response { response in
                 print("Added \(songs.count) songs to playlist")
         }
     }

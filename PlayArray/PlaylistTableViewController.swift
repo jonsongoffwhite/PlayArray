@@ -53,7 +53,6 @@ class PlaylistTableViewController: UITableViewController {
         return cell
     }
  
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -105,8 +104,25 @@ extension PlaylistTableViewController {
 
     func openInSpotify() {
         let spotify = SpotifyManager.sharedInstance
-        spotify.makePlaylist(with: self.playlist.songs, called: self.playlist.name)
-        
+        spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
+            print("Created playlist with uri \(uri)")
+            
+            // Repeated code... can be refactored in some way
+            var tracks: [String] = []
+            self.playlist.songs.forEach({ song in
+                if song.spotifyId != "Null" {
+                    tracks.append(song.spotifyId)
+                } else {
+                    print("Unable to add \(song.title) by \(song.artist) to the playlist, as the given spotify id was Null")
+                }
+            })
+            
+            self.savePlaylist(uri: uri, tracks: tracks)
+        }
+    }
+    
+    func savePlaylist(uri: String, tracks: [String]) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     }
 
 }
