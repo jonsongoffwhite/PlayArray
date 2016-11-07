@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BF4FD7321DB28C7300D1604F"
+               BuildableName = "RequestManager.framework"
+               BlueprintName = "RequestManager"
+               ReferencedContainer = "container:PlayArray.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "BF4FD6531DB279B300D1604F"
                BuildableName = "PlayArray.app"
                BlueprintName = "PlayArray"
