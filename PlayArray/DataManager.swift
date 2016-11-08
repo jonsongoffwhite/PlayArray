@@ -13,9 +13,17 @@ class DataManager {
     
     private static let PLAYLIST_ENTITY: String = "SpotifyPlaylist"
     private static let TRACK_ENTITY: String = "SpotifyTrack"
-    private static let URI_KEY: String = "uri"
     private static let PLAYLIST_TO_TRACK_RELATION = "hasTrack"
     private static let TRACK_TO_PLAYLIST_RELATION = "inPlaylist"
+    
+    // Now that we are storing all data, it's better to refactor our Playlist and Song
+    // objects in NSManagedObject subclasses as opposed to dealing with the NSManagedObjects
+    // and their keys.
+    private static let URI_KEY: String = "uri"
+    private static let NAME_KEY: String = "name"
+    private static let TITLE_KEY: String = "title"
+    private static let ARTIST_KEY: String = "artist"
+    private static let ALBUM_KEY: String = "album"
     
     /* Note: This function checks whether a playlist with the same URI is stored on the phone. This is
        relevant to when we have got a playlist from Spotify and are checking against our stored playlists.
@@ -24,25 +32,33 @@ class DataManager {
        the Spotify call is made first and we receive a new URI as a new playlist is made on Spotify. 
        It might be fixable by storing (somewhere) an `exportedToSpotify` boolean, which we can then disable the
        Open in Spotify (or check in the function) with. */
-    static func savePlaylist(_ uri: String, tracks: [String]) throws {
+    static func save(playlist: Playlist, songs: [Song]) throws {
+        // Get playlist URI, return if it is nil as we have no way of saving the playlist
+        let uri = playlist.spotifyURI
+        guard let _ = uri else {
+            return
+        }
+        
+        let tracks = SpotifyManager.getSpotifyIds(from: songs)
+        
         let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
         let entity = NSEntityDescription.entity(forEntityName: PLAYLIST_ENTITY, in: context)
-        var playlist: NSManagedObject?
+        var managedPlaylist: NSManagedObject?
         
         // Check if playlist already exists
         let playlistFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: PLAYLIST_ENTITY)
-        playlistFetchRequest.predicate = NSPredicate(format: "\(URI_KEY) == %@", uri) // Note: Could probably refactor out `playlistExists` and `trackExists`
+        playlistFetchRequest.predicate = NSPredicate(format: "\(URI_KEY) == %@", uri!) // Note: Could probably refactor out `playlistExists` and `trackExists`
         let playlistFetchResults = try context.fetch(playlistFetchRequest)
-        playlist = playlistFetchResults.first as? NSManagedObject
+        managedPlaylist = playlistFetchResults.first as? NSManagedObject
         
-        if playlist != nil {
+        if managedPlaylist != nil {
             print("Found playlist (\(uri))")
             
             var deletedTracks: [String] = []
             // var newTracks: [String] = tracks
             
             // Populate deleted tracks
-            let storedTracks = playlist?.value(forKey: PLAYLIST_TO_TRACK_RELATION) as! [NSManagedObject]
+            let storedTracks = managedPlaylist?.value(forKey: PLAYLIST_TO_TRACK_RELATION) as! [NSManagedObject]
             storedTracks.forEach({ storedTrack in
                 let storedURI = storedTrack.value(forKey: URI_KEY) as! String
                 if !tracks.contains(storedURI) {
@@ -64,21 +80,25 @@ class DataManager {
             
         } else {
             // If it doesn't exists create the object and save tracks to it
-            print("Creating new playlist (\(uri))")
-            playlist = NSManagedObject(entity: entity!, insertInto: context)
-            playlist!.setValue(uri, forKey: URI_KEY)
+            print("Creating new playlist (\(uri!))")
+            managedPlaylist = NSManagedObject(entity: entity!, insertInto: context)
+            managedPlaylist!.setValue(uri, forKey: URI_KEY)
         }
         
-        save(tracks: tracks, context: context, into: playlist!, playlistURI: uri)
+        managedPlaylist!.setValue(playlist.name, forKey: NAME_KEY)
+        save(songs: songs, context: context, into: managedPlaylist!, playlistURI: uri!)
     
         try context.save()
-        print("Playlist (\(uri)) saved to phone")
+        print("Playlist (\(uri!)) saved to phone")
     }
     
-    static func save(tracks URIs: [String], context: NSManagedObjectContext, into playlist: NSManagedObject, playlistURI: String) {
+    static func save(songs: [Song], context: NSManagedObjectContext, into playlist: NSManagedObject, playlistURI: String) {
         let entity = NSEntityDescription.entity(forEntityName: TRACK_ENTITY, in: context)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: TRACK_ENTITY)
-        URIs.forEach { uri in
+        for song in songs {
+            let uri = song.spotifyId
+            if uri == "Null" { continue } // Skip song if ID is Null. Will be fixed when server no longer contains these IDs
+            
             fetchRequest.predicate = NSPredicate(format: "\(URI_KEY) == %@", uri)
             do {
                 let fetchResults = try context.fetch(fetchRequest)
@@ -86,6 +106,9 @@ class DataManager {
                 if track == nil {
                     track = NSManagedObject(entity: entity!, insertInto: context)
                     track!.setValue(uri, forKey: URI_KEY)
+                    track!.setValue(song.title, forKey: TITLE_KEY)
+                    track!.setValue(song.artist, forKey: ARTIST_KEY)
+                    track!.setValue(song.album, forKey: ALBUM_KEY)
                     print("Saved new track with URI: \(uri)")
                 } else {
                     print("Found track with URI: \(uri)")

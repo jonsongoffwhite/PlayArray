@@ -129,18 +129,14 @@ class SpotifyManager {
         
         Alamofire.request(addSongsToPlaylistRequest!)
         .response { response in
-                print("Added \(songs.count) songs to playlist")
+                print("Added songs to Spotify playlist")
         }
     }
     
     static func getSpotifyIds(from songs: [Song]) -> [String] {
         var tracks: [String] = []
         songs.forEach({ song in
-            if song.spotifyId != "Null" {
-                tracks.append(song.spotifyId)
-            } else {
-                print("Unable to add \(song.title) by \(song.artist) to the playlist, as the given spotify id was \(song.spotifyId)")
-            }
+            tracks.append(song.spotifyId)
         })
         
         return tracks

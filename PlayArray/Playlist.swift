@@ -13,6 +13,7 @@ import CoreData
 class Playlist {
     var name: String
     var songs: [Song] = []
+    var spotifyURI: String?
     
     init(name: String, songs: [Song]) {
         self.name = name

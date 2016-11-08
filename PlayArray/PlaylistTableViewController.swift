@@ -105,9 +105,9 @@ extension PlaylistTableViewController {
     func openInSpotify() {
         let spotify = SpotifyManager.sharedInstance
         spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
-            let tracks = SpotifyManager.getSpotifyIds(from: self.playlist.songs)
+            self.playlist.spotifyURI = uri
             do {
-                try DataManager.savePlaylist(uri, tracks: tracks)
+                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs)
             } catch {
                 
             }
