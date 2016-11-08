@@ -66,6 +66,17 @@ class SavedPlaylistsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController
+
+        let playlist = playlists[indexPath.row]
+        vc.playlist = playlist
+        vc.showSpotifyButton = false
+        
+        self.show(vc, sender: self)
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -111,5 +122,4 @@ class SavedPlaylistsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

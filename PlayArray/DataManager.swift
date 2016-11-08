@@ -178,6 +178,8 @@ class DataManager {
                 songs.append(Song(id: "", spotifyId: uri, title: title, artist: artist, album: album))
             }
             
+            print("Got \(songs.count) for playlist")
+            
             playlists.append(Playlist(name: name, songs: songs))
         }
         
