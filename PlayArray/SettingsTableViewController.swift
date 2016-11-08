@@ -11,9 +11,23 @@ import UIKit
 private let sections: [String] = ["Spotify"]
 
 class SettingsTableViewController: UITableViewController {
+    
+    var loggedIn: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if SpotifyManager.sharedInstance.isLoggedIn() {
+            loggedIn = true
+        } else {
+            SpotifyManager.sharedInstance.renewSession(completion: { (success) in
+                if success {
+                    self.loggedIn = true
+                } else {
+                    self.loggedIn = false
+                }
+            })
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -48,18 +62,24 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
         
-        cell.textLabel?.text = "Login to Spotify"
-        cell.textLabel?.textColor = UIColor(colorLiteralRed: 0, green: 122/255, blue: 1, alpha: 1)
+        if loggedIn {
+            cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
+        } else {
+            cell.textLabel?.text = "Login to Spotify"
+            cell.textLabel?.textColor = UIColor(colorLiteralRed: 0, green: 122/255, blue: 1, alpha: 1)
+        }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            SpotifyManager.sharedInstance.login {
+            if !loggedIn {
+                SpotifyManager.sharedInstance.login {
+                    self.loggedIn = true
+                }
                 let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
-//                cell.textLabel?.text = String(format: "Logged in as %@", SpotifyManager.sharedInstance.username!)
-                cell.textLabel?.text = "Logged in"
+                cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
                 cell.textLabel?.textColor = .black
             }
         }

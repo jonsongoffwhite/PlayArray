@@ -19,8 +19,6 @@ class SpotifyManager {
     
     let auth = SPTAuth.defaultInstance()
     var session: SPTSession?
-    var accessToken: String?
-    var username: String?
     
     func login(completion: @escaping () -> Void) {
         auth?.clientID = SpotifyManager.clientID
@@ -38,7 +36,9 @@ class SpotifyManager {
         let sessionData = UserDefaults.standard.object(forKey: sessionKey)
         
         if sessionData != nil {
-            session = NSKeyedUnarchiver.unarchiveObject(with: sessionData as! Data) as! SPTSession?
+            let dictionary = NSKeyedUnarchiver.unarchiveObject(with: sessionData as! Data) as! NSMutableDictionary
+            session = SPTSession(userName: dictionary.value(forKey: "canonicalUsername") as! String!, accessToken: dictionary.value(forKey: "accessToken") as! String!, encryptedRefreshToken: dictionary.value(forKey: "encryptedRefreshToken") as! String!, expirationDate: dictionary.value(forKey: "expirationDate") as! Date!)
+            
             let valid = session?.isValid()
             if valid != nil {
                 return valid!
@@ -57,8 +57,13 @@ class SpotifyManager {
                     print("Could not renew session")
                     completion(false)
                 } else {
-                    let sessionData = NSKeyedArchiver.archivedData(withRootObject: session)
-                    UserDefaults.standard.set(sessionData, forKey: self.sessionKey)
+                    let dictionary = NSMutableDictionary()
+                    dictionary.setValue(session?.canonicalUsername, forKey: "canonicalUsername")
+                    dictionary.setValue(session?.accessToken, forKey: "accessToken")
+                    dictionary.setValue(session?.encryptedRefreshToken, forKey: "encryptedRefreshToken")
+                    dictionary.setValue(session?.expirationDate, forKey: "expirationDate")
+                    let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+                    UserDefaults.standard.set(data, forKey: self.sessionKey)
                     UserDefaults.standard.synchronize()
                     
                     self.session = session
@@ -71,8 +76,25 @@ class SpotifyManager {
     func respondToAuth(url: URL) {
         if(auth?.canHandle(url))! {
             auth?.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error, session) in
-                self.accessToken = session?.accessToken
-                self.username = session?.canonicalUsername
+                if error != nil {
+                    print("Could not login")
+                } else {
+                    if session != nil {
+                        let dictionary = NSMutableDictionary()
+                        dictionary.setValue(session?.canonicalUsername, forKey: "canonicalUsername")
+                        dictionary.setValue(session?.accessToken, forKey: "accessToken")
+                        dictionary.setValue(session?.encryptedRefreshToken, forKey: "encryptedRefreshToken")
+                        dictionary.setValue(session?.expirationDate, forKey: "expirationDate")
+                        let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+                        UserDefaults.standard.set(data, forKey: self.sessionKey)
+                        UserDefaults.standard.synchronize()
+                    } else {
+                        print("session is null")
+                    }
+                    
+                    self.session = session
+                }
+
             })
         }
     }
@@ -80,7 +102,7 @@ class SpotifyManager {
     func getPlaylists() {
         let playlistRequest: URLRequest
         do {
-            playlistRequest = try SPTPlaylistList.createRequestForGettingPlaylists(forUser: username, withAccessToken: accessToken)
+            playlistRequest = try SPTPlaylistList.createRequestForGettingPlaylists(forUser: session?.canonicalUsername, withAccessToken: session?.accessToken)
         } catch {
             print("error getting playlist: \(error)")
             return
@@ -100,9 +122,11 @@ class SpotifyManager {
     func makePlaylist(with songs: [Song], called name: String) {
         let createPlaylistRequest: URLRequest?
         
+        print("username: ", session?.canonicalUsername)
+        
         do {
-            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: username,
-                                                                                         withPublicFlag: false, accessToken: accessToken)
+            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: session?.canonicalUsername,
+                                                                                         withPublicFlag: false, accessToken: session?.accessToken)
         } catch {
             print("error: \(error)")
             return
@@ -128,7 +152,7 @@ class SpotifyManager {
                 tracks.append(NSURL(string: "spotify:track:\(song.id)")!)
             })
             
-            addSongsToPlaylistRequest = try SPTPlaylistSnapshot.createRequest(forAddingTracks: tracks, toPlaylist: playlist.uri, withAccessToken: accessToken)
+            addSongsToPlaylistRequest = try SPTPlaylistSnapshot.createRequest(forAddingTracks: tracks, toPlaylist: playlist.uri, withAccessToken: session?.accessToken)
         } catch {
             print("error adding songs to playlist: \(error)")
             return
