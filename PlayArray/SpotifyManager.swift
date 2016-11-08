@@ -15,6 +15,7 @@ class SpotifyManager {
     static let clientID = "ab0607417c0c4a13bb87262583255500"
     static let redirectURL = "playarray://spotify/callback"
     static let scopes = ["playlist-modify-private"]
+    let sessionKey = "sessionData"
     
     let auth = SPTAuth.defaultInstance()
     var session: SPTSession?
@@ -34,7 +35,7 @@ class SpotifyManager {
     }
     
     func isLoggedIn() -> Bool {
-        let sessionData = UserDefaults.standard.object(forKey: "sessionData")
+        let sessionData = UserDefaults.standard.object(forKey: sessionKey)
         
         if sessionData != nil {
             session = NSKeyedUnarchiver.unarchiveObject(with: sessionData as! Data) as! SPTSession?
@@ -45,6 +46,26 @@ class SpotifyManager {
         }
         
         return false
+    }
+    
+    func renewSession(completion: @escaping (Bool) -> Void ) {
+        if session == nil {
+            completion(false)
+        } else {
+            auth?.renewSession(session, callback: { (error, session) in
+                if error != nil {
+                    print("Could not renew session")
+                    completion(false)
+                } else {
+                    let sessionData = NSKeyedArchiver.archivedData(withRootObject: session)
+                    UserDefaults.standard.set(sessionData, forKey: self.sessionKey)
+                    UserDefaults.standard.synchronize()
+                    
+                    self.session = session
+                    completion(true)
+                }
+            })
+        }
     }
     
     func respondToAuth(url: URL) {

@@ -20,6 +20,7 @@
 		AF360B291DC7D3E100981E53 /* CriteriaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF360B281DC7D3E100981E53 /* CriteriaCell.swift */; };
 		AF3A38401DCA933B008479EB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF47AE311DCABDBB0014BE5D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; };
+		AF4C7DEA1DD1F3B800E0CDC8 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4C7DE91DD1F3B800E0CDC8 /* SettingsTableViewController.swift */; };
 		AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */; };
 		AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */; };
 		AFE627581DC7BC870030B0B4 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE627571DC7BC870030B0B4 /* SelectViewController.swift */; };
@@ -127,6 +128,7 @@
 		AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AWHOOP.wav; sourceTree = "<group>"; };
 		AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WHOOP.wav; sourceTree = "<group>"; };
 		AF360B281DC7D3E100981E53 /* CriteriaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CriteriaCell.swift; sourceTree = "<group>"; };
+		AF4C7DE91DD1F3B800E0CDC8 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		AFE627571DC7BC870030B0B4 /* SelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				BF1CFC391DBA1ED4009BDB7B /* Playlist.swift */,
 				BF4FD6591DB279B300D1604F /* ViewController.swift */,
 				AFE627571DC7BC870030B0B4 /* SelectViewController.swift */,
+				AF4C7DE91DD1F3B800E0CDC8 /* SettingsTableViewController.swift */,
 				AF1C18E01DC8E611003A3B18 /* Sounds */,
 				AF360B281DC7D3E100981E53 /* CriteriaCell.swift */,
 				AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */,
@@ -554,6 +557,7 @@
 				7E60DEFF1DCBFCC500AD40FF /* SpotifyManager.swift in Sources */,
 				7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */,
 				BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */,
+				AF4C7DEA1DD1F3B800E0CDC8 /* SettingsTableViewController.swift in Sources */,
 				BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */,
 				7E4430A41DB29202007183ED /* Weather.swift in Sources */,
 				BF1CFC3A1DBA1ED4009BDB7B /* Playlist.swift in Sources */,
