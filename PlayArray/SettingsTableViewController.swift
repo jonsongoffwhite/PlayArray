@@ -63,19 +63,26 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
         
+        cell.selectionStyle = .default
+        cell.isUserInteractionEnabled = true
+        cell.textLabel?.textAlignment = .left
+        cell.textLabel?.textColor = .black
+        
+        let buttonColour = UIColor(colorLiteralRed: 0, green: 122/255, blue: 1, alpha: 1)
+        
         if SettingsTableViewController.loggedIn {
             if indexPath.row == 0 {
                 cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
-                cell.textLabel?.textColor = .black
-                cell.textLabel?.textAlignment = .left
+                cell.selectionStyle = .none
+                cell.isUserInteractionEnabled = false
             } else if indexPath.row == 1 {
                 cell.textLabel?.text = "Log out"
-                cell.textLabel?.textColor = UIColor(colorLiteralRed: 0, green: 122/255, blue: 1, alpha: 1)
+                cell.textLabel?.textColor = buttonColour
                 cell.textLabel?.textAlignment = .center
             }
         } else {
             cell.textLabel?.text = "Log in to Spotify"
-            cell.textLabel?.textColor = UIColor(colorLiteralRed: 0, green: 122/255, blue: 1, alpha: 1)
+            cell.textLabel?.textColor = buttonColour
         }
         
         return cell
