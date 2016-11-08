@@ -37,6 +37,7 @@ class SpotifyManager {
         
         if sessionData != nil {
             let dictionary = NSKeyedUnarchiver.unarchiveObject(with: sessionData as! Data) as! NSMutableDictionary
+            
             session = SPTSession(userName: dictionary.value(forKey: "canonicalUsername") as! String!, accessToken: dictionary.value(forKey: "accessToken") as! String!, encryptedRefreshToken: dictionary.value(forKey: "encryptedRefreshToken") as! String!, expirationDate: dictionary.value(forKey: "expirationDate") as! Date!)
             
             let valid = session?.isValid()
@@ -57,16 +58,7 @@ class SpotifyManager {
                     print("Could not renew session")
                     completion(false)
                 } else {
-                    let dictionary = NSMutableDictionary()
-                    dictionary.setValue(session?.canonicalUsername, forKey: "canonicalUsername")
-                    dictionary.setValue(session?.accessToken, forKey: "accessToken")
-                    dictionary.setValue(session?.encryptedRefreshToken, forKey: "encryptedRefreshToken")
-                    dictionary.setValue(session?.expirationDate, forKey: "expirationDate")
-                    let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-                    UserDefaults.standard.set(data, forKey: self.sessionKey)
-                    UserDefaults.standard.synchronize()
-                    
-                    self.session = session
+                    self.storeSession(session: session!)
                     completion(true)
                 }
             })
@@ -79,24 +71,26 @@ class SpotifyManager {
                 if error != nil {
                     print("Could not login")
                 } else {
-                    if session != nil {
-                        let dictionary = NSMutableDictionary()
-                        dictionary.setValue(session?.canonicalUsername, forKey: "canonicalUsername")
-                        dictionary.setValue(session?.accessToken, forKey: "accessToken")
-                        dictionary.setValue(session?.encryptedRefreshToken, forKey: "encryptedRefreshToken")
-                        dictionary.setValue(session?.expirationDate, forKey: "expirationDate")
-                        let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-                        UserDefaults.standard.set(data, forKey: self.sessionKey)
-                        UserDefaults.standard.synchronize()
-                    } else {
-                        print("session is null")
-                    }
-                    
-                    self.session = session
+                    self.storeSession(session: session!)
                 }
 
             })
         }
+    }
+    
+    func storeSession(session: SPTSession) {
+        let dictionary = NSMutableDictionary()
+        dictionary.setValue(session.canonicalUsername, forKey: "canonicalUsername")
+        dictionary.setValue(session.accessToken, forKey: "accessToken")
+        dictionary.setValue(session.encryptedRefreshToken, forKey: "encryptedRefreshToken")
+        dictionary.setValue(session.expirationDate, forKey: "expirationDate")
+        let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(data, forKey: self.sessionKey)
+        userDefaults.synchronize()
+        
+        self.session = session
     }
     
     func getPlaylists() {
