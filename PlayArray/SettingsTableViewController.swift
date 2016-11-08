@@ -12,22 +12,10 @@ private let sections: [String] = ["Spotify"]
 
 class SettingsTableViewController: UITableViewController {
     
-    var loggedIn: Bool = false
+    static var loggedIn: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if SpotifyManager.sharedInstance.isLoggedIn() {
-            loggedIn = true
-        } else {
-            SpotifyManager.sharedInstance.renewSession(completion: { (success) in
-                if success {
-                    self.loggedIn = true
-                } else {
-                    self.loggedIn = false
-                }
-            })
-        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -62,7 +50,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
         
-        if loggedIn {
+        if SettingsTableViewController.loggedIn {
             cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
         } else {
             cell.textLabel?.text = "Login to Spotify"
@@ -74,9 +62,9 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            if !loggedIn {
+            if !SettingsTableViewController.loggedIn {
                 SpotifyManager.sharedInstance.login {
-                    self.loggedIn = true
+                    SettingsTableViewController.loggedIn = true
                 }
                 let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
                 cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
