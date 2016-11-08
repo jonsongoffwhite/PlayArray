@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SchemeUserState</key>
-	<dict>
-		<key>PlayArray.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
-	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>BF4FD6531DB279B300D1604F</key>
@@ -23,6 +15,16 @@
 			<true/>
 		</dict>
 		<key>BF4FD6721DB279B300D1604F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF4FD7321DB28C7300D1604F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF4FD73A1DB28C7300D1604F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
