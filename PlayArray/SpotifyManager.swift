@@ -41,27 +41,40 @@ class SpotifyManager {
         }
     }
     
-    func getPlaylists() {
+    // Currently only gets first 20 playlists. Need to get them all
+    func getPlaylists(completion: @escaping ([Playlist]) -> Void) throws {
         let playlistRequest: URLRequest
-        do {
-            playlistRequest = try SPTPlaylistList.createRequestForGettingPlaylists(forUser: username, withAccessToken: accessToken)
-        } catch {
-            print("Error getting playlist: \(error)")
-            return
-        }
+        playlistRequest = try SPTPlaylistList.createRequestForGettingPlaylists(forUser: username, withAccessToken: accessToken)
         
         Alamofire.request(playlistRequest)
         .response { response in
             do {
                 let list = try SPTPlaylistList(from: response.data, with: response.response)
-                let playlists = list.value(forKey: "items") // SPTPartialPlaylist array
+                let results = list.value(forKey: "items") as! [SPTPartialPlaylist]
+                
+                var playlists: [Playlist] = []
+                DispatchQueue.main.async {
+                    for playlist in results {
+                        let uri = playlist.uri.absoluteString
+                        let name = playlist.name
+                        if playlist.trackCount > 0 {
+                            self.getSpotifySongs(with: uri, completion: { songs in
+                                playlists.append(Playlist(name: name!, songs: songs))
+                            })
+                        }
+                    }
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    completion(playlists)
+                })
             } catch {
                 print(error)
             }
         }
     }
     
-    func getSpotifySongIds(with playlistURI: String, completion: @escaping ([String]) -> Void) {
+    func getSpotifySongs(with playlistURI: String, completion: @escaping ([Song]) -> Void) {
         let uri = URL(string: playlistURI)
         let songsRequest: URLRequest
         do {
@@ -73,21 +86,26 @@ class SpotifyManager {
         
         var snapshot: SPTPlaylistSnapshot?
         Alamofire.request(songsRequest)
-            .response { response in
-                do {
-                    snapshot = try SPTPlaylistSnapshot(from: response.data, with: response.response)
-                    let tracks = snapshot?.firstTrackPage.items as! [SPTTrack]
-                    
-                    var songIds: [String] = []
-                    
-                    tracks.forEach({ (track) in
-                        songIds.append(track.identifier)
-                    })
-                   
-                    completion(songIds)    
-                } catch {
-                    print("Unable to make request: \(error)")
-                }
+        .response { response in
+            do {
+                snapshot = try SPTPlaylistSnapshot(from: response.data, with: response.response)
+                let tracks = snapshot?.firstTrackPage.items as! [SPTTrack]
+                
+                var songs: [Song] = []
+                
+                tracks.forEach({ (track) in
+                    let songURI = track.identifier
+                    let title = track.name
+                    let album = track.album.name
+                    let artists = track.artists as! [SPTPartialArtist]
+                    let artist = artists.first?.name
+                    songs.append(Song(id: "", spotifyId: songURI!, title: title!, artist: "", album: album!))
+                })
+               
+                completion(songs)
+            } catch {
+                print("Unable to make request: \(error)")
+            }
         }
     }
     
@@ -106,9 +124,8 @@ class SpotifyManager {
         .response { response in
             do {
                 let playlist = try SPTPlaylistSnapshot(from: response.data, with: response.response)
-                let splitURI = playlist.uri.absoluteString.components(separatedBy: ":")
-                let uri = splitURI.last
-                completion(uri!)
+                let uri = SpotifyManager.uriFrom(spotifyURI: playlist.uri.absoluteString)
+                completion(uri)
                 self.add(songs: songs, to: playlist)
             } catch {
                 print("Playlist creation response error: \(error)")
@@ -150,6 +167,10 @@ class SpotifyManager {
         }
         
         return uris
+    }
+    
+    static func uriFrom(spotifyURI: String) -> String {
+        return spotifyURI.components(separatedBy: ":").last!
     }
     
     // MARK: Singleton
