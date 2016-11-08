@@ -11,6 +11,7 @@ import UIKit
 class PlaylistTableViewController: UITableViewController {
     
     var playlist: Playlist = Playlist(name: "", songs: [])
+    var showSpotifyButton = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,9 @@ class PlaylistTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         // Add button in navigation bar for exporting
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open in Spotify", style: .plain, target: self, action: #selector(PlaylistTableViewController.openInSpotify))
-        
+        if showSpotifyButton {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open in Spotify", style: .plain, target: self, action: #selector(PlaylistTableViewController.openInSpotify))
+        }
     }
 
     override func didReceiveMemoryWarning() {
