@@ -120,7 +120,7 @@ class SpotifyManager {
         let uri = URL(string: playlistURI)
         let songsRequest: URLRequest
         do {
-            songsRequest = try SPTPlaylistSnapshot.createRequestForPlaylist(withURI: uri, accessToken: accessToken)
+            songsRequest = try SPTPlaylistSnapshot.createRequestForPlaylist(withURI: uri, accessToken: session?.accessToken)
         } catch {
             print("Unable to get playlist from URI: \(error)")
             return
