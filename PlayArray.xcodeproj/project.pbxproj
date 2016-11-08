@@ -31,7 +31,6 @@
 		BF1CFC3E1DBA25B6009BDB7B /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF066F411DB528C80086396E /* SwiftyJSON.framework */; };
 		BF1CFC3F1DBA25B6009BDB7B /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF066F411DB528C80086396E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6571DB279B300D1604F /* AppDelegate.swift */; };
-		BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD6591DB279B300D1604F /* ViewController.swift */; };
 		BF4FD65D1DB279B300D1604F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4FD65B1DB279B300D1604F /* Main.storyboard */; };
 		BF4FD65F1DB279B300D1604F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF4FD65E1DB279B300D1604F /* Assets.xcassets */; };
 		BF4FD6621DB279B300D1604F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4FD6601DB279B300D1604F /* LaunchScreen.storyboard */; };
@@ -47,6 +46,7 @@
 		BF4FD7571DB28EE600D1604F /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7561DB28EE600D1604F /* RequestProtocol.swift */; };
 		BF4FD7591DB292BE00D1604F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7581DB292BE00D1604F /* Router.swift */; };
 		BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD75C1DB2A66200D1604F /* Song.swift */; };
+		BF94C39F1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF94C39D1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,7 +135,6 @@
 		BF1CFC3C1DBA237A009BDB7B /* PlaylistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistManager.swift; sourceTree = "<group>"; };
 		BF4FD6541DB279B300D1604F /* PlayArray.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayArray.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4FD6571DB279B300D1604F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BF4FD6591DB279B300D1604F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BF4FD65C1DB279B300D1604F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF4FD65E1DB279B300D1604F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF4FD6611DB279B300D1604F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -157,6 +156,7 @@
 		BF4FD7561DB28EE600D1604F /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		BF4FD7581DB292BE00D1604F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		BF4FD75C1DB2A66200D1604F /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		BF94C39E1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpotifyPlaylistModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,23 +254,23 @@
 		BF4FD6561DB279B300D1604F /* PlayArray */ = {
 			isa = PBXGroup;
 			children = (
-				7E60DEFD1DCBFCC500AD40FF /* SpotifyManager.swift */,
-				7E78D53B1DB27D4E00D268C0 /* Criteria */,
 				BF4FD6571DB279B300D1604F /* AppDelegate.swift */,
-				BF4FD75C1DB2A66200D1604F /* Song.swift */,
-				BF1CFC3C1DBA237A009BDB7B /* PlaylistManager.swift */,
-				BF1CFC391DBA1ED4009BDB7B /* Playlist.swift */,
-				BF4FD6591DB279B300D1604F /* ViewController.swift */,
-				AFE627571DC7BC870030B0B4 /* SelectViewController.swift */,
-				AF1C18E01DC8E611003A3B18 /* Sounds */,
 				AF360B281DC7D3E100981E53 /* CriteriaCell.swift */,
+				7E4430A71DB299E9007183ED /* DataQuery.swift */,
+				BF1CFC391DBA1ED4009BDB7B /* Playlist.swift */,
+				BF1CFC3C1DBA237A009BDB7B /* PlaylistManager.swift */,
 				AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */,
 				AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */,
-				BF4FD65B1DB279B300D1604F /* Main.storyboard */,
+				AFE627571DC7BC870030B0B4 /* SelectViewController.swift */,
+				BF4FD75C1DB2A66200D1604F /* Song.swift */,
+				7E60DEFD1DCBFCC500AD40FF /* SpotifyManager.swift */,
 				BF4FD65E1DB279B300D1604F /* Assets.xcassets */,
+				7E78D53B1DB27D4E00D268C0 /* Criteria */,
+				BF94C3A01DD0E08E00B7BEDE /* Models */,
+				AF1C18E01DC8E611003A3B18 /* Sounds */,
+				BF4FD65B1DB279B300D1604F /* Main.storyboard */,
 				BF4FD6601DB279B300D1604F /* LaunchScreen.storyboard */,
 				BF4FD6631DB279B300D1604F /* Info.plist */,
-				7E4430A71DB299E9007183ED /* DataQuery.swift */,
 				7E60DF091DCBFD5B00AD40FF /* PlayArray-Bridging-Header.h */,
 			);
 			path = PlayArray;
@@ -325,6 +325,14 @@
 				BF4FD7541DB28C9F00D1604F /* Alamofire.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF94C3A01DD0E08E00B7BEDE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BF94C39D1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -552,8 +560,8 @@
 				BF1CFC3D1DBA237A009BDB7B /* PlaylistManager.swift in Sources */,
 				AFE627581DC7BC870030B0B4 /* SelectViewController.swift in Sources */,
 				7E60DEFF1DCBFCC500AD40FF /* SpotifyManager.swift in Sources */,
+				BF94C39F1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld in Sources */,
 				7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */,
-				BF4FD65A1DB279B300D1604F /* ViewController.swift in Sources */,
 				BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */,
 				7E4430A41DB29202007183ED /* Weather.swift in Sources */,
 				BF1CFC3A1DBA1ED4009BDB7B /* Playlist.swift in Sources */,
@@ -979,6 +987,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BF94C39D1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BF94C39E1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodel */,
+			);
+			currentVersion = BF94C39E1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodel */;
+			name = SpotifyPlaylistModel.xcdatamodeld;
+			path = Models/SpotifyPlaylistModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BF4FD64C1DB279B300D1604F /* Project object */;
 }

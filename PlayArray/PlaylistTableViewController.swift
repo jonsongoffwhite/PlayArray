@@ -17,7 +17,7 @@ class PlaylistTableViewController: UITableViewController {
         
         self.navigationItem.title = playlist.name
         
-
+        print("Loaded playlist table view controller")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -53,7 +53,6 @@ class PlaylistTableViewController: UITableViewController {
         return cell
     }
  
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -105,8 +104,13 @@ extension PlaylistTableViewController {
 
     func openInSpotify() {
         let spotify = SpotifyManager.sharedInstance
-        spotify.makePlaylist(with: self.playlist.songs, called: self.playlist.name)
-        
+        spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
+            self.playlist.spotifyURI = uri
+            do {
+                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs)
+            } catch {
+                
+            }
+        }
     }
-
 }
