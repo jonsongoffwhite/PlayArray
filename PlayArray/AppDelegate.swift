@@ -17,6 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if SpotifyManager.sharedInstance.isLoggedIn() {
+            SettingsTableViewController.loggedIn = true
+        } else {
+            SpotifyManager.sharedInstance.renewSession(completion: { (success) in
+                if success {
+                    SettingsTableViewController.loggedIn = true
+                } else {
+                    SettingsTableViewController.loggedIn = false
+                }
+            })
+        }
+        
         return true
     }
     

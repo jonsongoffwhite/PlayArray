@@ -11,14 +11,15 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+let sessionKey = "sessionData"
+
 class SpotifyManager {
     static let clientID = "ab0607417c0c4a13bb87262583255500"
     static let redirectURL = "playarray://spotify/callback"
     static let scopes = ["playlist-modify-private", "playlist-read-private", "playlist-modify-public"]
     
     let auth = SPTAuth.defaultInstance()
-    var accessToken: String?
-    var username: String?
+    var session: SPTSession?
     
     func login(completion: @escaping () -> Void) {
         auth?.clientID = SpotifyManager.clientID
@@ -32,19 +33,73 @@ class SpotifyManager {
         }
     }
     
+    func isLoggedIn() -> Bool {
+        let sessionData = UserDefaults.standard.object(forKey: sessionKey)
+        
+        if sessionData != nil {
+            let dictionary = NSKeyedUnarchiver.unarchiveObject(with: sessionData as! Data) as! NSMutableDictionary
+            
+            session = SPTSession(userName: dictionary.value(forKey: "canonicalUsername") as! String!, accessToken: dictionary.value(forKey: "accessToken") as! String!, encryptedRefreshToken: dictionary.value(forKey: "encryptedRefreshToken") as! String!, expirationDate: dictionary.value(forKey: "expirationDate") as! Date!)
+            
+            let valid = session?.isValid()
+            if valid != nil {
+                return valid!
+            }
+        }
+        
+        return false
+    }
+    
+    func renewSession(completion: @escaping (Bool) -> Void ) {
+        if session == nil {
+            completion(false)
+        } else {
+            auth?.renewSession(session, callback: { (error, session) in
+                if error != nil {
+                    print("Could not renew session")
+                    completion(false)
+                } else {
+                    self.storeSession(session: session!)
+                    completion(true)
+                }
+            })
+        }
+    }
+    
     func respondToAuth(url: URL) {
         if(auth?.canHandle(url))! {
             auth?.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error, session) in
-                self.accessToken = session?.accessToken
-                self.username = session?.canonicalUsername
+                if error != nil {
+                    print("Could not login")
+                } else {
+                    self.storeSession(session: session!)
+                    SettingsTableViewController.loggedIn = true
+                    NotificationCenter.default.post(name: Notification.Name(sessionKey), object: session)
+                }
+
             })
         }
+    }
+    
+    func storeSession(session: SPTSession) {
+        let dictionary = NSMutableDictionary()
+        dictionary.setValue(session.canonicalUsername, forKey: "canonicalUsername")
+        dictionary.setValue(session.accessToken, forKey: "accessToken")
+        dictionary.setValue(session.encryptedRefreshToken, forKey: "encryptedRefreshToken")
+        dictionary.setValue(session.expirationDate, forKey: "expirationDate")
+        let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(data, forKey: sessionKey)
+        userDefaults.synchronize()
+        
+        self.session = session
     }
     
     func getPlaylists() {
         let playlistRequest: URLRequest
         do {
-            playlistRequest = try SPTPlaylistList.createRequestForGettingPlaylists(forUser: username, withAccessToken: accessToken)
+            playlistRequest = try SPTPlaylistList.createRequestForGettingPlaylists(forUser: session?.canonicalUsername, withAccessToken: session?.accessToken)
         } catch {
             print("Error getting playlist: \(error)")
             return
@@ -95,8 +150,8 @@ class SpotifyManager {
         let createPlaylistRequest: URLRequest?
         
         do {
-            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: username,
-                                                                                         withPublicFlag: true, accessToken: accessToken)
+            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: session?.canonicalUsername,
+                                                                                         withPublicFlag: false, accessToken: session?.accessToken)
         } catch {
             print("Error: \(error)")
             return
@@ -121,7 +176,12 @@ class SpotifyManager {
         let tracks = SpotifyManager.getSpotifyURIs(from: songs)
         
         do {
-            addSongsToPlaylistRequest = try SPTPlaylistSnapshot.createRequest(forAddingTracks: tracks, toPlaylist: playlist.uri, withAccessToken: accessToken)
+            var tracks: [NSURL] = []
+            songs.forEach({ song in
+                tracks.append(NSURL(string: "spotify:track:\(song.id)")!)
+            })
+            
+            addSongsToPlaylistRequest = try SPTPlaylistSnapshot.createRequest(forAddingTracks: tracks, toPlaylist: playlist.uri, withAccessToken: session?.accessToken)
         } catch {
             print("Error adding songs to playlist: \(error)")
             return
