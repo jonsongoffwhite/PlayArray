@@ -13,26 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        if SpotifyManager.sharedInstance.isLoggedIn() {
-            SettingsTableViewController.loggedIn = true
-        } else {
-            SpotifyManager.sharedInstance.renewSession(completion: { (success) in
-                if success {
-                    SettingsTableViewController.loggedIn = true
-                } else {
-                    SettingsTableViewController.loggedIn = false
-                }
-            })
-        }
-        
-        return true
-    }
-    
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        let spotify = SpotifyManager.sharedInstance
-        spotify.respondToAuth(url: url)
         return true
     }
 
@@ -58,4 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+
 }
+

@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4DD67C0A1A5C55C900ED2280"
-               BuildableName = "Alamofire.framework"
-               BlueprintName = "Alamofire macOS"
-               ReferencedContainer = "container:Alamofire.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F829C6B11A7A94F100A2CD59"
-               BuildableName = "Alamofire macOS Tests.xctest"
-               BlueprintName = "Alamofire macOS Tests"
-               ReferencedContainer = "container:Alamofire.xcodeproj">
+               BlueprintIdentifier = "BF4FD6531DB279B300D1604F"
+               BuildableName = "PlayArray.app"
+               BlueprintName = "PlayArray"
+               ReferencedContainer = "container:PlayArray.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,20 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F829C6B11A7A94F100A2CD59"
-               BuildableName = "Alamofire macOS Tests.xctest"
-               BlueprintName = "Alamofire macOS Tests"
-               ReferencedContainer = "container:Alamofire.xcodeproj">
+               BlueprintIdentifier = "BF4FD6671DB279B300D1604F"
+               BuildableName = "PlayArrayTests.xctest"
+               BlueprintName = "PlayArrayTests"
+               ReferencedContainer = "container:PlayArray.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BF4FD6721DB279B300D1604F"
+               BuildableName = "PlayArrayUITests.xctest"
+               BlueprintName = "PlayArrayUITests"
+               ReferencedContainer = "container:PlayArray.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4DD67C0A1A5C55C900ED2280"
-            BuildableName = "Alamofire.framework"
-            BlueprintName = "Alamofire macOS"
-            ReferencedContainer = "container:Alamofire.xcodeproj">
+            BlueprintIdentifier = "BF4FD6531DB279B300D1604F"
+            BuildableName = "PlayArray.app"
+            BlueprintName = "PlayArray"
+            ReferencedContainer = "container:PlayArray.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,15 +71,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4DD67C0A1A5C55C900ED2280"
-            BuildableName = "Alamofire.framework"
-            BlueprintName = "Alamofire macOS"
-            ReferencedContainer = "container:Alamofire.xcodeproj">
+            BlueprintIdentifier = "BF4FD6531DB279B300D1604F"
+            BuildableName = "PlayArray.app"
+            BlueprintName = "PlayArray"
+            ReferencedContainer = "container:PlayArray.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -93,15 +90,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4DD67C0A1A5C55C900ED2280"
-            BuildableName = "Alamofire.framework"
-            BlueprintName = "Alamofire macOS"
-            ReferencedContainer = "container:Alamofire.xcodeproj">
+            BlueprintIdentifier = "BF4FD6531DB279B300D1604F"
+            BuildableName = "PlayArray.app"
+            BlueprintName = "PlayArray"
+            ReferencedContainer = "container:PlayArray.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
