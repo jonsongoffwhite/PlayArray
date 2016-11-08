@@ -13,15 +13,24 @@ private let sections: [String] = ["Spotify"]
 class SettingsTableViewController: UITableViewController {
     
     static var loggedIn: Bool = false
+    private var notification: NSObjectProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name(sessionKey), object: nil, queue: OperationQueue.main) { (Notification) in
+            self.tableView.reloadData()
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,7 +46,11 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
+            if SettingsTableViewController.loggedIn {
+                return 2
+            } else {
+                return 1
+            }
         }
         
         return 1
@@ -51,9 +64,17 @@ class SettingsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
         
         if SettingsTableViewController.loggedIn {
-            cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
+            if indexPath.row == 0 {
+                cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
+                cell.textLabel?.textColor = .black
+                cell.textLabel?.textAlignment = .left
+            } else if indexPath.row == 1 {
+                cell.textLabel?.text = "Log out"
+                cell.textLabel?.textColor = UIColor(colorLiteralRed: 0, green: 122/255, blue: 1, alpha: 1)
+                cell.textLabel?.textAlignment = .center
+            }
         } else {
-            cell.textLabel?.text = "Login to Spotify"
+            cell.textLabel?.text = "Log in to Spotify"
             cell.textLabel?.textColor = UIColor(colorLiteralRed: 0, green: 122/255, blue: 1, alpha: 1)
         }
         
@@ -62,15 +83,26 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            if !SettingsTableViewController.loggedIn {
-                SpotifyManager.sharedInstance.login {
-                    SettingsTableViewController.loggedIn = true
+            if indexPath.row == 0 {
+                if !SettingsTableViewController.loggedIn {
+                    SpotifyManager.sharedInstance.login {
+                        //
+                    }
                 }
-                let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
-                cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
-                cell.textLabel?.textColor = .black
+            } else if indexPath.row == 1 {
+                let alert = UIAlertController(title: "Logout successful", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: {
+                    UserDefaults.standard.removeObject(forKey: sessionKey)
+                    SpotifyManager.sharedInstance.session = nil
+                    SettingsTableViewController.loggedIn = false
+                    tableView.reloadData()
+                })
             }
+
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*

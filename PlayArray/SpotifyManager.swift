@@ -11,11 +11,12 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+let sessionKey = "sessionData"
+
 class SpotifyManager {
     static let clientID = "ab0607417c0c4a13bb87262583255500"
     static let redirectURL = "playarray://spotify/callback"
     static let scopes = ["playlist-modify-private"]
-    let sessionKey = "sessionData"
     
     let auth = SPTAuth.defaultInstance()
     var session: SPTSession?
@@ -72,6 +73,8 @@ class SpotifyManager {
                     print("Could not login")
                 } else {
                     self.storeSession(session: session!)
+                    SettingsTableViewController.loggedIn = true
+                    NotificationCenter.default.post(name: Notification.Name(sessionKey), object: session)
                 }
 
             })
@@ -87,7 +90,7 @@ class SpotifyManager {
         let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
         
         let userDefaults = UserDefaults.standard
-        userDefaults.set(data, forKey: self.sessionKey)
+        userDefaults.set(data, forKey: sessionKey)
         userDefaults.synchronize()
         
         self.session = session
@@ -115,8 +118,6 @@ class SpotifyManager {
     
     func makePlaylist(with songs: [Song], called name: String) {
         let createPlaylistRequest: URLRequest?
-        
-        print("username: ", session?.canonicalUsername)
         
         do {
             createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: session?.canonicalUsername,
