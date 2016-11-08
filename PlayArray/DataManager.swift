@@ -77,6 +77,7 @@ class DataManager {
              */
             
             // Check deleted tracks and ask for feedback
+            // Maybe this should be put in a different function e.g. comparePlaylists
             
         } else {
             // If it doesn't exists create the object and save tracks to it
@@ -101,8 +102,8 @@ class DataManager {
             
             fetchRequest.predicate = NSPredicate(format: "\(URI_KEY) == %@", uri)
             do {
-                let fetchResults = try context.fetch(fetchRequest)
-                var track: NSManagedObject? = fetchResults.first as? NSManagedObject
+                let results = try context.fetch(fetchRequest)
+                var track: NSManagedObject? = results.first as? NSManagedObject
                 if track == nil {
                     track = NSManagedObject(entity: entity!, insertInto: context)
                     track!.setValue(uri, forKey: URI_KEY)
@@ -133,10 +134,10 @@ class DataManager {
         var uris: [String] = []
         
         do {
-            let fetchResults = try context.fetch(fetchRequest)
-            if fetchResults.count == 0 { return [] }
+            let results = try context.fetch(fetchRequest)
+            if results.count == 0 { return [] }
             
-            let playlist = fetchResults.first as! NSManagedObject
+            let playlist = results.first as! NSManagedObject
             let trackRelation = playlist.mutableSetValue(forKey: PLAYLIST_TO_TRACK_RELATION)
             trackRelation.forEach({ track_ in
                 let track = track_ as! NSManagedObject
@@ -147,5 +148,40 @@ class DataManager {
         }
         
         return uris
+    }
+    
+    static func getPlaylists() throws -> [Playlist] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+        var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: PLAYLIST_ENTITY)
+
+        var playlists: [Playlist] = []
+        let results = try context.fetch(fetchRequest) as! [NSManagedObject]
+        for result in results {
+            let name = result.value(forKey: NAME_KEY) as! String
+            let spotifyId = result.value(forKey: URI_KEY) as! String
+            let trackURIs = getTrackURIs(for: spotifyId)
+            
+            var songs: [Song] = []
+            fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: TRACK_ENTITY)
+            for uri in trackURIs {
+                fetchRequest.predicate = NSPredicate(format: "\(URI_KEY) == %@", uri)
+                let trackEntries = try context.fetch(fetchRequest) as! [NSManagedObject]
+                let trackEntry = trackEntries.first
+                if trackEntry == nil { continue }
+                
+                let title = trackEntry!.value(forKey: TITLE_KEY) as! String
+                let artist = trackEntry!.value(forKey: ARTIST_KEY) as! String
+                let album = trackEntry!.value(forKey: ALBUM_KEY) as! String
+                
+                // ID has been left out here. With the new database, we probably won't have a database ID
+                // but instead work solely with Spotify IDs
+                songs.append(Song(id: "", spotifyId: uri, title: title, artist: artist, album: album))
+            }
+            
+            playlists.append(Playlist(name: name, songs: songs))
+        }
+        
+        playlists.reverse()
+        return playlists
     }
 }

@@ -21,6 +21,17 @@ class SavedPlaylistsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        do {
+            playlists = try DataManager.getPlaylists()
+            tableView.reloadData()
+        } catch {
+            print("Error getting playlists from Data Manager: \(error)")
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
