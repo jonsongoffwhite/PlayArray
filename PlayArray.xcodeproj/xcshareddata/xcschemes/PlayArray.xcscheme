@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BF4FD7321DB28C7300D1604F"
-               BuildableName = "RequestManager.framework"
-               BlueprintName = "RequestManager"
+               BlueprintIdentifier = "BF4FD6531DB279B300D1604F"
+               BuildableName = "PlayArray.app"
+               BlueprintName = "PlayArray"
                ReferencedContainer = "container:PlayArray.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BF4FD6531DB279B300D1604F"
-               BuildableName = "PlayArray.app"
-               BlueprintName = "PlayArray"
+               BlueprintIdentifier = "BF4FD7321DB28C7300D1604F"
+               BuildableName = "RequestManager.framework"
+               BlueprintName = "RequestManager"
                ReferencedContainer = "container:PlayArray.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -53,7 +53,7 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BF4FD6721DB279B300D1604F"
@@ -63,7 +63,7 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BF4FD73A1DB28C7300D1604F"
