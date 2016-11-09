@@ -16,7 +16,7 @@ private var criteria: [Category] = []
 private var selectedCriteria: [Category] = []
 private var player: AVAudioPlayer!
 
-class SelectViewController: UIViewController {
+class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var makePlaylistButton: UIButton!
@@ -29,7 +29,12 @@ class SelectViewController: UIViewController {
         criteria.append(TimeOfDayCategory())
         
         collectionView.allowsMultipleSelection = true
-                
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(SelectViewController.handleLongPress))
+        longPress.delaysTouchesBegan = true
+        longPress.delegate = self
+        self.collectionView.addGestureRecognizer(longPress)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -41,7 +46,24 @@ class SelectViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func handleLongPress(sender: UIRotationGestureRecognizer) {
+        if sender.state != .ended {
+            return
+        }
+        
+        let location = sender.location(in: collectionView)
+        let indexPath = collectionView.indexPathForItem(at: location)
+        
+        if indexPath != nil {
+            let criterion = criteria[(indexPath?.row)!]
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "selectEnumTableViewController") as! SelectEnumTableViewController
+            
+            vc.criterion = criterion
+            
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
     
     /*
      // MARK: - Navigation

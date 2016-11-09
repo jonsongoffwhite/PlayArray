@@ -22,6 +22,10 @@ class Category {
         preconditionFailure("This method must be overridden")
     }
     
+    func getAllCriteria() -> [Criteria] {
+        preconditionFailure("This method must be overridden")
+    }
+    
     func getData(completion: @escaping () -> Void) {
         preconditionFailure("This method must be overridden")
     }
