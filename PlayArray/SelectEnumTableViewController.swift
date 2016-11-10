@@ -13,7 +13,7 @@ private let reuseIdentifier = "enumCell"
 class SelectEnumTableViewController: UITableViewController {
     
     var criterion: Category!
-    var values: [String]!
+    var values: [Criteria]!
     var stringValues: [String]!
 
     override func viewDidLoad() {
@@ -55,9 +55,22 @@ class SelectEnumTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
         let value = values[indexPath.row]
+        let rawValue = criterion.getRawValue(criterion: value)
         cell.textLabel?.text = stringValues[indexPath.row]
+        var imagePath: String = ""
+        let id: String = criterion.getIdentifier()
         
-        if criterion.getCriteria().first! == value {
+        if id == "weather" {
+            imagePath = rawValue
+        } else if id == "local_time" {
+            imagePath = "time"
+        }
+        
+        cell.imageView?.image = UIImage(named: imagePath)
+        cell.imageView?.image = cell.imageView?.image?.withRenderingMode(.alwaysTemplate)
+        cell.imageView?.tintColor = .black
+        
+        if criterion.getCriteria().first! == rawValue {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
@@ -70,7 +83,7 @@ class SelectEnumTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let value = values[indexPath.row]
         criterion.criteria = []
-        criterion.add(criteria: value as! Criteria)
+        criterion.add(criteria: value)
         self.dismiss(animated: true, completion: nil)
     }
 
