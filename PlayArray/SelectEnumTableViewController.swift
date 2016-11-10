@@ -14,7 +14,6 @@ class SelectEnumTableViewController: UITableViewController {
     
     var criterion: Category!
     var values: [Criteria]!
-    var stringValues: [String]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +47,7 @@ class SelectEnumTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stringValues.count
+        return values.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,7 +55,7 @@ class SelectEnumTableViewController: UITableViewController {
 
         let value = values[indexPath.row]
         let rawValue = criterion.getRawValue(criterion: value)
-        cell.textLabel?.text = stringValues[indexPath.row]
+        cell.textLabel?.text = rawValue.capitalized
         var imagePath: String = ""
         let id: String = criterion.getIdentifier()
         

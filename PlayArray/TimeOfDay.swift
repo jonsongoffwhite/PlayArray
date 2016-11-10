@@ -13,22 +13,19 @@ public enum TimeOfDay: String, Criteria {
     case dawn = "dawn"
     case morning = "morning"
     case afternoon = "afternoon"
-    case evening = "evening"
     case dusk = "dusk"
     case night = "night"
-    case lateNight = "lateNight"
+    case midnight = "midnight"
     
-    static let allValues = [TimeOfDay.dawn, TimeOfDay.morning, TimeOfDay.afternoon, TimeOfDay.evening, TimeOfDay.dusk, TimeOfDay.night, TimeOfDay.lateNight]
-    static let allStringValues = ["Dawn", "Morning", "Afternoon", "Evening", "Dusk", "Night", "Late night"]
+    static let allValues = [TimeOfDay.dawn, TimeOfDay.morning, TimeOfDay.afternoon, TimeOfDay.dusk, TimeOfDay.night, TimeOfDay.midnight]
     
     init(from hour: Int) {
-        if hour < 2 { self = .night }
-        else if hour < 5 { self = .lateNight }
+        if hour < 5 { self = .midnight }
         else if hour < 7 { self = .dawn }
         else if hour < 12 { self = .morning }
         else if hour < 18 { self = .afternoon }
-        else if hour < 21 { self = .evening }
-        else if hour < 23 { self = .dusk }
+        else if hour < 21 { self = .dusk }
+        else if hour < 24 { self = .night }
         else { self = .night }
     }
 }
@@ -55,10 +52,6 @@ class TimeOfDayCategory: Category {
     
     override func getAllValues() -> [Criteria] {
         return TimeOfDay.allValues
-    }
-    
-    override func getAllStringValues() -> [String] {
-        return TimeOfDay.allStringValues
     }
     
     override func getRawValue(criterion: Criteria) -> String {

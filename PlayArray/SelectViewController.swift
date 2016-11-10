@@ -69,7 +69,6 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             
             vc.criterion = criterion
             vc.values = criterion.getAllValues()
-            vc.stringValues = criterion.getAllStringValues()
             
             self.present(navController, animated: true, completion: nil)
         }
@@ -136,7 +135,7 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func displayCell(cell: CriteriaCell, criterion: Category) {
         let weatherType: String = criterion.getCriteria().first!
-        cell.detailLabel.text = weatherType
+        cell.detailLabel.text = weatherType.capitalized
         var imagePath: String = ""
         let id: String = criterion.getIdentifier()
         
