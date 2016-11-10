@@ -60,20 +60,28 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
     func handleLongPress(sender: UIRotationGestureRecognizer) {
         let location = sender.location(in: collectionView)
         let indexPath = collectionView.indexPathForItem(at: location)
-        
         if indexPath != nil {
-            let criterion = criteria[(indexPath?.row)!]
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "selectEnumTableViewController") as! SelectEnumTableViewController
-            let navController = UINavigationController(rootViewController: vc)
-            
-            vc.criterion = criterion
-            vc.values = criterion.getAllValues()
-            
-            self.present(navController, animated: true, completion: nil)
+            openCriteriaTypeView(indexPath: indexPath!)
         }
     }
     
+    @IBAction func editButtonPressed(_ sender: AnyObject) {
+        let location = sender.convert(CGPoint(x: 0, y: 0), to: collectionView)
+        let indexPath = collectionView.indexPathForItem(at: location)
+        openCriteriaTypeView(indexPath: indexPath!)
+    }
+    
+    func openCriteriaTypeView(indexPath: IndexPath) {
+        let criterion = criteria[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "selectEnumTableViewController") as! SelectEnumTableViewController
+        let navController = UINavigationController(rootViewController: vc)
+        
+        vc.criterion = criterion
+        vc.values = criterion.getAllValues()
+        
+        self.present(navController, animated: true, completion: nil)
+    }
     /*
      // MARK: - Navigation
      

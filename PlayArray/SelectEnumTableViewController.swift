@@ -52,15 +52,15 @@ class SelectEnumTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-
-        let value = values[indexPath.row]
-        let rawValue = criterion.getRawValue(criterion: value)
         
         let indexOfCurrent = values.index(where: {criterion.getRawValue(criterion: $0) == criterion.current})
         let current = values[indexOfCurrent!]
         values.remove(at: indexOfCurrent!)
         values.insert(current, at: 0)
         let id: String = criterion.getIdentifier()
+        
+        let value = values[indexPath.row]
+        let rawValue = criterion.getRawValue(criterion: value)
         
         var cellText: String = rawValue.capitalized
         
@@ -90,7 +90,6 @@ class SelectEnumTableViewController: UITableViewController {
         } else {
             cell.accessoryType = .none
         }
-        
         
         return cell
     }
