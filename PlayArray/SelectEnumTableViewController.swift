@@ -13,7 +13,8 @@ private let reuseIdentifier = "enumCell"
 class SelectEnumTableViewController: UITableViewController {
     
     var criterion: Category!
-    var values: [String]!
+    var values: [Criteria]!
+    var stringValues: [String]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class SelectEnumTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        values = [criterion.getCriteria().first!] + criterion.getAllCriteria()
+//        stringValues = [criterion.getCriteria().first!] + criterion.getAllStringValues()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,20 +48,26 @@ class SelectEnumTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return values.count
+        return stringValues.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
-        let value = values[indexPath.row]
+        let value = stringValues[indexPath.row]
         cell.textLabel?.text = value
         
-        if indexPath.row == 0 {
-            cell.textLabel?.text = "Current weather (\(value))"
-        }
-        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let value = values[indexPath.row]
+        criterion.criteria = []
+        criterion.add(criteria: value)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "selectViewController") as! SelectViewController
+//        vc.collectionView.reloadData()
+        self.dismiss(animated: true, completion: nil)
     }
 
     /*

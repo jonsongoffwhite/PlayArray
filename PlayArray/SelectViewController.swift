@@ -12,8 +12,8 @@ import AVFoundation
 
 private let reuseIdentifier = "criteriaCell"
 private let cellsPerRow: CGFloat = 2
-private var criteria: [Category] = []
-private var selectedCriteria: [Category] = []
+var criteria: [Category] = []
+var selectedCriteria: [Category] = []
 private var player: AVAudioPlayer!
 
 class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
@@ -40,16 +40,24 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let selectedCells = collectionView.indexPathsForSelectedItems
+        collectionView.reloadData()
+        collectionView.performBatchUpdates({
+            // reloading data
+            }) { (completed) in
+                selectedCells?.forEach({ (indexPath) in
+                    self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+                })
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func handleLongPress(sender: UIRotationGestureRecognizer) {
-        if sender.state != .ended {
-            return
-        }
-        
         let location = sender.location(in: collectionView)
         let indexPath = collectionView.indexPathForItem(at: location)
         
@@ -60,7 +68,8 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             let navController = UINavigationController(rootViewController: vc)
             
             vc.criterion = criterion
-//            vc.values = criterion.getAllCriteria()
+            vc.values = criterion.getAllValues()
+            vc.stringValues = criterion.getAllStringValues()
             
             self.present(navController, animated: true, completion: nil)
         }
@@ -114,21 +123,29 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         
         let criterion = criteria[indexPath.row]
         cell.mainLabel.text = criterion.getStringValue()
-        criterion.getData {
-            let weatherType: String = criterion.getCriteria().first!
-            cell.detailLabel.text = weatherType
-            var imagePath: String = ""
-            
-            if criterion.getIdentifier() == "weather" {
-                imagePath = "\(weatherType)"
-            } else if criterion.getIdentifier() == "local_time" {
-                imagePath = "time"
+        if criterion.getCriteria().count == 0 {
+            criterion.getData {
+                self.displayCell(cell: cell, criterion: criterion)
             }
-            
-            cell.imageView.image = UIImage(named: imagePath)
+        } else {
+            displayCell(cell: cell, criterion: criterion)
         }
         
         return cell
+    }
+    
+    func displayCell(cell: CriteriaCell, criterion: Category) {
+        let weatherType: String = criterion.getCriteria().first!
+        cell.detailLabel.text = weatherType
+        var imagePath: String = ""
+        
+        if criterion.getIdentifier() == "weather" {
+            imagePath = "\(weatherType)"
+        } else if criterion.getIdentifier() == "local_time" {
+            imagePath = "time"
+        }
+        
+        cell.imageView.image = UIImage(named: imagePath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

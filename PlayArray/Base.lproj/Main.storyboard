@@ -10,7 +10,7 @@
         <!--Select Criteria-->
         <scene sceneID="ZVf-40-elM">
             <objects>
-                <viewController id="Ftv-qj-mrz" customClass="SelectViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="selectViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ftv-qj-mrz" customClass="SelectViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NIc-HB-R55"/>
                         <viewControllerLayoutGuide type="bottom" id="nIh-f8-7F0"/>
@@ -330,6 +330,7 @@
         <!--Navigation Controller-->
         <scene sceneID="W6P-i3-jA6">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfa-wy-3bh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zjI-2l-Vxd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SGk-51-hS9">
@@ -341,7 +342,6 @@
                         <segue destination="0on-zV-xdz" kind="relationship" relationship="rootViewController" id="15V-Eb-bJI"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sfa-wy-3bh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6409" y="-718"/>
         </scene>
