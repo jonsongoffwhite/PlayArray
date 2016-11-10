@@ -32,3 +32,38 @@ public enum Genre: String, Criteria {
     
     static let allValues = [Genre.rock, Genre.country, Genre.indie, Genre.raegae, Genre.pop, Genre.christianHymn, Genre.alternative, Genre.soundtracks, Genre.hipHop, Genre.electronic, Genre.newAge, Genre.neo, Genre.classical, Genre.blues, Genre.international, Genre.rap, Genre.jazz, Genre.ambient, Genre.instrumental, Genre.folk]
 }
+
+class GenreCategory: Category {
+    override func getData(completion: @escaping () -> Void) {
+        self.add(criteria: Genre.rock)
+    }
+    
+    override func getCriteria() -> [String] {
+        var criteriaStrings: [String] = []
+        criteria.forEach { c in
+            let genreCriteria = c as! Genre
+            criteriaStrings.append(genreCriteria.rawValue)
+        }
+        return criteriaStrings
+    }
+    
+    override func getAllValues() -> [Criteria] {
+        return Genre.allValues
+    }
+    
+    override func getRawValue(criterion: Criteria) -> String {
+        let genreCriterion = criterion as! Genre
+        return genreCriterion.rawValue
+    }
+    
+    override func getIdentifier() -> String {
+        return "genre"
+    }
+    
+    override func getStringValue() -> String {
+        return "Genre"
+    }
+}
+
+
+
