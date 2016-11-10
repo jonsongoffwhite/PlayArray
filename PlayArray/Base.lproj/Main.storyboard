@@ -140,10 +140,11 @@
                             <outlet property="delegate" destination="0on-zV-xdz" id="ad6-ps-MRH"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="M3z-OK-7aO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xRC-j9-YgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6713" y="-704"/>
+            <point key="canvasLocation" x="7652" y="-704.79760119940033"/>
         </scene>
         <!--Saved Playlists Table View Controller-->
         <scene sceneID="ahr-cm-g7X">

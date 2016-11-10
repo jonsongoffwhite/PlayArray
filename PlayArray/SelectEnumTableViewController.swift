@@ -10,23 +10,23 @@ import UIKit
 
 private let reuseIdentifier = "enumCell"
 
-
-
 class SelectEnumTableViewController: UITableViewController {
     
     var criterion: Category!
-    var values: [Criteria]!
+    var values: [String]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        values = criterion.getAllCriteria()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        values = [criterion.getCriteria().first!] + criterion.getAllCriteria()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,8 +47,12 @@ class SelectEnumTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
-        let value = values[indexPath.row] 
-        cell.textLabel?.text = value as? String
+        let value = values[indexPath.row]
+        cell.textLabel?.text = value
+        
+        if indexPath.row == 0 {
+            cell.textLabel?.text = "Current weather (\(value))"
+        }
         
         return cell
     }

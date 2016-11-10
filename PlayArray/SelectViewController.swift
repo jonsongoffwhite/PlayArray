@@ -31,7 +31,6 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         collectionView.allowsMultipleSelection = true
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(SelectViewController.handleLongPress))
-        longPress.delaysTouchesBegan = true
         longPress.delegate = self
         self.collectionView.addGestureRecognizer(longPress)
         
@@ -58,10 +57,12 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             let criterion = criteria[(indexPath?.row)!]
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "selectEnumTableViewController") as! SelectEnumTableViewController
+            let navController = UINavigationController(rootViewController: vc)
             
             vc.criterion = criterion
+//            vc.values = criterion.getAllCriteria()
             
-            self.present(vc, animated: true, completion: nil)
+            self.present(navController, animated: true, completion: nil)
         }
     }
     
