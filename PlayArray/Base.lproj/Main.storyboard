@@ -117,7 +117,7 @@
             </objects>
             <point key="canvasLocation" x="5453.6000000000004" y="-718.29085457271367"/>
         </scene>
-        <!--Select Enum Table View Controller-->
+        <!--Select Type-->
         <scene sceneID="rqz-Av-qFJ">
             <objects>
                 <tableViewController storyboardIdentifier="selectEnumTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0on-zV-xdz" customClass="SelectEnumTableViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
@@ -127,7 +127,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="enumCell" id="cc4-uK-LAE">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cc4-uK-LAE" id="teg-Fz-7jG">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -140,11 +140,11 @@
                             <outlet property="delegate" destination="0on-zV-xdz" id="ad6-ps-MRH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="M3z-OK-7aO"/>
+                    <navigationItem key="navigationItem" title="Select Type" id="M3z-OK-7aO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xRC-j9-YgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7652" y="-704.79760119940033"/>
+            <point key="canvasLocation" x="7348" y="-718"/>
         </scene>
         <!--Saved Playlists Table View Controller-->
         <scene sceneID="ahr-cm-g7X">
@@ -326,6 +326,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eL5-uN-kxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3605.5999999999999" y="844.22788605697156"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="W6P-i3-jA6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zjI-2l-Vxd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SGk-51-hS9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0on-zV-xdz" kind="relationship" relationship="rootViewController" id="15V-Eb-bJI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfa-wy-3bh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6409" y="-718"/>
         </scene>
     </scenes>
 </document>
