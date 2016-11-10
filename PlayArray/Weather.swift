@@ -17,7 +17,7 @@ public enum Weather: String, Criteria {
     case snowy = "snowy"
     case thunderstorm = "thunderstorm"
     
-    static let allValues = [Weather.sunny, Weather.rainy, Weather.cloudy, Weather.snowy, Weather.thunderstorm]
+    static let allValues = ["sunny", "rainy", "cloudy", "snowy", "thunderstorm"]
     static let allStringValues = ["Sunny", "Rainy", "Cloudy", "Snowy", "Thunderstorm"]
 }
 
@@ -56,7 +56,7 @@ class WeatherCategory: LocationCategory {
         return criteriaStrings
     }
     
-    override func getAllValues() -> [Criteria] {
+    override func getAllValues() -> [String] {
         return Weather.allValues
     }
     

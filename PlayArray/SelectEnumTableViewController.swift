@@ -13,7 +13,7 @@ private let reuseIdentifier = "enumCell"
 class SelectEnumTableViewController: UITableViewController {
     
     var criterion: Category!
-    var values: [Criteria]!
+    var values: [String]!
     var stringValues: [String]!
 
     override func viewDidLoad() {
@@ -54,8 +54,15 @@ class SelectEnumTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
-        let value = stringValues[indexPath.row]
-        cell.textLabel?.text = value
+        let value = values[indexPath.row]
+        cell.textLabel?.text = stringValues[indexPath.row]
+        
+        if criterion.getCriteria().first! == value {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        
         
         return cell
     }
@@ -63,10 +70,7 @@ class SelectEnumTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let value = values[indexPath.row]
         criterion.criteria = []
-        criterion.add(criteria: value)
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "selectViewController") as! SelectViewController
-//        vc.collectionView.reloadData()
+        criterion.add(criteria: value as! Criteria)
         self.dismiss(animated: true, completion: nil)
     }
 

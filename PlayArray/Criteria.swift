@@ -22,7 +22,7 @@ class Category {
         preconditionFailure("This method must be overridden")
     }
     
-    func getAllValues() -> [Criteria] {
+    func getAllValues() -> [String] {
         preconditionFailure("This method must be overridden")
     }
     
