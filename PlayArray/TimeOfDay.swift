@@ -66,7 +66,7 @@ class TimeOfDayCategory: Category {
     }
     
     override func getStringValue() -> String {
-        return "Current Time"
+        return "Time"
     }
     
 }

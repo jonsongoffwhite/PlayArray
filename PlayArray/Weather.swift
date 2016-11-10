@@ -70,7 +70,7 @@ class WeatherCategory: LocationCategory {
     }
     
     override func getStringValue() -> String {
-        return "Current Weather"
+        return "Weather"
     }
     
 }

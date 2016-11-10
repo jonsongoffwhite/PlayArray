@@ -119,9 +119,8 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CriteriaCell
-        
         let criterion = criteria[indexPath.row]
-        cell.mainLabel.text = criterion.getStringValue()
+        
         if criterion.getCriteria().count == 0 {
             criterion.getData {
                 self.displayCell(cell: cell, criterion: criterion)
@@ -135,6 +134,14 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func displayCell(cell: CriteriaCell, criterion: Category) {
         let weatherType: String = criterion.getCriteria().first!
+        let cellText: String = criterion.getStringValue()
+        
+        if weatherType == criterion.current {
+            cell.mainLabel.text = "Current " + cellText
+        } else {
+            cell.mainLabel.text = cellText
+        }
+        
         cell.detailLabel.text = weatherType.capitalized
         var imagePath: String = ""
         let id: String = criterion.getIdentifier()
