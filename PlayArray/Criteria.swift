@@ -13,6 +13,7 @@ public protocol Criteria {}
 
 class Category {
     internal var criteria: [Criteria] = []
+    var current: String = ""
     
     func add(criteria criterion: Criteria) {
         criteria.append(criterion)

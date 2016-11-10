@@ -41,6 +41,7 @@ class WeatherCategory: LocationCategory {
             default: weather_ = "cloudy"
             }
 
+            self.current = weather_
             self.add(criteria: Weather(rawValue: weather_)!)
             completion()
         }

@@ -37,7 +37,9 @@ class TimeOfDayCategory: Category {
         let date = NSDate()
         let calendar = NSCalendar.current
         let hour = calendar.component(.hour, from: date as Date)
-        self.add(criteria: TimeOfDay(from: hour))
+        let time = TimeOfDay(from: hour)
+        current = time.rawValue
+        self.add(criteria: time)
         completion()
     }
     

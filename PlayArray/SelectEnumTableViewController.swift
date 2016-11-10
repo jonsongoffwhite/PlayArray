@@ -55,9 +55,25 @@ class SelectEnumTableViewController: UITableViewController {
 
         let value = values[indexPath.row]
         let rawValue = criterion.getRawValue(criterion: value)
-        cell.textLabel?.text = rawValue.capitalized
-        var imagePath: String = ""
+        
+        let indexOfCurrent = values.index(where: {criterion.getRawValue(criterion: $0) == criterion.current})
+        let current = values[indexOfCurrent!]
+        values.remove(at: indexOfCurrent!)
+        values.insert(current, at: 0)
         let id: String = criterion.getIdentifier()
+        
+        var cellText: String = rawValue.capitalized
+        
+        if indexPath.row == 0 {
+            if id == "weather" {
+                cellText = "Current weather (\(criterion.current))"
+            } else if id == "local_time" {
+                cellText = "Current time (\(criterion.current))"
+            }
+        }
+        
+        cell.textLabel?.text = cellText
+        var imagePath: String = ""
         
         if id == "weather" {
             imagePath = rawValue
