@@ -13,12 +13,21 @@ public protocol Criteria {}
 
 class Category {
     internal var criteria: [Criteria] = []
+    var current: String = ""
     
     func add(criteria criterion: Criteria) {
         criteria.append(criterion)
     }
     
     func getCriteria() -> [String] {
+        preconditionFailure("This method must be overridden")
+    }
+    
+    func getAllValues() -> [Criteria] {
+        preconditionFailure("This method must be overridden")
+    }
+    
+    func getRawValue(criterion: Criteria) -> String {
         preconditionFailure("This method must be overridden")
     }
     
