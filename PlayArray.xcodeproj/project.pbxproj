@@ -50,6 +50,7 @@
 		BF4FD7591DB292BE00D1604F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7581DB292BE00D1604F /* Router.swift */; };
 		BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD75C1DB2A66200D1604F /* Song.swift */; };
 		BF94C39F1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF94C39D1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld */; };
+		BFBE69FA1DD2559100BBA578 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBE69F91DD2559100BBA578 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		BF4FD7581DB292BE00D1604F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		BF4FD75C1DB2A66200D1604F /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		BF94C39E1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpotifyPlaylistModel.xcdatamodel; sourceTree = "<group>"; };
+		BFBE69F91DD2559100BBA578 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +264,7 @@
 			children = (
 				BF4FD6571DB279B300D1604F /* AppDelegate.swift */,
 				AF360B281DC7D3E100981E53 /* CriteriaCell.swift */,
+				BFBE69F91DD2559100BBA578 /* DataManager.swift */,
 				7E4430A71DB299E9007183ED /* DataQuery.swift */,
 				BF1CFC391DBA1ED4009BDB7B /* Playlist.swift */,
 				BF1CFC3C1DBA237A009BDB7B /* PlaylistManager.swift */,
