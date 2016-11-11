@@ -27,6 +27,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         let locationManager = CLLocationManager()
         criteria.append(WeatherCategory(locationManager: locationManager))
         criteria.append(TimeOfDayCategory())
+        criteria.append(GenreCategory())
         
         collectionView.allowsMultipleSelection = true
         
@@ -41,15 +42,11 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let selectedCells = collectionView.indexPathsForSelectedItems
-        collectionView.reloadData()
-        collectionView.performBatchUpdates({
-            // reloading data
-            }) { (completed) in
-                selectedCells?.forEach({ (indexPath) in
-                    self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
-                })
-        }
+        let cells = collectionView.indexPathsForVisibleItems
+        cells.forEach({ (i) in
+            let cell = collectionView.cellForItem(at: i) as! CriteriaCell
+            displayCell(cell: cell, criterion: criteria[i.row])
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -141,21 +138,21 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func displayCell(cell: CriteriaCell, criterion: Category) {
-        let weatherType: String = criterion.getCriteria().first!
+        let criteriaType: String = criterion.getCriteria().first!
         let cellText: String = criterion.getStringValue()
         
-        if weatherType == criterion.current {
+        if criteriaType == criterion.current {
             cell.mainLabel.text = "Current " + cellText
         } else {
             cell.mainLabel.text = cellText
         }
         
-        cell.detailLabel.text = weatherType.capitalized
+        cell.detailLabel.text = criteriaType.capitalized
         var imagePath: String = ""
         let id: String = criterion.getIdentifier()
         
         if id == "weather" {
-            imagePath = weatherType
+            imagePath = criteriaType
         } else if id == "local_time" {
             imagePath = "time"
         }

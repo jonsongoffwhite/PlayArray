@@ -59,8 +59,9 @@ class PlaylistManager {
             let id = category.getIdentifier()
             let criteria: [String] = category.getCriteria()
             criteria.forEach({ c in
-                tuples.append((id, c))
-            })
+                let noSpaces = c.replacingOccurrences(of: " ", with: "%20")
+                dictionary.append((id, noSpaces))
+            })   
         }
         
         return tuples
