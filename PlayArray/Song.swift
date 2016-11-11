@@ -12,12 +12,14 @@ import Foundation
 // Will eventually need to contain links to be used by Spotify etc.
 class Song {
     let id: String
+    let spotifyId: String
     let title: String
     let artist: String
     let album: String
     
-    init(id: String, title: String, artist: String, album: String) {
+    init(id: String, spotifyId: String, title: String, artist: String, album: String) {
         self.id = id
+        self.spotifyId = spotifyId
         self.title = title
         self.artist = artist
         self.album = album

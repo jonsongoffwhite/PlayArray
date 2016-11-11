@@ -7,59 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Suy-hJ-rb3">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="MJf-zl-hk5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Make me a playlist from time"/>
-                                <connections>
-                                    <action selector="makePlaylistFromTime:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dfy-mj-f7S"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6s-x1-o3X">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="IdV-Hb-lcf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Make me a playlist from weather"/>
-                                <connections>
-                                    <action selector="makePlaylist:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gNq-NG-ILg"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="G6s-x1-o3X" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="2Il-mX-rfs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="G6s-x1-o3X" secondAttribute="trailing" constant="-2" id="W0l-UA-qFc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Suy-hJ-rb3" secondAttribute="trailing" constant="11" id="Xv4-Um-GdI"/>
-                            <constraint firstItem="Suy-hJ-rb3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="187" id="bwo-U3-glF"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="G6s-x1-o3X" secondAttribute="bottom" constant="134" id="lk4-ab-CzW"/>
-                            <constraint firstItem="Suy-hJ-rb3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="wK4-AS-oO5"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Cup-yM-7oc"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3951" y="-1471"/>
-        </scene>
         <!--Select Criteria-->
         <scene sceneID="ZVf-40-elM">
             <objects>
-                <viewController id="Ftv-qj-mrz" customClass="SelectViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="selectViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ftv-qj-mrz" customClass="SelectViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NIc-HB-R55"/>
                         <viewControllerLayoutGuide type="bottom" id="nIh-f8-7F0"/>
@@ -117,6 +68,19 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YK8-di-sb4">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="REn-gA-tel"/>
+                                                        <constraint firstAttribute="width" constant="30" id="bQP-08-qbt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <state key="normal" title="Edit">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="editButtonPressed:" destination="Ftv-qj-mrz" eventType="touchUpInside" id="oIy-8M-nof"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.0" green="0.60784313729999995" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -125,9 +89,13 @@
                                             <constraint firstItem="4jU-a9-T2r" firstAttribute="centerX" secondItem="yd8-Jt-ar5" secondAttribute="centerX" id="5ND-7u-rkn"/>
                                             <constraint firstItem="yd8-Jt-ar5" firstAttribute="leading" secondItem="jPe-SI-g3B" secondAttribute="leadingMargin" constant="27" id="609-3K-Uep"/>
                                             <constraint firstItem="4jU-a9-T2r" firstAttribute="leading" secondItem="1BI-p4-mQz" secondAttribute="leading" id="7gI-bn-PMT"/>
+                                            <constraint firstItem="YK8-di-sb4" firstAttribute="top" secondItem="1BI-p4-mQz" secondAttribute="bottom" constant="93" id="Qc9-iU-1nR"/>
+                                            <constraint firstItem="YK8-di-sb4" firstAttribute="leading" secondItem="yd8-Jt-ar5" secondAttribute="trailing" constant="5" id="Zac-zL-Prt"/>
                                             <constraint firstItem="4jU-a9-T2r" firstAttribute="leading" secondItem="jPe-SI-g3B" secondAttribute="leading" id="ZhI-I9-rlp"/>
                                             <constraint firstAttribute="bottom" secondItem="4jU-a9-T2r" secondAttribute="bottom" id="ark-2u-50p"/>
                                             <constraint firstItem="yd8-Jt-ar5" firstAttribute="centerY" secondItem="jPe-SI-g3B" secondAttribute="centerY" id="bMf-2N-I0R"/>
+                                            <constraint firstAttribute="trailing" secondItem="YK8-di-sb4" secondAttribute="trailing" id="hBe-or-dvj"/>
+                                            <constraint firstItem="4jU-a9-T2r" firstAttribute="top" secondItem="YK8-di-sb4" secondAttribute="bottom" constant="-34" id="muN-aw-NL6"/>
                                             <constraint firstItem="4jU-a9-T2r" firstAttribute="top" secondItem="yd8-Jt-ar5" secondAttribute="bottom" constant="1" id="vjb-us-1xo"/>
                                         </constraints>
                                         <size key="customSize" width="150" height="150"/>
@@ -166,6 +134,35 @@
             </objects>
             <point key="canvasLocation" x="5453.6000000000004" y="-718.29085457271367"/>
         </scene>
+        <!--Select Type-->
+        <scene sceneID="rqz-Av-qFJ">
+            <objects>
+                <tableViewController storyboardIdentifier="selectEnumTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0on-zV-xdz" customClass="SelectEnumTableViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0R2-4G-dNS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="enumCell" id="cc4-uK-LAE">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cc4-uK-LAE" id="teg-Fz-7jG">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0on-zV-xdz" id="fAX-Es-tyO"/>
+                            <outlet property="delegate" destination="0on-zV-xdz" id="ad6-ps-MRH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Select Type" id="M3z-OK-7aO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xRC-j9-YgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7348" y="-718"/>
+        </scene>
         <!--Saved Playlists Table View Controller-->
         <scene sceneID="ahr-cm-g7X">
             <objects>
@@ -182,9 +179,6 @@
                                     <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="1Ds-j8-LMX" kind="show" id="MRp-kP-uq6"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -203,12 +197,12 @@
             <objects>
                 <tableViewController storyboardIdentifier="playlistViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Ds-j8-LMX" customClass="PlaylistTableViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="N0q-VD-EWv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="songCell" textLabel="ntP-pS-Ptd" detailTextLabel="nbb-FB-FYk" style="IBUITableViewCellStyleSubtitle" id="dYJ-Ff-Qi0">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dYJ-Ff-Qi0" id="dvf-7o-KEy">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -262,6 +256,35 @@
             </objects>
             <point key="canvasLocation" x="3608.8000000000002" y="35.532233883058474"/>
         </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="Z0y-Sk-umR">
+            <objects>
+                <tableViewController storyboardIdentifier="settingsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bis-TI-VZX" customClass="SettingsTableViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Vp5-ib-aWv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="VPg-hO-V3D">
+                                <rect key="frame" x="0.0" y="120" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VPg-hO-V3D" id="7OH-OH-O0J">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bis-TI-VZX" id="Dfc-y6-nde"/>
+                            <outlet property="delegate" destination="bis-TI-VZX" id="rs3-uc-HlA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="lxP-7h-Odg"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xbr-FG-7Th" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4544.8000000000002" y="844.22788605697156"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="wyB-WE-VaP">
             <objects>
@@ -276,6 +299,7 @@
                     <connections>
                         <segue destination="kpx-I4-foW" kind="relationship" relationship="viewControllers" id="meW-rg-hgK"/>
                         <segue destination="ONA-47-b0K" kind="relationship" relationship="viewControllers" id="xVO-Mc-dK4"/>
+                        <segue destination="dc5-mL-C9w" kind="relationship" relationship="viewControllers" id="48q-us-HxT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beK-1O-DzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -300,6 +324,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="661-6i-FGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3608.8000000000002" y="-718.29085457271367"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Wwj-II-QG4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dc5-mL-C9w" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" id="sVq-h1-3Ys"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9NW-bD-RJv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bis-TI-VZX" kind="relationship" relationship="rootViewController" id="j6r-te-m5S"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eL5-uN-kxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3605.5999999999999" y="844.22788605697156"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="W6P-i3-jA6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zjI-2l-Vxd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SGk-51-hS9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0on-zV-xdz" kind="relationship" relationship="rootViewController" id="15V-Eb-bJI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfa-wy-3bh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6409" y="-718"/>
         </scene>
     </scenes>
 </document>

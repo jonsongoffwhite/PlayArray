@@ -11,13 +11,14 @@ import UIKit
 class PlaylistTableViewController: UITableViewController {
     
     var playlist: Playlist = Playlist(name: "", songs: [])
+    var showSpotifyButton = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = playlist.name
         
-
+        print("Loaded playlist table view controller")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -25,8 +26,9 @@ class PlaylistTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         // Add button in navigation bar for exporting
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open in Spotify", style: .plain, target: self, action: #selector(PlaylistTableViewController.openInSpotify))
-        
+        if showSpotifyButton {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open in Spotify", style: .plain, target: self, action: #selector(PlaylistTableViewController.openInSpotify))
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +55,6 @@ class PlaylistTableViewController: UITableViewController {
         return cell
     }
  
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -105,9 +106,13 @@ extension PlaylistTableViewController {
 
     func openInSpotify() {
         let spotify = SpotifyManager.sharedInstance
-        print(playlist.songs.first?.id)
-        spotify.makePlaylist(with: self.playlist.songs, called: self.playlist.name)
-        
+        spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
+            self.playlist.spotifyURI = uri
+            do {
+                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs)
+            } catch {
+                
+            }
+        }
     }
-
 }
