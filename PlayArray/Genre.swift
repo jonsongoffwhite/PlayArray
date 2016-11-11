@@ -12,7 +12,7 @@ public enum Genre: String, Criteria {
     case rock = "rock"
     case country = "country"
     case indie = "indie"
-    case raegae = "raegae"
+    case reggae = "reggae"
     case pop = "pop"
     case christianHymn = "christian hymn"
     case alternative = "alternative"
@@ -30,12 +30,15 @@ public enum Genre: String, Criteria {
     case instrumental = "instrumental"
     case folk = "folk"
     
-    static let allValues = [Genre.rock, Genre.country, Genre.indie, Genre.raegae, Genre.pop, Genre.christianHymn, Genre.alternative, Genre.soundtracks, Genre.hipHop, Genre.electronic, Genre.newAge, Genre.neo, Genre.classical, Genre.blues, Genre.international, Genre.rap, Genre.jazz, Genre.ambient, Genre.instrumental, Genre.folk]
+    static let allValues = [Genre.rock, Genre.country, Genre.indie, Genre.reggae, Genre.pop, Genre.christianHymn, Genre.alternative, Genre.soundtracks, Genre.hipHop, Genre.electronic, Genre.newAge, Genre.neo, Genre.classical, Genre.blues, Genre.international, Genre.rap, Genre.jazz, Genre.ambient, Genre.instrumental, Genre.folk]
 }
 
 class GenreCategory: Category {
     override func getData(completion: @escaping () -> Void) {
-        self.add(criteria: Genre.rock)
+        let rock = Genre.rock
+        current = rock.rawValue
+        self.add(criteria: rock)
+        completion()
     }
     
     override func getCriteria() -> [String] {

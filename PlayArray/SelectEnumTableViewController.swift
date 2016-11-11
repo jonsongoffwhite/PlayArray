@@ -18,6 +18,7 @@ class SelectEnumTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "Select Type"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SelectEnumTableViewController.cancel))
 
         // Uncomment the following line to preserve selection between presentations
