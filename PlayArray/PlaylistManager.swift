@@ -14,26 +14,56 @@ class PlaylistManager {
     /// Request is PlaylistManager's reference to the RequestManager, used to create calls to the API
     private static var Request: RequestProtocol = RequestManager.sharedInstance
 
+    /**
+        Requests a playlist from the server which fits the given categories
+     
+        - Parameters: 
+            - categories: List of categories defining the playlist creation criteria
+            - completion: The completion handler which returns the playlist from the server when received
+     */
     static func getPlaylist(from categories: [Category], completion: @escaping (Playlist, NSError?) -> Void) {
-        let dictionary = getDictionary(from: categories)
-        Request.getPlaylist(from: dictionary) { (json, error) in
+        let tuples = getTuples(from: categories)
+        Request.getPlaylist(from: tuples) { (json, error) in
             let playlist = parsePlaylist(from: json)
             completion(playlist, nil)
         }
     }
     
-    static func getDictionary(from categories: [Category]) -> [(String, String)] {
-        var dictionary: [(String, String)] = []
+    /**
+        Passes feedback for a song to the server to update the servers categorisation of songs
+     
+        - Parameters:
+            - songId: Database ID of the song
+            - categories: Suggested categories for the song
+            - completion: Returns possible error when request has completed on server
+     */
+    static func giveFeedback(for songId: String, with categories: [Category], completion: @escaping (NSError?) -> Void) {
+        let schema = getDictionary(from: categories)
+        Request.giveFeedback(for: songId, with: schema) { (error) in
+            completion(error)
+        }
+    }
+    
+    /**
+         Creates and returns tuples of keys to value pairs used to send to the server
+     
+         - Parameters:
+             - categories: The categories to be turned into String values
+         - Returns:
+             A list of tuples: (api_category_key, category_value)
+     */
+    static private func getTuples(from categories: [Category]) -> [(String, String)] {
+        var tuples: [(String, String)] = []
         
         categories.forEach { category in
             let id = category.getIdentifier()
             let criteria: [String] = category.getCriteria()
             criteria.forEach({ c in
-                dictionary.append((id, c))
-            })   
+                tuples.append((id, c))
+            })
         }
         
-        return dictionary
+        return tuples
     }
     
     /**
@@ -44,7 +74,7 @@ class PlaylistManager {
         - Returns:
             The Playlist object containing the server's passed playlist
      */
-    static func parsePlaylist(from json: JSON) -> Playlist {
+    static private func parsePlaylist(from json: JSON) -> Playlist {
         var songs_: [Song] = []
         let songs = json["songs"].arrayValue
         
@@ -58,5 +88,16 @@ class PlaylistManager {
         }
         
         return Playlist(name: "Test Playlist Name", songs: songs_)
+    }
+    
+    static private func getDictionary(from categories: [Category]) -> [String: String] {
+        // precondition: Assume no repeated keys here as we only use it to give feedback (at the moment)
+        let tuples = getTuples(from: categories)
+        var dictionary: [String: String] = [:]
+        tuples.forEach { (key, value) in
+            dictionary[key] = value
+        }
+        
+        return dictionary
     }
 }

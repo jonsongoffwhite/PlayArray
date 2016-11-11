@@ -39,10 +39,28 @@ public class RequestManager: RequestProtocol {
             - criteria: The criteria selected by the user, used to choose songs for the playlist
             - completion: Called with the servers response, will contain a list of songs or an error
      */
-    
     public func getPlaylist(from criteria: [(String, String)], completion: @escaping (JSON, NSError?) -> Void) {
-        request(.getPlaylist(criteria: criteria)).responseJSON { response in
+        request(.getPlaylist(criteria: criteria))
+        .responseJSON { response in
             completion(JSON(response.result.value), nil)
+        }
+    }
+    
+    /**
+        Passes suggested criteria for the song to the server so that it can adjust its categorising of songs
+     
+        - Parameters:
+            - songId: The database ID of the song
+            - schema: The suggested criteria for the song, a JSON object in String format
+            - completion: The completion handler which may return an error from the server, but is called when the server
+                          has completed handling the feedback
+     */
+    public func giveFeedback(for songId: String, with schema: [String: String], completion: @escaping (NSError?) -> Void) {
+        let parameters = schema as Parameters
+        request(.giveFeedback(songId: songId, schema: parameters))
+        .response { response in
+            print("response: \(response)")
+            completion(response.error as? NSError)
         }
     }
     

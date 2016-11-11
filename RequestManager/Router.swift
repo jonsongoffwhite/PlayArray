@@ -15,15 +15,18 @@ import SwiftyJSON
 enum Router: URLRequestConvertible {
 
     /// The base URL of the API
-    static let baseURLString = "http://cloud-vm-46-57.doc.ic.ac.uk:3000/api/v1/playlist?"
+    static let baseURLString = "http://cloud-vm-46-57.doc.ic.ac.uk:3000/api/v1/playlist"
     
     case getPlaylist(criteria: [(String, String)])
+    case giveFeedback(songId: String, schema: Parameters)
     
     /// The HTTP method related to the call we are making
     var method: HTTPMethod {
         switch self {
         case .getPlaylist(_):
             return .get
+        case .giveFeedback(_):
+            return .put
         }
     }
     
@@ -31,7 +34,9 @@ enum Router: URLRequestConvertible {
     var path: String {
         switch self {
         case .getPlaylist(let criteria):
-            return pathFrom(criteria: criteria)
+            return "?" + pathFrom(criteria: criteria)
+        case .giveFeedback(let songId, _):
+            return "/\(songId)"
         }
     }
     
@@ -43,11 +48,17 @@ enum Router: URLRequestConvertible {
      */
     func asURLRequest() throws -> URLRequest {
         let url = try (Router.baseURLString + path).asURL()
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
-        
-        // Set parameters where necessary
-        
+
+        switch self {
+        case .giveFeedback(_, let schema):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: schema)
+        default:
+            break
+        }
+ 
         return urlRequest
     }
     
@@ -57,7 +68,6 @@ enum Router: URLRequestConvertible {
             path += id + "=" + value + "&"
         }
         path = path.substring(to: path.index(before: path.endIndex))
-        print("path: \(path)")
         return path
     }
 }
