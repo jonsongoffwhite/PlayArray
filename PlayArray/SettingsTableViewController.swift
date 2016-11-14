@@ -8,11 +8,12 @@
 
 import UIKit
 
-private let sections: [String] = ["Spotify"]
+private let sections: [String] = ["Spotify", "Feedback"]
 
 class SettingsTableViewController: UITableViewController {
     
     static var loggedIn: Bool = false
+    static var giveFeedback: Bool = true
     private var notification: NSObjectProtocol!
 
     override func viewDidLoad() {
@@ -70,19 +71,25 @@ class SettingsTableViewController: UITableViewController {
         
         let buttonColour = UIColor(colorLiteralRed: 0, green: 122/255, blue: 1, alpha: 1)
         
-        if SettingsTableViewController.loggedIn {
-            if indexPath.row == 0 {
-                cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
-                cell.selectionStyle = .none
-                cell.isUserInteractionEnabled = false
-            } else if indexPath.row == 1 {
-                cell.textLabel?.text = "Log out"
+        if indexPath.section == 0 {
+            if SettingsTableViewController.loggedIn {
+                if indexPath.row == 0 {
+                    cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
+                    cell.selectionStyle = .none
+                    cell.isUserInteractionEnabled = false
+                } else if indexPath.row == 1 {
+                    cell.textLabel?.text = "Log out"
+                    cell.textLabel?.textColor = buttonColour
+                    cell.textLabel?.textAlignment = .center
+                }
+            } else {
+                cell.textLabel?.text = "Log in to Spotify"
                 cell.textLabel?.textColor = buttonColour
-                cell.textLabel?.textAlignment = .center
             }
-        } else {
-            cell.textLabel?.text = "Log in to Spotify"
-            cell.textLabel?.textColor = buttonColour
+        } else if indexPath.section == 1 {
+            cell.textLabel?.text = "Give feedback"
+            let feedbackSwitch = UISwitch(frame: CGRect.zero)
+            cell.accessoryView = feedbackSwitch
         }
         
         return cell
