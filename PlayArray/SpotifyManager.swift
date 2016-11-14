@@ -180,7 +180,7 @@ class SpotifyManager {
         Alamofire.request(createPlaylistRequest!)
         .response { response in
             do {
-                let playlist = try SPTPlaylistSnapshot(from: response.data, with: response.response)
+                let playlist: SPTPlaylistSnapshot = try SPTPlaylistSnapshot(from: response.data, with: response.response)
                 let uri = SpotifyManager.uriFrom(spotifyURI: playlist.uri.absoluteString)
                 completion(uri)
                 self.add(songs: songs, to: playlist)

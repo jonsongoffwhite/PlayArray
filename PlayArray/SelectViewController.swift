@@ -106,6 +106,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         PlaylistManager.getPlaylist(from: selectedCriteria) { (playlist, error) in
             vc.playlist = playlist
             vc.playlist.name = playlistName
+            vc.criteria = selectedCriteria
             self.show(vc, sender: sender)
         }
         
