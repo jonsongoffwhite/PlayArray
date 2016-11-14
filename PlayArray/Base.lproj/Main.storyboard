@@ -254,7 +254,7 @@
             </objects>
             <point key="canvasLocation" x="3608.8000000000002" y="35.532233883058474"/>
         </scene>
-        <!--Settings Table View Controller-->
+        <!--Settings-->
         <scene sceneID="Z0y-Sk-umR">
             <objects>
                 <tableViewController storyboardIdentifier="settingsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bis-TI-VZX" customClass="SettingsTableViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
@@ -277,7 +277,7 @@
                             <outlet property="delegate" destination="bis-TI-VZX" id="rs3-uc-HlA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="lxP-7h-Odg"/>
+                    <navigationItem key="navigationItem" title="Settings" id="lxP-7h-Odg"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbr-FG-7Th" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

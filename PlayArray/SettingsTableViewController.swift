@@ -8,13 +8,13 @@
 
 import UIKit
 
-private let sections: [String] = ["Spotify", "Feedback"]
-
 class SettingsTableViewController: UITableViewController {
     
     static var loggedIn: Bool = false
     static var giveFeedback: Bool = true
     private var notification: NSObjectProtocol!
+    private let headers: [String] = ["Spotify", "Feedback"]
+    private let footers: [String] = ["Logging in to Spotify allows you to export playlists to Spotify and allows us to view the contents of your playlists", "If a playlist on your Spotify changes since you exported it, a popup will appear when you launch the app asking why the song(s) did not fit with the playlist"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return headers.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,7 +58,11 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
+        return headers[section]
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return footers[section]
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
