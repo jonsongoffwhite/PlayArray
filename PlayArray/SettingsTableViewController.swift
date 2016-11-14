@@ -87,8 +87,10 @@ class SettingsTableViewController: UITableViewController {
                 cell.textLabel?.textColor = buttonColour
             }
         } else if indexPath.section == 1 {
-            cell.textLabel?.text = "Give feedback"
+            cell.textLabel?.text = "Give feedback about playlists"
             let feedbackSwitch = UISwitch(frame: CGRect.zero)
+            feedbackSwitch.addTarget(self, action: #selector(SettingsTableViewController.switchChanged(_:)), for: .valueChanged)
+            feedbackSwitch.setOn(true, animated: false)
             cell.accessoryView = feedbackSwitch
         }
         
@@ -117,6 +119,10 @@ class SettingsTableViewController: UITableViewController {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func switchChanged(_ feedbackSwitch: UISwitch) {
+        SettingsTableViewController.giveFeedback = feedbackSwitch.isOn
     }
 
     /*
