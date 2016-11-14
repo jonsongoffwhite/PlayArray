@@ -8,12 +8,13 @@
 
 import UIKit
 
-private let sections: [String] = ["Spotify"]
-
 class SettingsTableViewController: UITableViewController {
     
     static var loggedIn: Bool = false
+    static var giveFeedback: Bool = true
     private var notification: NSObjectProtocol!
+    private let headers: [String] = ["Spotify", "Feedback"]
+    private let footers: [String] = ["Logging in to Spotify allows you to export playlists to Spotify and allows us to view the contents of your playlists", "If a playlist on your Spotify changes since you exported it, a popup will appear when you launch the app asking why the song(s) did not fit with the playlist"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return headers.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,7 +58,11 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
+        return headers[section]
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return footers[section]
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,22 +72,31 @@ class SettingsTableViewController: UITableViewController {
         cell.isUserInteractionEnabled = true
         cell.textLabel?.textAlignment = .left
         cell.textLabel?.textColor = .black
+        cell.accessoryView = nil
         
         let buttonColour = UIColor(colorLiteralRed: 0, green: 122/255, blue: 1, alpha: 1)
         
-        if SettingsTableViewController.loggedIn {
-            if indexPath.row == 0 {
-                cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
-                cell.selectionStyle = .none
-                cell.isUserInteractionEnabled = false
-            } else if indexPath.row == 1 {
-                cell.textLabel?.text = "Log out"
+        if indexPath.section == 0 {
+            if SettingsTableViewController.loggedIn {
+                if indexPath.row == 0 {
+                    cell.textLabel?.text = String(format: "Logged in as %@", (SpotifyManager.sharedInstance.session?.canonicalUsername)!)
+                    cell.selectionStyle = .none
+                    cell.isUserInteractionEnabled = false
+                } else if indexPath.row == 1 {
+                    cell.textLabel?.text = "Log out"
+                    cell.textLabel?.textColor = buttonColour
+                    cell.textLabel?.textAlignment = .center
+                }
+            } else {
+                cell.textLabel?.text = "Log in to Spotify"
                 cell.textLabel?.textColor = buttonColour
-                cell.textLabel?.textAlignment = .center
             }
-        } else {
-            cell.textLabel?.text = "Log in to Spotify"
-            cell.textLabel?.textColor = buttonColour
+        } else if indexPath.section == 1 {
+            cell.textLabel?.text = "Give feedback about playlists"
+            let feedbackSwitch = UISwitch(frame: CGRect.zero)
+            feedbackSwitch.addTarget(self, action: #selector(SettingsTableViewController.switchChanged(_:)), for: .valueChanged)
+            feedbackSwitch.setOn(true, animated: false)
+            cell.accessoryView = feedbackSwitch
         }
         
         return cell
@@ -110,6 +124,10 @@ class SettingsTableViewController: UITableViewController {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func switchChanged(_ feedbackSwitch: UISwitch) {
+        SettingsTableViewController.giveFeedback = feedbackSwitch.isOn
     }
 
     /*
