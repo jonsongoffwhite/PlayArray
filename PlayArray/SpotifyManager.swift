@@ -114,7 +114,9 @@ class SpotifyManager {
                         let name = playlist.name
                         if playlist.trackCount > 0 {
                             self.getSpotifySongs(with: uri, completion: { songs in
-                                playlists.append(Playlist(name: name!, songs: songs))
+                                let playlist = Playlist(name: name!, songs: songs)
+                                playlist.spotifyURI = SpotifyManager.uriFrom(spotifyURI: uri)
+                                playlists.append(playlist)
                             })
                         }
                     }

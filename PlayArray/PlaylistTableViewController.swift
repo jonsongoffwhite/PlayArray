@@ -109,7 +109,7 @@ extension PlaylistTableViewController {
         spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
             self.playlist.spotifyURI = uri
             do {
-                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs)
+                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true)
             } catch {
                 
             }
