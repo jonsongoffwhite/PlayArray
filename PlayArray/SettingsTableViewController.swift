@@ -72,6 +72,7 @@ class SettingsTableViewController: UITableViewController {
         cell.isUserInteractionEnabled = true
         cell.textLabel?.textAlignment = .left
         cell.textLabel?.textColor = .black
+        cell.accessoryView = nil
         
         let buttonColour = UIColor(colorLiteralRed: 0, green: 122/255, blue: 1, alpha: 1)
         
