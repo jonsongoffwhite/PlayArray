@@ -20,10 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if SpotifyManager.sharedInstance.isLoggedIn() {
             SettingsTableViewController.loggedIn = true
+            updatePlaylists()
         } else {
             SpotifyManager.sharedInstance.renewSession(completion: { (success) in
                 if success {
                     SettingsTableViewController.loggedIn = true
+                    self.updatePlaylists()
                 } else {
                     SettingsTableViewController.loggedIn = false
                 }
@@ -31,6 +33,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    func updatePlaylists() {
+        print("Updating playlists...")
+        do {
+            try SpotifyManager.sharedInstance.getPlaylists() { playlists in
+                playlists.forEach({ playlist in
+                    print("Updating playlist: \(playlist.spotifyURI)")
+                    do {
+                        try DataManager.save(playlist: playlist, songs: playlist.songs, createNew: false)
+                    } catch {
+                        print("Error comparing playlists: \(error)")
+                    }
+                })
+            }
+        } catch {
+            print("Error updating playlists: \(error)")
+        }
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
