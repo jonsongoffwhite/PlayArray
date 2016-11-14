@@ -60,7 +60,7 @@ class PlaylistManager {
             let criteria: [String] = category.getCriteria()
             criteria.forEach({ c in
                 let noSpaces = c.replacingOccurrences(of: " ", with: "%20")
-                dictionary.append((id, noSpaces))
+                tuples.append((id, noSpaces))
             })   
         }
         

@@ -62,3 +62,4 @@ Pods/
 # Carthage
 
 PlayArray/Carthage/*
+PlayArray/Cartfile.resolved
