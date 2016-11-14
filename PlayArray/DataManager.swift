@@ -89,6 +89,7 @@ class DataManager {
              */
             
             // Deal with deleted tracks
+            // Show option to review deleted tracks on SelectViewController
             if deletedTracks.count > 0 {
                 print("Found \(deletedTracks.count) deleted tracks for \(playlist.spotifyURI)")
             }
