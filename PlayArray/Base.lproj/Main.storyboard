@@ -163,7 +163,7 @@
         <!--Review Deletions View Controller-->
         <scene sceneID="X1V-Tz-Uuy">
             <objects>
-                <viewController id="JEe-qV-kej" customClass="ReviewDeletionsViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="reviewDeletionsViewController" id="JEe-qV-kej" customClass="ReviewDeletionsViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tbh-pw-JY0"/>
                         <viewControllerLayoutGuide type="bottom" id="cTD-DK-8n8"/>
@@ -176,10 +176,23 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="627"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="programmaticCell" id="Ug5-M7-FLH" customClass="MGSwipeTableCell">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ug5-M7-FLH" id="Doz-7x-MSk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="table" destination="ERN-NK-0Mm" id="ifn-ZW-aq1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxc-it-QTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -121,6 +121,11 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     @IBAction func reviewDeletionsButtonPressed(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "reviewDeletionsViewController") as! ReviewDeletionsViewController
+        self.show(vc, sender: sender)
+        
     }
 }
 
