@@ -172,8 +172,7 @@ class SpotifyManager {
         let createPlaylistRequest: URLRequest?
         
         do {
-            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: session?.canonicalUsername,
-                                                                                         withPublicFlag: false, accessToken: session?.accessToken)
+            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: session?.canonicalUsername, withPublicFlag: false, accessToken: session?.accessToken)
         } catch {
             print("Error: \(error)")
             return

@@ -145,7 +145,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cc4-uK-LAE" id="teg-Fz-7jG">
-                                    <frame key="frameInset" width="375" height="44"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -161,7 +161,7 @@
             </objects>
             <point key="canvasLocation" x="7348" y="-718"/>
         </scene>
-        <!--Saved Playlists Table View Controller-->
+        <!--Saved Playlists-->
         <scene sceneID="ahr-cm-g7X">
             <objects>
                 <tableViewController id="OS5-wE-dx0" customClass="SavedPlaylistsTableViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,7 +174,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Vm-Ao-ozj" id="NBh-74-rWc">
-                                    <frame key="frameInset" width="375" height="44"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -184,7 +184,7 @@
                             <outlet property="delegate" destination="OS5-wE-dx0" id="2dK-CB-Old"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="flJ-0u-W8J"/>
+                    <navigationItem key="navigationItem" title="Saved Playlists" id="flJ-0u-W8J"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAM-rK-hkk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
