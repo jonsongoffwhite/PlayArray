@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+let feedbackKey = "feedbackKey"
+
 class DataManager {
     
     private static let PLAYLIST_ENTITY: String = "SpotifyPlaylist"
@@ -92,6 +94,11 @@ class DataManager {
             // Show option to review deleted tracks on SelectViewController
             if deletedTracks.count > 0 {
                 print("Found \(deletedTracks.count) deleted tracks for \(playlist.spotifyURI)")
+                
+                
+                // Pass the deleted tracks to the SelectViewController
+                NotificationCenter.default.post(name: Notification.Name(feedbackKey), object: deletedTracks)
+                
             }
         } else if createNew {
             // If it doesn't exists create the object and save tracks to it

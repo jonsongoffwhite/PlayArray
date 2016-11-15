@@ -24,6 +24,10 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(forName: Notification.Name(feedbackKey), object: nil, queue: OperationQueue.main) { (Notification) in
+            
+        }
+        
         let locationManager = CLLocationManager()
         criteria.append(WeatherCategory(locationManager: locationManager))
         criteria.append(TimeOfDayCategory())
