@@ -32,7 +32,7 @@ class DataManager {
        the Spotify call is made first and we receive a new URI as a new playlist is made on Spotify. 
        It might be fixable by storing (somewhere) an `exportedToSpotify` boolean, which we can then disable the
        Open in Spotify (or check in the function) with. */
-    static func save(playlist: Playlist, songs: [Song]) throws {
+    static func save(playlist: Playlist, songs: [Song], createNew: Bool) throws {
         // Get playlist URI, return if it is nil as we have no way of saving the playlist
         let uri = playlist.spotifyURI
         guard let _ = uri else {
@@ -54,17 +54,29 @@ class DataManager {
         if managedPlaylist != nil {
             print("Found playlist (\(uri))")
             
-            var deletedTracks: [String] = []
+            var deletedTracks: [Song] = []
             // var newTracks: [String] = tracks
             
             // Populate deleted tracks
-            let storedTracks = managedPlaylist?.value(forKey: PLAYLIST_TO_TRACK_RELATION) as! [NSManagedObject]
+            let storedTrackObjects = managedPlaylist?.value(forKey: PLAYLIST_TO_TRACK_RELATION) as! NSMutableSet
+            var storedTracks = NSMutableArray(array: storedTrackObjects.allObjects) as! [NSManagedObject] // This doesn't fail
+
             storedTracks.forEach({ storedTrack in
                 let storedURI = storedTrack.value(forKey: URI_KEY) as! String
                 if !tracks.contains(storedURI) {
-                    deletedTracks.append(storedURI)
+                    let title = storedTrack.value(forKey: TITLE_KEY) as! String
+                    let artist = storedTrack.value(forKey: ARTIST_KEY) as! String
+                    let album = storedTrack.value(forKey: ALBUM_KEY) as! String
+                    let deletedTrack = Song(id: "", spotifyId: storedURI, title: title, artist: artist, album: album)
+                    deletedTracks.append(deletedTrack)
+                    
+                    // Remove deleted track from stored tracks
+                    storedTracks.remove(at: storedTracks.index(of: storedTrack)!)
                 }
             })
+
+            // Update stored tracks, removing any deleted tracks
+            managedPlaylist?.setValue(NSMutableSet(array: storedTracks), forKey: PLAYLIST_TO_TRACK_RELATION)
             
             // Populate new tracks - will be necessary only for API learning
             /*
@@ -76,14 +88,18 @@ class DataManager {
             })
              */
             
-            // Check deleted tracks and ask for feedback
-            // Maybe this should be put in a different function e.g. comparePlaylists
-            
-        } else {
+            // Deal with deleted tracks
+            if deletedTracks.count > 0 {
+                print("Found \(deletedTracks.count) deleted tracks for \(playlist.spotifyURI)")
+            }
+        } else if createNew {
             // If it doesn't exists create the object and save tracks to it
             print("Creating new playlist (\(uri!))")
             managedPlaylist = NSManagedObject(entity: entity!, insertInto: context)
             managedPlaylist!.setValue(uri, forKey: URI_KEY)
+        } else {
+            print("Playlist not saved")
+            return
         }
         
         managedPlaylist!.setValue(playlist.name, forKey: NAME_KEY)
@@ -177,8 +193,6 @@ class DataManager {
                 // but instead work solely with Spotify IDs
                 songs.append(Song(id: "", spotifyId: uri, title: title, artist: artist, album: album))
             }
-            
-            print("Got \(songs.count) for playlist")
             
             playlists.append(Playlist(name: name, songs: songs))
         }
