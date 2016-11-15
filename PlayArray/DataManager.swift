@@ -13,8 +13,11 @@ class DataManager {
     
     private static let PLAYLIST_ENTITY: String = "SpotifyPlaylist"
     private static let TRACK_ENTITY: String = "SpotifyTrack"
+    private static let CRITERIA_ENTITY: String = "Criteria"
     private static let PLAYLIST_TO_TRACK_RELATION = "hasTrack"
+    private static let PLAYLIST_TO_CRITERIA_RELATION = "hasCriteria"
     private static let TRACK_TO_PLAYLIST_RELATION = "inPlaylist"
+    private static let CRITERIA_TO_PLAYLIST_RELATION = "definesPlaylist"
     
     // Now that we are storing all data, it's better to refactor our Playlist and Song
     // objects in NSManagedObject subclasses as opposed to dealing with the NSManagedObjects
@@ -24,6 +27,8 @@ class DataManager {
     private static let TITLE_KEY: String = "title"
     private static let ARTIST_KEY: String = "artist"
     private static let ALBUM_KEY: String = "album"
+    private static let TYPE_KEY: String = "type"
+    private static let VALUE_KEY: String = "value"
     
     /* Note: This function checks whether a playlist with the same URI is stored on the phone. This is
        relevant to when we have got a playlist from Spotify and are checking against our stored playlists.
@@ -32,7 +37,7 @@ class DataManager {
        the Spotify call is made first and we receive a new URI as a new playlist is made on Spotify. 
        It might be fixable by storing (somewhere) an `exportedToSpotify` boolean, which we can then disable the
        Open in Spotify (or check in the function) with. */
-    static func save(playlist: Playlist, songs: [Song], createNew: Bool) throws {
+    static func save(playlist: Playlist, songs: [Song], criteria: [Category] = [], createNew: Bool) throws {
         // Get playlist URI, return if it is nil as we have no way of saving the playlist
         let uri = playlist.spotifyURI
         guard let _ = uri else {
@@ -52,7 +57,7 @@ class DataManager {
         managedPlaylist = playlistFetchResults.first as? NSManagedObject
         
         if managedPlaylist != nil {
-            print("Found playlist (\(uri))")
+            print("Found existing playlist (\(uri))")
             
             var deletedTracks: [Song] = []
             // var newTracks: [String] = tracks
@@ -103,13 +108,19 @@ class DataManager {
         }
         
         managedPlaylist!.setValue(playlist.name, forKey: NAME_KEY)
-        save(songs: songs, context: context, into: managedPlaylist!, playlistURI: uri!)
+        
+        do {
+            try save(songs: songs, context: context, into: managedPlaylist!)
+            try save(criteria: criteria, context: context, into: managedPlaylist!)
+        } catch {
+            print("Error saving playlist data: \(error)")
+        }
     
         try context.save()
         print("Playlist (\(uri!)) saved to phone")
     }
     
-    static func save(songs: [Song], context: NSManagedObjectContext, into playlist: NSManagedObject, playlistURI: String) {
+    static func save(songs: [Song], context: NSManagedObjectContext, into playlist: NSManagedObject) throws {
         let entity = NSEntityDescription.entity(forEntityName: TRACK_ENTITY, in: context)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: TRACK_ENTITY)
         for song in songs {
@@ -117,28 +128,44 @@ class DataManager {
             if uri == "Null" { continue } // Skip song if ID is Null. Will be fixed when server no longer contains these IDs
             
             fetchRequest.predicate = NSPredicate(format: "\(URI_KEY) == %@", uri)
-            do {
-                let results = try context.fetch(fetchRequest)
-                var track: NSManagedObject? = results.first as? NSManagedObject
-                if track == nil {
-                    track = NSManagedObject(entity: entity!, insertInto: context)
-                    track!.setValue(uri, forKey: URI_KEY)
-                    track!.setValue(song.title, forKey: TITLE_KEY)
-                    track!.setValue(song.artist, forKey: ARTIST_KEY)
-                    track!.setValue(song.album, forKey: ALBUM_KEY)
-                    print("Saved new track with URI: \(uri)")
-                } else {
-                    print("Found track with URI: \(uri)")
-                }
-                
-                let playlists = track!.mutableSetValue(forKey: TRACK_TO_PLAYLIST_RELATION)
-                playlists.add(playlist)
-                
-                let tracks = playlist.mutableSetValue(forKey: PLAYLIST_TO_TRACK_RELATION)
-                tracks.add(track!)
-            } catch {
-                print(error)
+            let results = try context.fetch(fetchRequest)
+            var track: NSManagedObject? = results.first as? NSManagedObject
+            if track == nil {
+                track = NSManagedObject(entity: entity!, insertInto: context)
+                track!.setValue(uri, forKey: URI_KEY)
+                track!.setValue(song.title, forKey: TITLE_KEY)
+                track!.setValue(song.artist, forKey: ARTIST_KEY)
+                track!.setValue(song.album, forKey: ALBUM_KEY)
+                print("Saved new track with URI: \(uri)")
+            } else {
+                print("Found track with URI: \(uri)")
             }
+            
+            let playlists = track!.mutableSetValue(forKey: TRACK_TO_PLAYLIST_RELATION)
+            playlists.add(playlist)
+            
+            let tracks = playlist.mutableSetValue(forKey: PLAYLIST_TO_TRACK_RELATION)
+            tracks.add(track!)
+        }
+    }
+    
+    static func save(criteria: [Category], context: NSManagedObjectContext, into playlist: NSManagedObject) throws {
+        for category in criteria {
+            let type = category.getIdentifier()
+            let criteria_ = category.getCriteria()
+            let value = criteria_.first!
+            let entity = NSEntityDescription.entity(forEntityName: CRITERIA_ENTITY, in: context)
+            let managedCriteria = NSManagedObject(entity: entity!, insertInto: context)
+            managedCriteria.setValue(type, forKey: TYPE_KEY)
+            managedCriteria.setValue(value, forKey: VALUE_KEY)
+            
+            let playlistsCriteria: NSMutableSet? = playlist.value(forKey: PLAYLIST_TO_CRITERIA_RELATION) as? NSMutableSet
+            playlistsCriteria!.add(managedCriteria)
+            
+            let criteriaPlaylists: NSMutableSet? = managedCriteria.value(forKey: CRITERIA_TO_PLAYLIST_RELATION) as? NSMutableSet
+            criteriaPlaylists!.add(playlist)
+
+            print("Saved \(type) criteria with value \(value)")
         }
     }
     
@@ -199,5 +226,32 @@ class DataManager {
         
         playlists.reverse()
         return playlists
+    }
+    
+    static func getCriteria(for playlist: Playlist) throws -> [(String, String)]{
+        let uri = playlist.spotifyURI
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: PLAYLIST_ENTITY)
+        fetchRequest.predicate = NSPredicate(format: "\(URI_KEY) == %@", uri!)
+        
+        let results = try context.fetch(fetchRequest) as! [NSManagedObject]
+        let storedPlaylist = results.first
+        if storedPlaylist == nil { return [] }
+        
+        let criteria: NSMutableSet? = storedPlaylist!.value(forKey: PLAYLIST_TO_CRITERIA_RELATION) as? NSMutableSet
+        if criteria == nil { return [] }
+        
+        var storedCriteria: [(String, String)] = []
+        for criteria_ in criteria! {
+            let managedCriteria = criteria_ as! NSManagedObject
+            
+            let type = managedCriteria.value(forKey: TYPE_KEY) as! String
+            let value = managedCriteria.value(forKey: VALUE_KEY) as! String
+            
+            storedCriteria.append((type, value))
+        }
+        
+        return storedCriteria
     }
 }

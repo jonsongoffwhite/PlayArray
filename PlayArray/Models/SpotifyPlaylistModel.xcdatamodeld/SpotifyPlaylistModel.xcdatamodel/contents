@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Criteria" syncable="YES">
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="definesPlaylist" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpotifyPlaylist" inverseName="hasCriteria" inverseEntity="SpotifyPlaylist" syncable="YES"/>
+    </entity>
     <entity name="SpotifyPlaylist" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hasCriteria" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Criteria" inverseName="definesPlaylist" inverseEntity="Criteria" syncable="YES"/>
         <relationship name="hasTrack" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpotifyTrack" inverseName="inPlaylist" inverseEntity="SpotifyTrack" syncable="YES"/>
     </entity>
     <entity name="SpotifyTrack" syncable="YES">
@@ -13,7 +19,8 @@
         <relationship name="inPlaylist" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpotifyPlaylist" inverseName="hasTrack" inverseEntity="SpotifyPlaylist" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SpotifyPlaylist" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Criteria" positionX="72" positionY="99" width="128" height="90"/>
+        <element name="SpotifyPlaylist" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="SpotifyTrack" positionX="187" positionY="117" width="128" height="120"/>
     </elements>
 </model>

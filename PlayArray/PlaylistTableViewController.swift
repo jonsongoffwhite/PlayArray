@@ -12,6 +12,7 @@ class PlaylistTableViewController: UITableViewController {
     
     var playlist: Playlist = Playlist(name: "", songs: [])
     var showSpotifyButton = true
+    var criteria: [Category] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +110,7 @@ extension PlaylistTableViewController {
         spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
             self.playlist.spotifyURI = uri
             do {
-                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true)
+                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, criteria: self.criteria, createNew: true)
             } catch {
                 
             }
