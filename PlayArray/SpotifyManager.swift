@@ -156,7 +156,9 @@ class SpotifyManager {
                     let album = track.album.name
                     let artists = track.artists as! [SPTPartialArtist]
                     let artist = artists.first?.name
-                    songs.append(Song(id: "", spotifyId: songURI!, title: title!, artist: "", album: album!))
+                    if songURI != nil {
+                        songs.append(Song(id: "", spotifyId: songURI!, title: title!, artist: artist!, album: album!))
+                    }
                 })
                
                 completion(songs)
@@ -197,7 +199,9 @@ class SpotifyManager {
         do {
             var tracks: [NSURL] = []
             songs.forEach({ song in
-                tracks.append(NSURL(string: "spotify:track:\(song.id)")!)
+                if song.spotifyId != "Null" {
+                    tracks.append(NSURL(string: "spotify:track:\(song.spotifyId)")!)
+                }
             })
             
             addSongsToPlaylistRequest = try SPTPlaylistSnapshot.createRequest(forAddingTracks: tracks, toPlaylist: playlist.uri, withAccessToken: session?.accessToken)

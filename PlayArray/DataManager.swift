@@ -108,6 +108,7 @@ class DataManager {
         }
         
         managedPlaylist!.setValue(playlist.name, forKey: NAME_KEY)
+        
         do {
             try save(songs: songs, context: context, into: managedPlaylist!)
             try save(criteria: criteria, context: context, into: managedPlaylist!)
@@ -148,7 +149,7 @@ class DataManager {
         }
     }
     
-    static func save(criteria: [Category], context: NSManagedObjectContext, into playlist: NSManagedObject) {
+    static func save(criteria: [Category], context: NSManagedObjectContext, into playlist: NSManagedObject) throws {
         for category in criteria {
             let type = category.getIdentifier()
             let criteria_ = category.getCriteria()
@@ -158,8 +159,13 @@ class DataManager {
             managedCriteria.setValue(type, forKey: TYPE_KEY)
             managedCriteria.setValue(value, forKey: VALUE_KEY)
             
-            let playlistsCriteria = playlist.mutableSetValue(forKey: PLAYLIST_TO_CRITERIA_RELATION)
-//            playlistsCriteria.add(managedCriteria)
+            var playlistsCriteria: NSMutableSet? = playlist.value(forKey: PLAYLIST_TO_CRITERIA_RELATION) as? NSMutableSet
+            playlistsCriteria = playlistsCriteria ?? NSMutableSet()
+            playlistsCriteria!.add(managedCriteria)
+            
+            var criteriaPlaylists: NSMutableSet? = managedCriteria.value(forKey: CRITERIA_TO_PLAYLIST_RELATION) as? NSMutableSet
+            criteriaPlaylists = criteriaPlaylists ?? NSMutableSet()
+            criteriaPlaylists!.add(playlist)
 
             print("Saved \(type) criteria with value \(value)")
         }
