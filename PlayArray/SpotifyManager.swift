@@ -168,8 +168,7 @@ class SpotifyManager {
         let createPlaylistRequest: URLRequest?
         
         do {
-            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: session?.canonicalUsername,
-                                                                                         withPublicFlag: false, accessToken: session?.accessToken)
+            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: session?.canonicalUsername, withPublicFlag: false, accessToken: session?.accessToken)
         } catch {
             print("Error: \(error)")
             return
@@ -195,7 +194,9 @@ class SpotifyManager {
         do {
             var tracks: [NSURL] = []
             songs.forEach({ song in
-                tracks.append(NSURL(string: "spotify:track:\(song.id)")!)
+                if song.spotifyId != "Null" {
+                    tracks.append(NSURL(string: "spotify:track:\(song.spotifyId)")!)
+                }
             })
             
             addSongsToPlaylistRequest = try SPTPlaylistSnapshot.createRequest(forAddingTracks: tracks, toPlaylist: playlist.uri, withAccessToken: session?.accessToken)
