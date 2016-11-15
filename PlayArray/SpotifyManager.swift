@@ -156,7 +156,10 @@ class SpotifyManager {
                     let album = track.album.name
                     let artists = track.artists as! [SPTPartialArtist]
                     let artist = artists.first?.name
-                    songs.append(Song(id: "", spotifyId: songURI!, title: title!, artist: "", album: album!))
+                    
+                    if songURI != nil {
+                        songs.append(Song(id: "", spotifyId: songURI!, title: title!, artist: artist!, album: album!))
+                    }
                 })
                
                 completion(songs)
