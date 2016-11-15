@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+let feedbackKey = "feedbackKey"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,14 +40,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Updating playlists...")
         do {
             try SpotifyManager.sharedInstance.getPlaylists() { playlists in
+                var alteredPlaylists: [(Playlist, [Song])] = []
                 playlists.forEach({ playlist in
                     print("Updating playlist: \(playlist.spotifyURI)")
                     do {
-                        try DataManager.save(playlist: playlist, songs: playlist.songs, createNew: false)
+                        try DataManager.save(playlist: playlist, songs: playlist.songs, createNew: false) { songs in
+                            alteredPlaylists.append((playlist, songs))
+                        }
+                        NotificationCenter.default.post(name: Notification.Name(feedbackKey), object: alteredPlaylists)
+                        
                     } catch {
                         print("Error comparing playlists: \(error)")
                     }
                 })
+                
             }
         } catch {
             print("Error updating playlists: \(error)")

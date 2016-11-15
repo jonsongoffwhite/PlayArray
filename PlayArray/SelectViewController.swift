@@ -20,12 +20,18 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var makePlaylistButton: UIButton!
+    @IBOutlet weak var reviewDeletionsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(forName: Notification.Name(feedbackKey), object: nil, queue: OperationQueue.main) { (Notification) in
             
+            let deletedTracks: [Song] = Notification.object as! [Song]
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.reviewDeletionsButton.frame = CGRect(x: self.reviewDeletionsButton.frame.origin.x, y: self.reviewDeletionsButton.frame.origin.y - 55, width: self.reviewDeletionsButton.frame.size.width, height: self.reviewDeletionsButton.frame.size.height)
+            })
         }
         
         let locationManager = CLLocationManager()
@@ -113,6 +119,8 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             self.show(vc, sender: sender)
         }
         
+    }
+    @IBAction func reviewDeletionsButtonPressed(_ sender: Any) {
     }
 }
 

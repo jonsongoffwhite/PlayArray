@@ -9,8 +9,6 @@
 import Foundation
 import CoreData
 
-let feedbackKey = "feedbackKey"
-
 class DataManager {
     
     private static let PLAYLIST_ENTITY: String = "SpotifyPlaylist"
@@ -34,7 +32,7 @@ class DataManager {
        the Spotify call is made first and we receive a new URI as a new playlist is made on Spotify. 
        It might be fixable by storing (somewhere) an `exportedToSpotify` boolean, which we can then disable the
        Open in Spotify (or check in the function) with. */
-    static func save(playlist: Playlist, songs: [Song], createNew: Bool) throws {
+    static func save(playlist: Playlist, songs: [Song], createNew: Bool, completion: (([Song]) -> Void)) throws {
         // Get playlist URI, return if it is nil as we have no way of saving the playlist
         let uri = playlist.spotifyURI
         guard let _ = uri else {
@@ -95,9 +93,9 @@ class DataManager {
             if deletedTracks.count > 0 {
                 print("Found \(deletedTracks.count) deleted tracks for \(playlist.spotifyURI)")
                 
-                
+                completion(deletedTracks)
                 // Pass the deleted tracks to the SelectViewController
-                NotificationCenter.default.post(name: Notification.Name(feedbackKey), object: deletedTracks)
+                //NotificationCenter.default.post(name: Notification.Name(feedbackKey), object: deletedTracks)
                 
             }
         } else if createNew {
