@@ -57,7 +57,7 @@ class DataManager {
         managedPlaylist = playlistFetchResults.first as? NSManagedObject
         
         if managedPlaylist != nil {
-            print("Found playlist (\(uri))")
+            print("Found existing playlist (\(uri))")
             
             var deletedTracks: [Song] = []
             // var newTracks: [String] = tracks
@@ -159,12 +159,10 @@ class DataManager {
             managedCriteria.setValue(type, forKey: TYPE_KEY)
             managedCriteria.setValue(value, forKey: VALUE_KEY)
             
-            var playlistsCriteria: NSMutableSet? = playlist.value(forKey: PLAYLIST_TO_CRITERIA_RELATION) as? NSMutableSet
-            playlistsCriteria = playlistsCriteria ?? NSMutableSet()
+            let playlistsCriteria: NSMutableSet? = playlist.value(forKey: PLAYLIST_TO_CRITERIA_RELATION) as? NSMutableSet
             playlistsCriteria!.add(managedCriteria)
             
-            var criteriaPlaylists: NSMutableSet? = managedCriteria.value(forKey: CRITERIA_TO_PLAYLIST_RELATION) as? NSMutableSet
-            criteriaPlaylists = criteriaPlaylists ?? NSMutableSet()
+            let criteriaPlaylists: NSMutableSet? = managedCriteria.value(forKey: CRITERIA_TO_PLAYLIST_RELATION) as? NSMutableSet
             criteriaPlaylists!.add(playlist)
 
             print("Saved \(type) criteria with value \(value)")
@@ -228,5 +226,32 @@ class DataManager {
         
         playlists.reverse()
         return playlists
+    }
+    
+    static func getCriteria(for playlist: Playlist) throws -> [(String, String)]{
+        let uri = playlist.spotifyURI
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: PLAYLIST_ENTITY)
+        fetchRequest.predicate = NSPredicate(format: "\(URI_KEY) == %@", uri!)
+        
+        let results = try context.fetch(fetchRequest) as! [NSManagedObject]
+        let storedPlaylist = results.first
+        if storedPlaylist == nil { return [] }
+        
+        let criteria: NSMutableSet? = storedPlaylist!.value(forKey: PLAYLIST_TO_CRITERIA_RELATION) as? NSMutableSet
+        if criteria == nil { return [] }
+        
+        var storedCriteria: [(String, String)] = []
+        for criteria_ in criteria! {
+            let managedCriteria = criteria_ as! NSManagedObject
+            
+            let type = managedCriteria.value(forKey: TYPE_KEY) as! String
+            let value = managedCriteria.value(forKey: VALUE_KEY) as! String
+            
+            storedCriteria.append((type, value))
+        }
+        
+        return storedCriteria
     }
 }
