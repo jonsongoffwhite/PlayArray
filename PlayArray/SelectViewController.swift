@@ -157,7 +157,7 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         
         blurView.addSubview(darkView)
         
-        cell.blurredImageView.layer.cornerRadius = 6.0
+        cell.blurredImageView.layer.cornerRadius = 7.5
         cell.blurredImageView.clipsToBounds = true
         
         
@@ -207,13 +207,15 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.cellForItem(at: indexPath) as! CriteriaCell
 //        cell?.backgroundColor = UIColor.red
         
-        UIView.animate(withDuration: 0.15) {
-            cell.blurredImageView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        UIView.animate(withDuration: 0.13) {
+            cell.blurredImageView.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
             let blurView: APCustomBlurView = cell.blurredImageView.viewWithTag(100) as! APCustomBlurView
             blurView.setBlurRadius(10)
 //            let darkView = blurView.viewWithTag(200)
 //            darkView?.alpha = 0.0
         }
+        
+        cell.checkBoxImageView.isHidden = false
         
         let criterion = criteria[indexPath.row]
         selectedCriteria.append(criterion)
@@ -236,13 +238,15 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.cellForItem(at: indexPath) as! CriteriaCell
 //        cell?.backgroundColor = UIColor(colorLiteralRed: 0, green: 155/255, blue: 205/255, alpha: 1)
         
-        UIView.animate(withDuration: 0.15) {
+        UIView.animate(withDuration: 0.13) {
             cell.blurredImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
             let blurView: APCustomBlurView = cell.blurredImageView.viewWithTag(100) as! APCustomBlurView
             blurView.setBlurRadius(1.5)
 //            let darkView = blurView.viewWithTag(200)
 //            darkView?.alpha = 0.3
         }
+        
+        cell.checkBoxImageView.isHidden = true
         
         let criterion = criteria[indexPath.row]
         let index = selectedCriteria.index(where: {$0.getIdentifier() == criterion.getIdentifier()})
@@ -254,7 +258,7 @@ extension SelectViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (view.frame.width - 20.0 * (cellsPerRow + 1)) / cellsPerRow
-        let size = CGSize(width: cellWidth, height: cellWidth + 50)
+        let size = CGSize(width: cellWidth, height: cellWidth)
         return size
     }
 }

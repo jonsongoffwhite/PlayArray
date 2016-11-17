@@ -14,4 +14,5 @@ class CriteriaCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var blurredImageView: UIImageView!
+    @IBOutlet var checkBoxImageView: UIImageView!
 }
