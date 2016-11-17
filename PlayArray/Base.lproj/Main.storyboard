@@ -265,7 +265,7 @@
         <scene sceneID="kyL-ti-GTV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ONA-47-b0K" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Saved Playlists" id="egv-zT-qhu"/>
+                    <tabBarItem key="tabBarItem" title="Saved Playlists" image="saved-tab-icon" id="egv-zT-qhu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jjq-Hx-Sd7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -309,16 +309,18 @@
             </objects>
             <point key="canvasLocation" x="4544.8000000000002" y="844.22788605697156"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--in-->
         <scene sceneID="wyB-WE-VaP">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="baR-x6-K11" sceneMemberID="viewController">
+                <tabBarController title="in" automaticallyAdjustsScrollViewInsets="NO" id="baR-x6-K11" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="P88-aC-nvd">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.60784313729999995" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.0" green="0.60784313729999995" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="kpx-I4-foW" kind="relationship" relationship="viewControllers" id="meW-rg-hgK"/>
@@ -334,7 +336,7 @@
         <scene sceneID="I5X-9C-cWS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kpx-I4-foW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Make Playlist" id="qi2-1g-wji"/>
+                    <tabBarItem key="tabBarItem" title="Make Playlist" image="make-tab-icon" id="qi2-1g-wji"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N9V-cR-aqY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -353,7 +355,7 @@
         <scene sceneID="Wwj-II-QG4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dc5-mL-C9w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="sVq-h1-3Ys"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings-tab-icon" id="sVq-h1-3Ys"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9NW-bD-RJv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -371,5 +373,8 @@
     </scenes>
     <resources>
         <image name="check-button" width="128" height="128"/>
+        <image name="make-tab-icon" width="30" height="30"/>
+        <image name="saved-tab-icon" width="30" height="30"/>
+        <image name="settings-tab-icon" width="30" height="30"/>
     </resources>
 </document>

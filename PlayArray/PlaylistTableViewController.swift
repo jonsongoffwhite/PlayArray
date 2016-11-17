@@ -29,6 +29,7 @@ class PlaylistTableViewController: UITableViewController {
         // Add button in navigation bar for exporting
         if showSpotifyButton {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open in Spotify", style: .plain, target: self, action: #selector(PlaylistTableViewController.openInSpotify))
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         }
     }
 

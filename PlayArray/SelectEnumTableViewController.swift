@@ -20,6 +20,7 @@ class SelectEnumTableViewController: UITableViewController {
         
         self.navigationItem.title = "Select Type"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SelectEnumTableViewController.cancel))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
