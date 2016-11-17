@@ -27,6 +27,7 @@
 		AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */; };
 		AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */; };
 		AFE627581DC7BC870030B0B4 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE627571DC7BC870030B0B4 /* SelectViewController.swift */; };
+		AFF93C7C1DDD3EA80064B890 /* APCustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF93C7B1DDD3EA80064B890 /* APCustomBlurView.swift */; };
 		BF066F421DB528C80086396E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF066F411DB528C80086396E /* SwiftyJSON.framework */; };
 		BF066F471DB537600086396E /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF066F411DB528C80086396E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF066F481DB537600086396E /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -51,7 +52,6 @@
 		BF4FD7591DB292BE00D1604F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7581DB292BE00D1604F /* Router.swift */; };
 		BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD75C1DB2A66200D1604F /* Song.swift */; };
 		BF94C39F1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF94C39D1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld */; };
-		BFBE69FA1DD2559100BBA578 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBE69F91DD2559100BBA578 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +139,7 @@
 		AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		AFE627571DC7BC870030B0B4 /* SelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
+		AFF93C7B1DDD3EA80064B890 /* APCustomBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCustomBlurView.swift; sourceTree = "<group>"; };
 		BF066F411DB528C80086396E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = PlayArray/Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		BF1CFC391DBA1ED4009BDB7B /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		BF1CFC3C1DBA237A009BDB7B /* PlaylistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistManager.swift; sourceTree = "<group>"; };
@@ -274,6 +275,7 @@
 				AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */,
 				AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */,
 				AFE627571DC7BC870030B0B4 /* SelectViewController.swift */,
+				AFF93C7B1DDD3EA80064B890 /* APCustomBlurView.swift */,
 				AF4C7DED1DD3A8D800E0CDC8 /* SelectEnumTableViewController.swift */,
 				BF4FD75C1DB2A66200D1604F /* Song.swift */,
 				7E60DEFD1DCBFCC500AD40FF /* SpotifyManager.swift */,
@@ -566,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFF93C7C1DDD3EA80064B890 /* APCustomBlurView.swift in Sources */,
 				BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */,
 				AF4C7DEC1DD27AA800E0CDC8 /* DataManager.swift in Sources */,
 				AF360B291DC7D3E100981E53 /* CriteriaCell.swift in Sources */,

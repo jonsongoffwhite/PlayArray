@@ -112,16 +112,6 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
     }
-    
-    // Uses private APIs, will have to change if we plan to release app on the App Store
-    func createBlur(withRadius radius: CGFloat) -> UIBlurEffect {
-        let customBlurClass: AnyObject.Type = NSClassFromString("_UICustomBlurEffect")!
-        let customBlurObject: NSObject.Type = customBlurClass as! NSObject.Type
-        let blurEffect = customBlurObject.init() as! UIBlurEffect
-        blurEffect.setValue(1.0, forKeyPath: "scale")
-        blurEffect.setValue(radius, forKeyPath: "blurRadius")
-        return blurEffect
-    }
 }
 
 extension SelectViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -147,8 +137,8 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
             displayCell(cell: cell, criterion: criterion)
         }
         
-        let blurEffect = createBlur(withRadius: 2)
-        let blurView = UIVisualEffectView(effect: blurEffect)
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurView = APCustomBlurView(withRadius: 2)
         
         blurView.frame = cell.blurredImageView.bounds
         cell.blurredImageView.addSubview(blurView)
