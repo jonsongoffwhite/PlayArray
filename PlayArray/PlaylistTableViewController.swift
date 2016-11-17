@@ -12,6 +12,7 @@ class PlaylistTableViewController: UITableViewController {
     
     var playlist: Playlist = Playlist(name: "", songs: [])
     var showSpotifyButton = true
+    var criteria: [Category] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -156,7 +156,6 @@ class SpotifyManager {
                     let album = track.album.name
                     let artists = track.artists as! [SPTPartialArtist]
                     let artist = artists.first?.name
-                    
                     if songURI != nil {
                         songs.append(Song(id: "", spotifyId: songURI!, title: title!, artist: artist!, album: album!))
                     }
@@ -182,7 +181,7 @@ class SpotifyManager {
         Alamofire.request(createPlaylistRequest!)
         .response { response in
             do {
-                let playlist = try SPTPlaylistSnapshot(from: response.data, with: response.response)
+                let playlist: SPTPlaylistSnapshot = try SPTPlaylistSnapshot(from: response.data, with: response.response)
                 let uri = SpotifyManager.uriFrom(spotifyURI: playlist.uri.absoluteString)
                 completion(uri)
                 self.add(songs: songs, to: playlist)
