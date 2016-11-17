@@ -65,7 +65,25 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
         cell.leftSwipeSettings.transition = MGSwipeTransition.rotate3D
         
         //configure right buttons
-        cell.rightButtons = [MGSwipeButton(title: "Not Appropriate", backgroundColor: UIColor(red: 1, green: 0.835, blue: 0, alpha: 1))]
+        
+        let rightButton = MGSwipeButton(title: "Not Appropriate", backgroundColor: UIColor(red: 1, green: 0.835, blue: 0, alpha: 1))
+        
+        rightButton.callback = { (sender: MGSwipeTableCell) -> Bool in
+        
+            // if there are more than one criteria associated with song, bring up selection
+            // and send feedback for chosen criteria
+            // else send feedback for just the one
+            
+            
+            
+            
+            self.alteredSongsList.remove(at: indexPath.row)
+            
+            self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
+            return true
+        }
+        
+        cell.rightButtons = [rightButton]
         cell.rightSwipeSettings.transition = MGSwipeTransition.rotate3D
         return cell
         
