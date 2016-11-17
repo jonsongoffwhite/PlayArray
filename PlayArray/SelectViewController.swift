@@ -30,6 +30,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         criteria.append(GenreCategory())
         
         collectionView.allowsMultipleSelection = true
+        collectionView.alwaysBounceVertical = true
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(SelectViewController.handleLongPress))
         longPress.delegate = self
@@ -111,6 +112,16 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
     }
+    
+    // Uses private APIs, will have to change if we plan to release app on the App Store
+    func createBlur(withRadius radius: CGFloat) -> UIBlurEffect {
+        let customBlurClass: AnyObject.Type = NSClassFromString("_UICustomBlurEffect")!
+        let customBlurObject: NSObject.Type = customBlurClass as! NSObject.Type
+        let blurEffect = customBlurObject.init() as! UIBlurEffect
+        blurEffect.setValue(1.0, forKeyPath: "scale")
+        blurEffect.setValue(radius, forKeyPath: "blurRadius")
+        return blurEffect
+    }
 }
 
 extension SelectViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -125,6 +136,7 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CriteriaCell
+        
         let criterion = criteria[indexPath.row]
         
         if criterion.getCriteria().count == 0 {
@@ -135,6 +147,21 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
             displayCell(cell: cell, criterion: criterion)
         }
         
+        let blurEffect = createBlur(withRadius: 2)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        
+        blurView.frame = cell.blurredImageView.bounds
+        cell.blurredImageView.addSubview(blurView)
+        
+        let vibrancyView = UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: blurEffect))
+        vibrancyView.frame = cell.blurredImageView.bounds
+        blurView.addSubview(vibrancyView)
+        
+        vibrancyView.contentView.addSubview(cell.mainLabel)
+        
+        cell.blurredImageView.layer.cornerRadius = 10.0
+        cell.blurredImageView.clipsToBounds = true
+        
         return cell
     }
     
@@ -142,7 +169,7 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         let criteriaType: String = criterion.getCriteria().first!
         let cellText: String = criterion.getStringValue()
         
-        if criteriaType == criterion.current {
+        if criteriaType == criterion.current && criterion.getIdentifier() != "genre" {
             cell.mainLabel.text = "Current " + cellText
         } else {
             cell.mainLabel.text = cellText
@@ -154,11 +181,14 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         
         if id == "weather" {
             imagePath = criteriaType
-        } else if id == "local_time" {
-            imagePath = "time"
+        } else {
+            imagePath = id
         }
         
-        cell.imageView.image = UIImage(named: imagePath)
+        let iconImagePath: String = imagePath + "-icon"
+        
+        cell.blurredImageView.image = UIImage(named: imagePath)
+        cell.imageView.image = UIImage(named: iconImagePath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -169,14 +199,20 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
             } catch {
                 
             }
-            UIView.animate(withDuration: 0.3, animations: {
-                player.play()
+            UIView.animate(withDuration: 0.3) {
+//                player.play()
                 self.makePlaylistButton.frame = CGRect(x: self.makePlaylistButton.frame.origin.x, y: self.makePlaylistButton.frame.origin.y - 55, width: self.makePlaylistButton.frame.size.width, height: self.makePlaylistButton.frame.size.height)
-            })
+
+            }
+        }
+
+        let cell = collectionView.cellForItem(at: indexPath) as! CriteriaCell
+//        cell?.backgroundColor = UIColor.red
+        
+        UIView.animate(withDuration: 0.15) {
+            cell.blurredImageView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }
         
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.backgroundColor = UIColor.red
         let criterion = criteria[indexPath.row]
         selectedCriteria.append(criterion)
     }
@@ -189,14 +225,18 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
             } catch {
                 
             }
-            UIView.animate(withDuration: 0.3, animations: {
-                player.play()
+            UIView.animate(withDuration: 0.3) {
+//                player.play()
                 self.makePlaylistButton.frame = CGRect(x: self.makePlaylistButton.frame.origin.x, y: self.makePlaylistButton.frame.origin.y + 55, width: self.makePlaylistButton.frame.size.width, height: self.makePlaylistButton.frame.size.height)
-            })
+            }
         }
         
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.backgroundColor = UIColor(colorLiteralRed: 0, green: 155/255, blue: 205/255, alpha: 1)
+        let cell = collectionView.cellForItem(at: indexPath) as! CriteriaCell
+//        cell?.backgroundColor = UIColor(colorLiteralRed: 0, green: 155/255, blue: 205/255, alpha: 1)
+        
+        UIView.animate(withDuration: 0.15) {
+            cell.blurredImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
         
         let criterion = criteria[indexPath.row]
         let index = selectedCriteria.index(where: {$0.getIdentifier() == criterion.getIdentifier()})

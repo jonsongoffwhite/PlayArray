@@ -82,6 +82,8 @@ class SelectEnumTableViewController: UITableViewController {
             imagePath = "time"
         }
         
+        imagePath += "-icon"
+        
         cell.imageView?.image = UIImage(named: imagePath)
         cell.imageView?.image = cell.imageView?.image?.withRenderingMode(.alwaysTemplate)
         cell.imageView?.tintColor = .black
