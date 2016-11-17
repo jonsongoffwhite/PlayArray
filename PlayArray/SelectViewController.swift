@@ -138,7 +138,8 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         }
         
         let blurEffect = UIBlurEffect(style: .light)
-        let blurView = APCustomBlurView(withRadius: 2)
+        let blurView = APCustomBlurView(withRadius: 1.5)
+        blurView.tag = 100
         
         blurView.frame = cell.blurredImageView.bounds
         cell.blurredImageView.addSubview(blurView)
@@ -147,10 +148,18 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         vibrancyView.frame = cell.blurredImageView.bounds
         blurView.addSubview(vibrancyView)
         
-        vibrancyView.contentView.addSubview(cell.mainLabel)
+        // vibrancyView.contentView.addSubview(cell.mainLabel)
         
-        cell.blurredImageView.layer.cornerRadius = 10.0
+        let darkView = UIView(frame: blurView.frame)
+        darkView.backgroundColor = UIColor.black
+        darkView.alpha = 0.3
+        darkView.tag = 200
+        
+        blurView.addSubview(darkView)
+        
+        cell.blurredImageView.layer.cornerRadius = 6.0
         cell.blurredImageView.clipsToBounds = true
+        
         
         return cell
     }
@@ -192,7 +201,6 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
             UIView.animate(withDuration: 0.3) {
 //                player.play()
                 self.makePlaylistButton.frame = CGRect(x: self.makePlaylistButton.frame.origin.x, y: self.makePlaylistButton.frame.origin.y - 55, width: self.makePlaylistButton.frame.size.width, height: self.makePlaylistButton.frame.size.height)
-
             }
         }
 
@@ -201,6 +209,10 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         
         UIView.animate(withDuration: 0.15) {
             cell.blurredImageView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            let blurView: APCustomBlurView = cell.blurredImageView.viewWithTag(100) as! APCustomBlurView
+            blurView.setBlurRadius(10)
+//            let darkView = blurView.viewWithTag(200)
+//            darkView?.alpha = 0.0
         }
         
         let criterion = criteria[indexPath.row]
@@ -226,6 +238,10 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         
         UIView.animate(withDuration: 0.15) {
             cell.blurredImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            let blurView: APCustomBlurView = cell.blurredImageView.viewWithTag(100) as! APCustomBlurView
+            blurView.setBlurRadius(1.5)
+//            let darkView = blurView.viewWithTag(200)
+//            darkView?.alpha = 0.3
         }
         
         let criterion = criteria[indexPath.row]
@@ -238,7 +254,7 @@ extension SelectViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (view.frame.width - 20.0 * (cellsPerRow + 1)) / cellsPerRow
-        let size = CGSize(width: cellWidth, height: cellWidth)
+        let size = CGSize(width: cellWidth, height: cellWidth + 50)
         return size
     }
 }

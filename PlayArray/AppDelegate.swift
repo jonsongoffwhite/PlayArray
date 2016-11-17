@@ -20,12 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if SpotifyManager.sharedInstance.isLoggedIn() {
             SettingsTableViewController.loggedIn = true
-            updatePlaylists()
+//            updatePlaylists()
         } else {
             SpotifyManager.sharedInstance.renewSession(completion: { (success) in
                 if success {
                     SettingsTableViewController.loggedIn = true
-                    self.updatePlaylists()
+//                    self.updatePlaylists()
                 } else {
                     SettingsTableViewController.loggedIn = false
                 }
