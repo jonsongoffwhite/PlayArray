@@ -175,18 +175,9 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         }
         
         cell.detailLabel.text = criteriaType.capitalized
-        var imagePath: String = ""
-        let id: String = criterion.getIdentifier()
+        let iconImagePath: String = criteriaType + "-icon"
         
-        if id == "weather" {
-            imagePath = criteriaType
-        } else {
-            imagePath = id
-        }
-        
-        let iconImagePath: String = imagePath + "-icon"
-        
-        cell.blurredImageView.image = UIImage(named: imagePath)
+        cell.blurredImageView.image = UIImage(named: criteriaType)
         cell.imageView.image = UIImage(named: iconImagePath)
     }
     

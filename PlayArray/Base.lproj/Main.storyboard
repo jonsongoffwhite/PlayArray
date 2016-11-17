@@ -49,7 +49,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bfv-CS-j1p">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bfv-CS-j1p">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="0EH-GA-lsL"/>
                                                         <constraint firstAttribute="height" constant="150" id="g64-QH-XIA"/>
@@ -87,8 +87,8 @@
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YK8-di-sb4">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="11" id="cD3-oE-9g8"/>
-                                                        <constraint firstAttribute="width" constant="23" id="lRp-tx-fnF"/>
+                                                        <constraint firstAttribute="height" constant="21" id="cD3-oE-9g8"/>
+                                                        <constraint firstAttribute="width" constant="35" id="lRp-tx-fnF"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <state key="normal" title="Edit">
@@ -102,7 +102,7 @@
                                         </view>
                                         <constraints>
                                             <constraint firstItem="Bfv-CS-j1p" firstAttribute="leading" secondItem="jPe-SI-g3B" secondAttribute="leading" id="2Qo-Zy-YcM"/>
-                                            <constraint firstAttribute="trailing" secondItem="YK8-di-sb4" secondAttribute="trailing" constant="8" id="52U-vW-7uS"/>
+                                            <constraint firstAttribute="trailing" secondItem="YK8-di-sb4" secondAttribute="trailing" id="52U-vW-7uS"/>
                                             <constraint firstAttribute="trailing" secondItem="Bfv-CS-j1p" secondAttribute="trailing" id="5Nl-WK-bXv"/>
                                             <constraint firstItem="1BI-p4-mQz" firstAttribute="top" secondItem="Bfv-CS-j1p" secondAttribute="bottom" constant="-63" id="DHP-YH-nkl"/>
                                             <constraint firstAttribute="bottom" secondItem="1BI-p4-mQz" secondAttribute="bottom" constant="35" id="DZz-hu-P4C"/>
@@ -115,7 +115,7 @@
                                             <constraint firstItem="WCf-o9-G9v" firstAttribute="bottom" secondItem="jPe-SI-g3B" secondAttribute="bottomMargin" id="S4M-yG-cJ1"/>
                                             <constraint firstItem="1BI-p4-mQz" firstAttribute="leading" secondItem="jPe-SI-g3B" secondAttribute="leading" id="WbC-H4-7to"/>
                                             <constraint firstItem="4jU-a9-T2r" firstAttribute="top" secondItem="yd8-Jt-ar5" secondAttribute="bottom" constant="41" id="bTv-4X-cPU"/>
-                                            <constraint firstItem="YK8-di-sb4" firstAttribute="top" secondItem="jPe-SI-g3B" secondAttribute="top" constant="8" id="fIP-w9-YXg"/>
+                                            <constraint firstItem="YK8-di-sb4" firstAttribute="top" secondItem="jPe-SI-g3B" secondAttribute="top" constant="2" id="fIP-w9-YXg"/>
                                             <constraint firstItem="4jU-a9-T2r" firstAttribute="top" secondItem="yd8-Jt-ar5" secondAttribute="bottom" constant="41" id="jmV-ll-H4l"/>
                                             <constraint firstItem="yd8-Jt-ar5" firstAttribute="centerX" secondItem="jPe-SI-g3B" secondAttribute="centerX" id="jnW-pl-D4I"/>
                                             <constraint firstItem="4jU-a9-T2r" firstAttribute="centerX" secondItem="jPe-SI-g3B" secondAttribute="centerX" id="rfE-bs-yPj"/>

@@ -35,7 +35,7 @@ class SelectEnumTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
 //        stringValues = [criterion.getCriteria().first!] + criterion.getAllStringValues()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -74,15 +74,7 @@ class SelectEnumTableViewController: UITableViewController {
         }
         
         cell.textLabel?.text = cellText
-        var imagePath: String = ""
-        
-        if id == "weather" {
-            imagePath = rawValue
-        } else if id == "local_time" {
-            imagePath = "time"
-        }
-        
-        imagePath += "-icon"
+        let imagePath: String = rawValue + "-icon"
         
         cell.imageView?.image = UIImage(named: imagePath)
         cell.imageView?.image = cell.imageView?.image?.withRenderingMode(.alwaysTemplate)
