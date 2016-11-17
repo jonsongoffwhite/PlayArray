@@ -234,7 +234,7 @@ class DataManager {
         return playlists
     }
     
-    static func getCriteria(for playlist: Playlist) throws -> [(String, String)]{
+    static func getCriteria(for playlist: Playlist) throws -> [String: String] {
         let uri = playlist.spotifyURI
         
         let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
@@ -243,19 +243,19 @@ class DataManager {
         
         let results = try context.fetch(fetchRequest) as! [NSManagedObject]
         let storedPlaylist = results.first
-        if storedPlaylist == nil { return [] }
+        if storedPlaylist == nil { return [:] }
         
         let criteria: NSMutableSet? = storedPlaylist!.value(forKey: PLAYLIST_TO_CRITERIA_RELATION) as? NSMutableSet
-        if criteria == nil { return [] }
+        if criteria == nil { return [:] }
         
-        var storedCriteria: [(String, String)] = []
+        var storedCriteria: [String: String] = [:]
         for criteria_ in criteria! {
             let managedCriteria = criteria_ as! NSManagedObject
             
             let type = managedCriteria.value(forKey: TYPE_KEY) as! String
             let value = managedCriteria.value(forKey: VALUE_KEY) as! String
             
-            storedCriteria.append((type, value))
+            storedCriteria[type] = value
         }
         
         return storedCriteria

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MGSwipeTableCell
+import RequestManager
 
 class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate {
     
@@ -73,13 +74,22 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
             // if there are more than one criteria associated with song, bring up selection
             // and send feedback for chosen criteria
             // else send feedback for just the one
-            
-            
-            
-            
-            self.alteredSongsList.remove(at: indexPath.row)
-            
-            self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
+            do {
+                let criteria = try DataManager.getCriteria(for: item.0)
+                RequestManager.sharedInstance.giveFeedback(for: item.1.id, with: criteria, completion: { (error) in
+                    print("deleting \(item.1.title)")
+                    print("inappropriate for: ")
+                    criteria.forEach({ (key: String, value: String) in
+                        print("\(key) : \(value)")
+                    })
+                    
+                    
+                    self.alteredSongsList.remove(at: indexPath.row)
+                    self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
+                })
+            } catch {
+                print("error getting playlist criteria")
+            }
             return true
         }
         
