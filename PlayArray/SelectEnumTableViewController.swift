@@ -52,6 +52,10 @@ class SelectEnumTableViewController: UITableViewController {
         return values.count
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
@@ -66,12 +70,13 @@ class SelectEnumTableViewController: UITableViewController {
             cellText += " (current)"
         }
         
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
         cell.textLabel?.text = cellText
         let imagePath: String = rawValue + "-icon"
         
         cell.imageView?.image = UIImage(named: imagePath)
         
-        let imageSize = CGSize(width: 37, height: 37)
+        let imageSize = CGSize(width: 50, height: 50)
         UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.main.scale)
         let imageRect = CGRect(x: 0.0, y: 0.0, width: imageSize.width, height: imageSize.height)
         cell.imageView?.image?.draw(in: imageRect)
