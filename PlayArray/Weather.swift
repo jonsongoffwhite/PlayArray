@@ -73,4 +73,7 @@ class WeatherCategory: LocationCategory {
         return "Weather"
     }
     
+    override func hasCurrentValues() -> Bool {
+        return true
+    }
 }

@@ -56,22 +56,14 @@ class SelectEnumTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
         let indexOfCurrent = values.index(where: {criterion.getRawValue(criterion: $0) == criterion.current})
-        let current = values[indexOfCurrent!]
-        values.remove(at: indexOfCurrent!)
-        values.insert(current, at: 0)
-        let id: String = criterion.getIdentifier()
         
         let value = values[indexPath.row]
         let rawValue = criterion.getRawValue(criterion: value)
         
         var cellText: String = rawValue.capitalized
         
-        if indexPath.row == 0 {
-            if id == "weather" {
-                cellText = "Current weather (\(criterion.current))"
-            } else if id == "local_time" {
-                cellText = "Current time (\(criterion.current))"
-            }
+        if indexPath.row == indexOfCurrent && criterion.hasCurrentValues() {
+            cellText += " (current)"
         }
         
         cell.textLabel?.text = cellText

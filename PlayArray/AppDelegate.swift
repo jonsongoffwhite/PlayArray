@@ -24,12 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if SpotifyManager.sharedInstance.isLoggedIn() {
             SettingsTableViewController.loggedIn = true
-//            updatePlaylists()
+            updatePlaylists()
         } else {
             SpotifyManager.sharedInstance.renewSession(completion: { (success) in
                 if success {
                     SettingsTableViewController.loggedIn = true
-//                    self.updatePlaylists()
+                    self.updatePlaylists()
                 } else {
                     SettingsTableViewController.loggedIn = false
                 }
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 playlists.forEach({ playlist in
                     print("Updating playlist: \(playlist.spotifyURI)")
                     do {
-                        try DataManager.save(playlist: playlist, songs: playlist.songs, createNew: false)
+//                        try DataManager.save(playlist: playlist, songs: playlist.songs, createNew: false)
                     } catch {
                         print("Error comparing playlists: \(error)")
                     }

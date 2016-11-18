@@ -21,6 +21,8 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var makePlaylistButton: UIButton!
     
+    private var selectedIndexPath: IndexPath = IndexPath(row: 0, section: -1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +50,13 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             let cell = collectionView.cellForItem(at: i) as! CriteriaCell
             displayCell(cell: cell, criterion: criteria[i.row])
         })
+        
+        if selectedIndexPath.section != -1 {
+            collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
+            selectCell(indexPath: selectedIndexPath)
+        }
+        
+        print(collectionView.indexPathsForSelectedItems)
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,6 +86,8 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         
         vc.criterion = criterion
         vc.values = criterion.getAllValues()
+        
+        selectedIndexPath = indexPath
         
         self.present(navController, animated: true, completion: nil)
     }
@@ -182,6 +193,10 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectCell(indexPath: indexPath)
+    }
+    
+    func selectCell(indexPath: IndexPath) {
         if selectedCriteria.count == 0 {
             let upSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "WHOOP", ofType: "wav")!)
             do {
@@ -190,20 +205,17 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
                 
             }
             UIView.animate(withDuration: 0.3) {
-//                player.play()
+                //                player.play()
                 self.makePlaylistButton.frame = CGRect(x: self.makePlaylistButton.frame.origin.x, y: self.makePlaylistButton.frame.origin.y - 55, width: self.makePlaylistButton.frame.size.width, height: self.makePlaylistButton.frame.size.height)
             }
         }
-
+        
         let cell = collectionView.cellForItem(at: indexPath) as! CriteriaCell
-//        cell?.backgroundColor = UIColor.red
         
         UIView.animate(withDuration: 0.13) {
             cell.blurredImageView.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
             let blurView: APCustomBlurView = cell.blurredImageView.viewWithTag(100) as! APCustomBlurView
             blurView.setBlurRadius(10)
-//            let darkView = blurView.viewWithTag(200)
-//            darkView?.alpha = 0.0
         }
         
         cell.checkBoxImageView.isHidden = false
