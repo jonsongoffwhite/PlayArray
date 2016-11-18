@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 playlists.forEach({ playlist in
                     print("Updating playlist: \(playlist.spotifyURI)")
                     do {
-//                        try DataManager.save(playlist: playlist, songs: playlist.songs, createNew: false)
+                        try DataManager.save(playlist: playlist, songs: playlist.songs, createNew: false)
                     } catch {
                         print("Error comparing playlists: \(error)")
                     }
