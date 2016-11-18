@@ -78,6 +78,14 @@ class SelectEnumTableViewController: UITableViewController {
         let imagePath: String = rawValue + "-icon"
         
         cell.imageView?.image = UIImage(named: imagePath)
+        
+        let imageSize = CGSize(width: 37, height: 37)
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.main.scale)
+        let imageRect = CGRect(x: 0.0, y: 0.0, width: imageSize.width, height: imageSize.height)
+        cell.imageView?.image?.draw(in: imageRect)
+        cell.imageView?.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
         cell.imageView?.image = cell.imageView?.image?.withRenderingMode(.alwaysTemplate)
         cell.imageView?.tintColor = .black
         
