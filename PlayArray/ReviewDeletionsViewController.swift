@@ -74,19 +74,87 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
             // if there are more than one criteria associated with song, bring up selection
             // and send feedback for chosen criteria
             // else send feedback for just the one
+            
             do {
                 let criteria = try DataManager.getCriteria(for: item.0)
-                RequestManager.sharedInstance.giveFeedback(for: item.1.id, with: criteria, completion: { (error) in
-                    print("deleting \(item.1.title)")
-                    print("inappropriate for: ")
-                    criteria.forEach({ (key: String, value: String) in
-                        print("\(key) : \(value)")
+                
+                if criteria.count > 1 {
+                    
+                    // Create a UIAlertController
+                    
+                    let title = "Criteria"
+                    let message = "Please select the criteria that you felt did not apply to this song: "
+                    
+                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+                    
+                    let margin:CGFloat = 8.0
+                    let rect = CGRect(x: margin, y: margin, width: alertController.view.bounds.size.width - margin * 4.0, height: 100)
+                    
+                    var tableView = UITableView(frame: rect)
+                    
+                    class AlertTableController: NSObject, UITableViewDelegate, UITableViewDataSource {
+                        
+                        let dataDictionary: [String: String]
+                        var dataSource: [(String, String)]
+                        
+                        
+                        init(with dataDictionary: [String: String]) {
+                            print("created AlertTableController")
+                            self.dataDictionary = dataDictionary
+                            dataSource = []
+                            super.init()
+                            convertDictionaryToArray()
+                        }
+                        
+                        func convertDictionaryToArray() {
+                            self.dataDictionary.forEach({ (key: String, value: String) in
+                                dataSource.append((key, value))
+                            })
+                        }
+                        
+                        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+                            print("INNER CLASS CALLED")
+                            return dataSource.count
+                        }
+                        
+                        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+                            
+                            let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
+                            let category = dataSource[indexPath.row].0
+                            let criterion = dataSource[indexPath.row].1
+                            cell.textLabel?.text = "\(category): \(criterion)"
+                            return cell
+                            
+                        }
+                    }
+                    
+                    let alertTableController = AlertTableController(with: criteria)
+                    tableView.dataSource = alertTableController
+                    tableView.delegate = alertTableController
+                    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+                    tableView.backgroundColor = UIColor.green
+                    
+                    alertController.view.addSubview(tableView)
+                    
+                    self.present(alertController, animated: true, completion:{
+                        // Completion
                     })
                     
                     
-                    self.alteredSongsList.remove(at: indexPath.row)
-                    self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
-                })
+                
+                } else {
+                    RequestManager.sharedInstance.giveFeedback(for: item.1.id, with: criteria, completion: { (error) in
+                        print("deleting \(item.1.title)")
+                        print("inappropriate for: ")
+                        criteria.forEach({ (key: String, value: String) in
+                            print("\(key) : \(value)")
+                        })
+                        
+                        
+                        self.alteredSongsList.remove(at: indexPath.row)
+                        self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
+                    })
+                }
             } catch {
                 print("error getting playlist criteria")
             }
