@@ -10,6 +10,9 @@
 		7E4430A21DB2910E007183ED /* Criteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A11DB2910E007183ED /* Criteria.swift */; };
 		7E4430A41DB29202007183ED /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A31DB29202007183ED /* Weather.swift */; };
 		7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4430A71DB299E9007183ED /* DataQuery.swift */; };
+		7E4568651DDB7FA1007A1D34 /* ReviewDeletionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4568641DDB7FA1007A1D34 /* ReviewDeletionsViewController.swift */; };
+		7E4568671DDB83FA007A1D34 /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4568661DDB83FA007A1D34 /* MGSwipeTableCell.framework */; };
+		7E4568681DDB83FA007A1D34 /* MGSwipeTableCell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4568661DDB83FA007A1D34 /* MGSwipeTableCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7E60DEFF1DCBFCC500AD40FF /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60DEFD1DCBFCC500AD40FF /* SpotifyManager.swift */; };
 		7E60DF161DCBFDE900AD40FF /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E60DF131DCBFDE900AD40FF /* SpotifyAudioPlayback.framework */; };
 		7E60DF171DCBFDE900AD40FF /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E60DF141DCBFDE900AD40FF /* SpotifyAuthentication.framework */; };
@@ -51,7 +54,6 @@
 		BF4FD7591DB292BE00D1604F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD7581DB292BE00D1604F /* Router.swift */; };
 		BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD75C1DB2A66200D1604F /* Song.swift */; };
 		BF94C39F1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF94C39D1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld */; };
-		BFBE69FA1DD2559100BBA578 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBE69F91DD2559100BBA578 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,7 @@
 			files = (
 				AF3A38401DCA933B008479EB /* Alamofire.framework in Embed Frameworks */,
 				BF1CFC3F1DBA25B6009BDB7B /* SwiftyJSON.framework in Embed Frameworks */,
+				7E4568681DDB83FA007A1D34 /* MGSwipeTableCell.framework in Embed Frameworks */,
 				BF4FD7491DB28C7300D1604F /* RequestManager.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -123,6 +126,8 @@
 		7E4430A11DB2910E007183ED /* Criteria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Criteria.swift; sourceTree = "<group>"; };
 		7E4430A31DB29202007183ED /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		7E4430A71DB299E9007183ED /* DataQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataQuery.swift; sourceTree = "<group>"; };
+		7E4568641DDB7FA1007A1D34 /* ReviewDeletionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewDeletionsViewController.swift; sourceTree = "<group>"; };
+		7E4568661DDB83FA007A1D34 /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSwipeTableCell.framework; path = PlayArray/Carthage/Build/iOS/MGSwipeTableCell.framework; sourceTree = "<group>"; };
 		7E60DEFD1DCBFCC500AD40FF /* SpotifyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
 		7E60DF091DCBFD5B00AD40FF /* PlayArray-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlayArray-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E60DF131DCBFDE900AD40FF /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
@@ -174,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E4568671DDB83FA007A1D34 /* MGSwipeTableCell.framework in Frameworks */,
 				7E60DF171DCBFDE900AD40FF /* SpotifyAuthentication.framework in Frameworks */,
 				AF47AE311DCABDBB0014BE5D /* Alamofire.framework in Frameworks */,
 				7E60DF161DCBFDE900AD40FF /* SpotifyAudioPlayback.framework in Frameworks */,
@@ -275,6 +281,7 @@
 				AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */,
 				AFE627571DC7BC870030B0B4 /* SelectViewController.swift */,
 				AF4C7DED1DD3A8D800E0CDC8 /* SelectEnumTableViewController.swift */,
+				7E4568641DDB7FA1007A1D34 /* ReviewDeletionsViewController.swift */,
 				BF4FD75C1DB2A66200D1604F /* Song.swift */,
 				7E60DEFD1DCBFCC500AD40FF /* SpotifyManager.swift */,
 				BF4FD65E1DB279B300D1604F /* Assets.xcassets */,
@@ -333,6 +340,7 @@
 		BF4FD7531DB28C9F00D1604F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E4568661DDB83FA007A1D34 /* MGSwipeTableCell.framework */,
 				7E60DF131DCBFDE900AD40FF /* SpotifyAudioPlayback.framework */,
 				7E60DF141DCBFDE900AD40FF /* SpotifyAuthentication.framework */,
 				7E60DF151DCBFDE900AD40FF /* SpotifyMetadata.framework */,
@@ -579,6 +587,7 @@
 				AFE627581DC7BC870030B0B4 /* SelectViewController.swift in Sources */,
 				7E60DEFF1DCBFCC500AD40FF /* SpotifyManager.swift in Sources */,
 				BF94C39F1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodeld in Sources */,
+				7E4568651DDB7FA1007A1D34 /* ReviewDeletionsViewController.swift in Sources */,
 				7E4430A81DB299E9007183ED /* DataQuery.swift in Sources */,
 				AF4C7DEA1DD1F3B800E0CDC8 /* SettingsTableViewController.swift in Sources */,
 				BF4FD6581DB279B300D1604F /* AppDelegate.swift in Sources */,
