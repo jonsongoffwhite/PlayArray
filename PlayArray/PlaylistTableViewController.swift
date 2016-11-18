@@ -111,7 +111,8 @@ extension PlaylistTableViewController {
         spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
             self.playlist.spotifyURI = uri
             do {
-                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, criteria: self.criteria, createNew: true)
+                // No need for completion handler as we can guarantee a new playlist is being created on Spotify
+                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true) {_ in }
             } catch {
                 
             }

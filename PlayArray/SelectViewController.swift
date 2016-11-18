@@ -18,13 +18,25 @@ private var player: AVAudioPlayer!
 
 class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
 
+    var deletedTracks: [(Playlist, [Song])] = []
+    
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var makePlaylistButton: UIButton!
+    @IBOutlet weak var reviewDeletionsButton: UIButton!
     
     private var selectedIndexPath: IndexPath = IndexPath(row: 0, section: -1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name(feedbackKey), object: nil, queue: OperationQueue.main) { (Notification) in
+            
+            self.deletedTracks = Notification.object as! [(Playlist, [Song])]
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.reviewDeletionsButton.frame = CGRect(x: self.reviewDeletionsButton.frame.origin.x, y: self.reviewDeletionsButton.frame.origin.y - 55, width: self.reviewDeletionsButton.frame.size.width, height: self.reviewDeletionsButton.frame.size.height)
+            })
+        }
         
         let locationManager = CLLocationManager()
         criteria.append(WeatherCategory(locationManager: locationManager))
@@ -121,6 +133,14 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             vc.criteria = selectedCriteria
             self.show(vc, sender: sender)
         }
+        
+    }
+    @IBAction func reviewDeletionsButtonPressed(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "reviewDeletionsViewController") as! ReviewDeletionsViewController
+        vc.alteredSongs = self.deletedTracks
+        self.show(vc, sender: sender)
         
     }
 }

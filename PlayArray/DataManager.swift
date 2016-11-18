@@ -37,7 +37,7 @@ class DataManager {
        the Spotify call is made first and we receive a new URI as a new playlist is made on Spotify. 
        It might be fixable by storing (somewhere) an `exportedToSpotify` boolean, which we can then disable the
        Open in Spotify (or check in the function) with. */
-    static func save(playlist: Playlist, songs: [Song], criteria: [Category] = [], createNew: Bool) throws {
+    static func save(playlist: Playlist, songs: [Song], createNew: Bool, completion: (([Song]) -> Void)) throws {
         // Get playlist URI, return if it is nil as we have no way of saving the playlist
         let uri = playlist.spotifyURI
         guard let _ = uri else {
@@ -94,8 +94,14 @@ class DataManager {
              */
             
             // Deal with deleted tracks
+            // Show option to review deleted tracks on SelectViewController
             if deletedTracks.count > 0 {
                 print("Found \(deletedTracks.count) deleted tracks for \(playlist.spotifyURI)")
+                
+                completion(deletedTracks)
+                // Pass the deleted tracks to the SelectViewController
+                //NotificationCenter.default.post(name: Notification.Name(feedbackKey), object: deletedTracks)
+                
             }
         } else if createNew {
             // If it doesn't exists create the object and save tracks to it
@@ -228,7 +234,7 @@ class DataManager {
         return playlists
     }
     
-    static func getCriteria(for playlist: Playlist) throws -> [(String, String)]{
+    static func getCriteria(for playlist: Playlist) throws -> [String: String] {
         let uri = playlist.spotifyURI
         
         let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
@@ -237,19 +243,19 @@ class DataManager {
         
         let results = try context.fetch(fetchRequest) as! [NSManagedObject]
         let storedPlaylist = results.first
-        if storedPlaylist == nil { return [] }
+        if storedPlaylist == nil { return [:] }
         
         let criteria: NSMutableSet? = storedPlaylist!.value(forKey: PLAYLIST_TO_CRITERIA_RELATION) as? NSMutableSet
-        if criteria == nil { return [] }
+        if criteria == nil { return [:] }
         
-        var storedCriteria: [(String, String)] = []
+        var storedCriteria: [String: String] = [:]
         for criteria_ in criteria! {
             let managedCriteria = criteria_ as! NSManagedObject
             
             let type = managedCriteria.value(forKey: TYPE_KEY) as! String
             let value = managedCriteria.value(forKey: VALUE_KEY) as! String
             
-            storedCriteria.append((type, value))
+            storedCriteria[type] = value
         }
         
         return storedCriteria
