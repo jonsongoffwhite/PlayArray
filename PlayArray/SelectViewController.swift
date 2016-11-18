@@ -25,6 +25,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var reviewDeletionsButton: UIButton!
     
     private var selectedIndexPath: IndexPath = IndexPath(row: 0, section: -1)
+    private var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,11 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             })
         }
         
-        let locationManager = CLLocationManager()
+        locationManager = CLLocationManager()
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
         criteria.append(WeatherCategory(locationManager: locationManager))
         criteria.append(TimeOfDayCategory())
         criteria.append(GenreCategory())
@@ -67,8 +72,6 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
             selectCell(indexPath: selectedIndexPath)
         }
-        
-        print(collectionView.indexPathsForSelectedItems)
     }
     
     override func didReceiveMemoryWarning() {
@@ -278,10 +281,21 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
 }
 
 extension SelectViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (view.frame.width - 20.0 * (cellsPerRow + 1)) / cellsPerRow
         let size = CGSize(width: cellWidth, height: cellWidth)
         return size
+    }
+}
+
+extension SelectViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            manager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        collectionView.reloadData()
     }
 }
