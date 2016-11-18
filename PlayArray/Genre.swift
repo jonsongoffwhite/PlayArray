@@ -66,6 +66,10 @@ class GenreCategory: Category {
     override func getStringValue() -> String {
         return "Genre"
     }
+    
+    override func hasCurrentValues() -> Bool {
+        return false
+    }
 }
 
 

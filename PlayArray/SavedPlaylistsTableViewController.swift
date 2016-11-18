@@ -26,7 +26,7 @@ class SavedPlaylistsTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         do {
-            playlists = try DataManager.getPlaylists()
+             playlists = try DataManager.getPlaylists()
             tableView.reloadData()
         } catch {
             print("Error getting playlists from Data Manager: \(error)")

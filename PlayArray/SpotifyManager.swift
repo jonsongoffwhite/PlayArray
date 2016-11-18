@@ -56,7 +56,7 @@ class SpotifyManager {
         } else {
             auth?.renewSession(session, callback: { (error, session) in
                 if error != nil {
-                    print("Could not renew session")
+                    print("Could not renew session: \(error?.localizedDescription)")
                     completion(false)
                 } else {
                     self.storeSession(session: session!)
@@ -70,7 +70,7 @@ class SpotifyManager {
         if(auth?.canHandle(url))! {
             auth?.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error, session) in
                 if error != nil {
-                    print("Could not login")
+                    print("Could not login: \(error?.localizedDescription)")
                 } else {
                     self.storeSession(session: session!)
                     SettingsTableViewController.loggedIn = true

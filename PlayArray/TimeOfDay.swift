@@ -69,4 +69,8 @@ class TimeOfDayCategory: Category {
         return "Time"
     }
     
+    override func hasCurrentValues() -> Bool {
+        return true
+    }
+    
 }
