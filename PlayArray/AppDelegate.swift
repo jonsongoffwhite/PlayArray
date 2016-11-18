@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: 0/255, green: 155/255, blue: 205/255, alpha: 1.0)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UINavigationBar.appearance().tintColor = UIColor.white
 
         if SpotifyManager.sharedInstance.isLoggedIn() {
             SettingsTableViewController.loggedIn = true
