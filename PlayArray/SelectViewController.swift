@@ -32,7 +32,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         
         NotificationCenter.default.addObserver(forName: Notification.Name(feedbackKey), object: nil, queue: OperationQueue.main) { (Notification) in
             
-            self.deletedTracks = Notification.object as! [(Playlist, [Song])]
+//            self.deletedTracks = Notification.object as! [(Playlist, [Song])]
             
             UIView.animate(withDuration: 0.3, animations: {
                 self.reviewDeletionsButton.frame = CGRect(x: self.reviewDeletionsButton.frame.origin.x, y: self.reviewDeletionsButton.frame.origin.y - 55, width: self.reviewDeletionsButton.frame.size.width, height: self.reviewDeletionsButton.frame.size.height)
