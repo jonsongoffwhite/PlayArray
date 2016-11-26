@@ -28,7 +28,7 @@ class PlaylistTableViewController: UITableViewController {
         
         // Add button in navigation bar for exporting
         if showSpotifyButton {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open in Spotify", style: .plain, target: self, action: #selector(PlaylistTableViewController.openInSpotify))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(PlaylistTableViewController.openInSpotify))
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         }
     }
@@ -107,15 +107,17 @@ class PlaylistTableViewController: UITableViewController {
 extension PlaylistTableViewController {
 
     func openInSpotify() {
+        let shareSheet = UIActivityViewController(activityItems: [playlist.name], applicationActivities: nil)
+        present(shareSheet, animated: true, completion: nil)
         let spotify = SpotifyManager.sharedInstance
         spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
             self.playlist.spotifyURI = uri
-            do {
+//            do {
                 // No need for completion handler as we can guarantee a new playlist is being created on Spotify
-                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true) {_ in }
-            } catch {
+//                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true) {_ in }
+//            } catch {
                 
-            }
+//            }
         }
     }
 }
