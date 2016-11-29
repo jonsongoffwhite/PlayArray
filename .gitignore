@@ -63,3 +63,6 @@ Pods/
 
 PlayArray/Carthage/*
 PlayArray/Cartfile.resolved
+
+# AppCode
+.idea/
