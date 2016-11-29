@@ -20,6 +20,7 @@ class SelectEnumTableViewController: UITableViewController {
         
         self.navigationItem.title = "Select Type"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SelectEnumTableViewController.cancel))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,7 +36,7 @@ class SelectEnumTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
 //        stringValues = [criterion.getCriteria().first!] + criterion.getAllStringValues()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,38 +52,37 @@ class SelectEnumTableViewController: UITableViewController {
         return values.count
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
         let indexOfCurrent = values.index(where: {criterion.getRawValue(criterion: $0) == criterion.current})
-        let current = values[indexOfCurrent!]
-        values.remove(at: indexOfCurrent!)
-        values.insert(current, at: 0)
-        let id: String = criterion.getIdentifier()
         
         let value = values[indexPath.row]
         let rawValue = criterion.getRawValue(criterion: value)
         
         var cellText: String = rawValue.capitalized
         
-        if indexPath.row == 0 {
-            if id == "weather" {
-                cellText = "Current weather (\(criterion.current))"
-            } else if id == "local_time" {
-                cellText = "Current time (\(criterion.current))"
-            }
+        if indexPath.row == indexOfCurrent && criterion.hasCurrentValues() {
+            cellText += " (current)"
         }
         
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
         cell.textLabel?.text = cellText
-        var imagePath: String = ""
-        
-        if id == "weather" {
-            imagePath = rawValue
-        } else if id == "local_time" {
-            imagePath = "time"
-        }
+        let imagePath: String = rawValue + "-icon"
         
         cell.imageView?.image = UIImage(named: imagePath)
+        
+        let imageSize = CGSize(width: 50, height: 50)
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.main.scale)
+        let imageRect = CGRect(x: 0.0, y: 0.0, width: imageSize.width, height: imageSize.height)
+        cell.imageView?.image?.draw(in: imageRect)
+        cell.imageView?.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
         cell.imageView?.image = cell.imageView?.image?.withRenderingMode(.alwaysTemplate)
         cell.imageView?.tintColor = .black
         

@@ -8,6 +8,7 @@
 
 import Foundation
 import RequestManager
+import CoreLocation
 
 /// Represents all possible options for weather
 public enum Weather: String, Criteria {
@@ -25,7 +26,12 @@ class WeatherCategory: LocationCategory {
     
     /// Get the current weather for the user's location using some API
     override func getData(completion: @escaping () -> Void) {
-        let location = self.locationManager.location!.coordinate
+        var location: CLLocationCoordinate2D = CLLocationCoordinate2D()
+        
+        if self.locationManager.location != nil {
+            location = self.locationManager.location!.coordinate
+        }
+        
         // Request using location (latitude and longitude)
         // Convert answer of call into enum value(s)
         
@@ -73,4 +79,7 @@ class WeatherCategory: LocationCategory {
         return "Weather"
     }
     
+    override func hasCurrentValues() -> Bool {
+        return true
+    }
 }
