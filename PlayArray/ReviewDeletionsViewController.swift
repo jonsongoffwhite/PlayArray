@@ -88,7 +88,8 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
                     let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
                     
                     let margin:CGFloat = 8.0
-                    let rect = CGRect(x: margin, y: margin, width: alertController.view.bounds.size.width - margin * 4.0, height: 100)
+                    let rect = CGRect(x: margin, y: margin,
+                                  width: alertController.view.bounds.size.width - margin * 4.0, height: 300)
                     
                     var tableView = UITableView(frame: rect)
                     
