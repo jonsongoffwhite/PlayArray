@@ -16,7 +16,7 @@ var criteria: [Category] = []
 var selectedCriteria: [Category] = []
 private var player: AVAudioPlayer!
 
-class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
+class SelectViewController: UIViewController, UIGestureRecognizerDelegate, SelectEnumDelegate {
 
     var deletedTracks: [(Playlist, [Song])] = []
     
@@ -72,6 +72,15 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
             selectCell(indexPath: selectedIndexPath)
         }
+        
+        let selectedCells = collectionView.indexPathsForSelectedItems
+        print("selectedCells: \(selectedCells)")
+        selectedIndexPath = IndexPath(row: 0, section: -1)
+    }
+    
+    // Delegate method for SelectEnumDelegate
+    func passIndexPath(indexPath: IndexPath) {
+        selectedIndexPath = indexPath
     }
     
     override func didReceiveMemoryWarning() {
@@ -101,6 +110,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         
         vc.criterion = criterion
         vc.values = criterion.getAllValues()
+        vc.delegate = self
         
         selectedIndexPath = indexPath
         
