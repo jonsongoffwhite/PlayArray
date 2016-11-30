@@ -13,6 +13,7 @@ class PlaylistTableViewController: UITableViewController {
     var playlist: Playlist = Playlist(name: "", songs: [])
     var showSpotifyButton = true
     var criteria: [Category] = []
+    var uri: URL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class PlaylistTableViewController: UITableViewController {
         
         // Add button in navigation bar for exporting
         if showSpotifyButton {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open in Spotify", style: .plain, target: self, action: #selector(PlaylistTableViewController.openInSpotify))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(PlaylistTableViewController.share))
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         }
     }
@@ -106,16 +107,24 @@ class PlaylistTableViewController: UITableViewController {
 
 extension PlaylistTableViewController {
 
-    func openInSpotify() {
-        let spotify = SpotifyManager.sharedInstance
-        spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
-            self.playlist.spotifyURI = uri
-            do {
-                // No need for completion handler as we can guarantee a new playlist is being created on Spotify
-                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true) {_ in }
-            } catch {
-                
-            }
-        }
+    func share() {
+        let spotifyActivity = SpotifyActivity(uri: uri)
+        let activityProvider = ActivityProvider(uri: uri)
+        let shareSheet = UIActivityViewController(activityItems: [activityProvider], applicationActivities: [spotifyActivity])
+        
+        shareSheet.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList]
+        
+        self.present(shareSheet, animated: true, completion: nil)
+//        let sharingItems = [AnyObject]()
+        
+//        shareSheet.completionWithItemsHandler = {
+//            (activity, completed, items, error) in
+//            if completed {
+//                SpotifyManager.sharedInstance.makePlaylist(with: self.playlist.songs, called: self.playlist.name, completion: { (uri) in
+//                    self.playlist.spotifyURI = SpotifyManager.uriFrom(spotifyURI: uri.absoluteString)
+//                    print("activity: \(activity)")
+//                })
+//            }
+//        }
     }
 }
