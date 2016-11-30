@@ -34,9 +34,10 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             
             self.deletedTracks = Notification.object as! [(Playlist, [Song])]
             
-            UIView.animate(withDuration: 0.3, animations: {
-                self.reviewDeletionsButton.frame = CGRect(x: self.reviewDeletionsButton.frame.origin.x, y: self.reviewDeletionsButton.frame.origin.y - 55, width: self.reviewDeletionsButton.frame.size.width, height: self.reviewDeletionsButton.frame.size.height)
-            })
+            // Eventually animate appearance of button
+//            UIView.animate(withDuration: 0.3, animations: {
+//                self.reviewDeletionsButton.frame = CGRect(x: self.reviewDeletionsButton.frame.origin.x, y: self.reviewDeletionsButton.frame.origin.y - 55, width: self.reviewDeletionsButton.frame.size.width, height: self.reviewDeletionsButton.frame.size.height)
+//            })
         }
         
         locationManager = CLLocationManager()
