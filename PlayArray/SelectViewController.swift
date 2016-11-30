@@ -16,7 +16,7 @@ var criteria: [Category] = []
 var selectedCriteria: [Category] = []
 private var player: AVAudioPlayer!
 
-class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
+class SelectViewController: UIViewController, UIGestureRecognizerDelegate, SelectEnumDelegate {
 
     var deletedTracks: [(Playlist, [Song])] = []
     
@@ -29,6 +29,8 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(SelectViewController.makePlaylistButtonPressed()))
         
         NotificationCenter.default.addObserver(forName: Notification.Name(feedbackKey), object: nil, queue: OperationQueue.main) { (Notification) in
             
@@ -72,6 +74,16 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
             selectCell(indexPath: selectedIndexPath)
         }
+        
+        let selectedCells = collectionView.indexPathsForSelectedItems
+        print("selectedCells: \(selectedCells)")
+        print("selectedCriteria: \(selectedCriteria)")
+        selectedIndexPath = IndexPath(row: 0, section: -1)
+    }
+    
+    // Delegate method for SelectEnumDelegate
+    func passIndexPath(indexPath: IndexPath) {
+        selectedIndexPath = indexPath
     }
     
     override func didReceiveMemoryWarning() {
@@ -101,8 +113,12 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
         
         vc.criterion = criterion
         vc.values = criterion.getAllValues()
+        vc.delegate = self
         
-        selectedIndexPath = indexPath
+        let cell = collectionView.cellForItem(at: indexPath)
+        if !(cell?.isSelected)! {
+            selectedIndexPath = indexPath
+        }
         
         self.present(navController, animated: true, completion: nil)
     }
