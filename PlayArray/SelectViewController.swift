@@ -76,8 +76,6 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
         }
         
         let selectedCells = collectionView.indexPathsForSelectedItems
-        print("selectedCells: \(selectedCells)")
-        print("selectedCriteria: \(selectedCriteria)")
         selectedIndexPath = IndexPath(row: 0, section: -1)
     }
     

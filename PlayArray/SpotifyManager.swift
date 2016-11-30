@@ -185,6 +185,17 @@ class SpotifyManager {
                 let uri = SpotifyManager.uriFrom(spotifyURI: playlist.uri.absoluteString)
                 completion(uri)
                 self.add(songs: songs, to: playlist)
+                
+                let playlistID = uri.components(separatedBy: ":").last
+                let baseString = "https://open.spotify.com/user/" + (self.session?.canonicalUsername)! + "/playlist/" + playlistID!
+                let appString = "spotify://" + baseString
+                let appURL = URL(string: appString)
+                
+                if UIApplication.shared.canOpenURL(appURL!) {
+                    UIApplication.shared.open(appURL!)
+                } else {
+                    UIApplication.shared.open(URL(string: baseString)!)
+                }
             } catch {
                 print("Playlist creation response error: \(error)")
             }
