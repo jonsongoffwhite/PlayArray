@@ -15,7 +15,7 @@ import SwiftyJSON
 enum Router: URLRequestConvertible {
 
     /// The base URL of the API
-    static let baseURLString = "http://cloud-vm-46-57.doc.ic.ac.uk:3000/api/v1/playlist"
+    static let baseURLString = "http://cloud-vm-46-57.doc.ic.ac.uk:3000/api/v1/music"
     
     case getPlaylist(criteria: [(String, String)])
     case giveFeedback(songId: String, schema: Parameters)
