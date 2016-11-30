@@ -116,6 +116,7 @@ class SpotifyManager {
                             self.getSpotifySongs(with: uri, completion: { songs in
                                 let playlist = Playlist(name: name!, songs: songs)
                                 playlist.spotifyURI = SpotifyManager.uriFrom(spotifyURI: uri)
+//                                playlist.spotifyURI = URL(string: uri)
                                 playlists.append(playlist)
                             })
                         }
@@ -168,7 +169,7 @@ class SpotifyManager {
         }
     }
     
-    func makePlaylist(with songs: [Song], called name: String, completion: @escaping (String) -> Void) {
+    func makePlaylist(with songs: [Song], called name: String, completion: @escaping (URL) -> Void) {
         let createPlaylistRequest: URLRequest?
         
         do {
@@ -182,23 +183,22 @@ class SpotifyManager {
         .response { response in
             do {
                 let playlist: SPTPlaylistSnapshot = try SPTPlaylistSnapshot(from: response.data, with: response.response)
-                let uri = SpotifyManager.uriFrom(spotifyURI: playlist.uri.absoluteString)
-                completion(uri)
+//                let uri = SpotifyManager.uriFrom(spotifyURI: playlist.uri.absoluteString)
+                completion(playlist.uri.absoluteURL)
                 self.add(songs: songs, to: playlist)
-                
-                let playlistID = uri.components(separatedBy: ":").last
-                let baseString = "https://open.spotify.com/user/" + (self.session?.canonicalUsername)! + "/playlist/" + playlistID!
-                let appString = "spotify://" + baseString
-                let appURL = URL(string: appString)
-                
-                if UIApplication.shared.canOpenURL(appURL!) {
-                    UIApplication.shared.open(appURL!)
-                } else {
-                    UIApplication.shared.open(URL(string: baseString)!)
-                }
             } catch {
                 print("Playlist creation response error: \(error)")
             }
+        }
+    }
+    
+    func openSpotify(uri: URL) {
+        if UIApplication.shared.canOpenURL(uri) {
+            UIApplication.shared.open(uri)
+        } else {
+            let playlistID = SpotifyManager.uriFrom(spotifyURI: uri.absoluteString)
+            let appString = "https://open.spotify.com/user/" + (self.session?.canonicalUsername)! + "/playlist/" + playlistID
+            UIApplication.shared.open(URL(string: appString)!)
         }
     }
     

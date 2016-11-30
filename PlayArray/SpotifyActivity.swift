@@ -58,7 +58,9 @@ class SpotifyActivity: UIActivity {
     
     func makePlaylist(spotify: SpotifyManager) {
         spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
-            self.playlist.spotifyURI = uri
+            self.playlist.spotifyURI = SpotifyManager.uriFrom(spotifyURI: uri.absoluteString)
+            print(uri)
+            spotify.openSpotify(uri: uri)
             //            do {
             // No need for completion handler as we can guarantee a new playlist is being created on Spotify
             //                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true) {_ in }
