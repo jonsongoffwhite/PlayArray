@@ -134,6 +134,9 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate {
             vc.playlist = playlist
             vc.playlist.name = playlistName
             vc.criteria = selectedCriteria
+            let backButton = UIBarButtonItem()
+            backButton.title = "Back"
+            self.navigationItem.backBarButtonItem = backButton
             self.show(vc, sender: sender)
         }
         

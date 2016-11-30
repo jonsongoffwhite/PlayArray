@@ -17,6 +17,11 @@ class SpotifyActivity: UIActivity {
         super.init()
     }
     
+    // changes whether it is on the top or bottom row
+    override class var activityCategory: UIActivityCategory {
+        return .share
+    }
+    
     override var activityType: UIActivityType? {
         return UIActivityType("PlayArray.activityType.Spotify")
     }

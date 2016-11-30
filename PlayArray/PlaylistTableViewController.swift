@@ -107,8 +107,12 @@ class PlaylistTableViewController: UITableViewController {
 extension PlaylistTableViewController {
 
     func openInSpotify() {
+//        let sharingItems = [AnyObject]()
         let spotifyActivity = SpotifyActivity(playlist: playlist)
         let shareSheet = UIActivityViewController(activityItems: [playlist.name], applicationActivities: [spotifyActivity])
+        
+        shareSheet.excludedActivityTypes = []
+
         present(shareSheet, animated: true, completion: nil)
 
     }
