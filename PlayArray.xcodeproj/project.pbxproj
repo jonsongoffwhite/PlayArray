@@ -18,6 +18,7 @@
 		7E60DF171DCBFDE900AD40FF /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E60DF141DCBFDE900AD40FF /* SpotifyAuthentication.framework */; };
 		7E60DF181DCBFDE900AD40FF /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E60DF151DCBFDE900AD40FF /* SpotifyMetadata.framework */; };
 		7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
+		AF16FD661DEF8A4800158FA3 /* ActivityProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF16FD651DEF8A4800158FA3 /* ActivityProvider.swift */; };
 		AF1C18DE1DC8E391003A3B18 /* AWHOOP.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */; };
 		AF1C18DF1DC8E391003A3B18 /* WHOOP.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */; };
 		AF1C9ED51DD52C9A00CAE6D7 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9ED41DD52C9A00CAE6D7 /* Genre.swift */; };
@@ -136,6 +137,7 @@
 		7E60DF141DCBFDE900AD40FF /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
 		7E60DF151DCBFDE900AD40FF /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
 		7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOfDay.swift; sourceTree = "<group>"; };
+		AF16FD651DEF8A4800158FA3 /* ActivityProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityProvider.swift; sourceTree = "<group>"; };
 		AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AWHOOP.wav; sourceTree = "<group>"; };
 		AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WHOOP.wav; sourceTree = "<group>"; };
 		AF1C9ED41DD52C9A00CAE6D7 /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				BF1CFC391DBA1ED4009BDB7B /* Playlist.swift */,
 				BF1CFC3C1DBA237A009BDB7B /* PlaylistManager.swift */,
 				AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */,
+				AF16FD651DEF8A4800158FA3 /* ActivityProvider.swift */,
 				AF2DD8CD1DEA266100751766 /* SpotifyActivity.swift */,
 				AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */,
 				AFE627571DC7BC870030B0B4 /* SelectViewController.swift */,
@@ -587,6 +590,7 @@
 				AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */,
 				AF4C7DEE1DD3A8D800E0CDC8 /* SelectEnumTableViewController.swift in Sources */,
 				7E4430A21DB2910E007183ED /* Criteria.swift in Sources */,
+				AF16FD661DEF8A4800158FA3 /* ActivityProvider.swift in Sources */,
 				AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */,
 				7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */,
 				BF1CFC3D1DBA237A009BDB7B /* PlaylistManager.swift in Sources */,

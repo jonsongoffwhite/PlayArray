@@ -173,7 +173,7 @@ class SpotifyManager {
         let createPlaylistRequest: URLRequest?
         
         do {
-            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: session?.canonicalUsername, withPublicFlag: false, accessToken: session?.accessToken)
+            createPlaylistRequest = try SPTPlaylistList.createRequestForCreatingPlaylist(withName:name, forUser: session?.canonicalUsername, withPublicFlag: true, accessToken: session?.accessToken)
         } catch {
             print("Error: \(error)")
             return
@@ -197,8 +197,8 @@ class SpotifyManager {
             UIApplication.shared.open(uri)
         } else {
             let playlistID = SpotifyManager.uriFrom(spotifyURI: uri.absoluteString)
-            let appString = "https://open.spotify.com/user/" + (self.session?.canonicalUsername)! + "/playlist/" + playlistID
-            UIApplication.shared.open(URL(string: appString)!)
+            let webURL = SpotifyManager.webURLFrom(username: (session?.canonicalUsername)!, spotifyURI: playlistID)
+            UIApplication.shared.open(URL(string: webURL)!)
         }
     }
     
@@ -247,6 +247,10 @@ class SpotifyManager {
     
     static func uriFrom(spotifyURI: String) -> String {
         return spotifyURI.components(separatedBy: ":").last!
+    }
+    
+    static func webURLFrom(username: String, spotifyURI: String) -> String {
+        return "https://open.spotify.com/user/" + username + "/playlist/" + spotifyURI
     }
     
     // MARK: Singleton

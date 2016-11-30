@@ -10,10 +10,10 @@ import UIKit
 
 class SpotifyActivity: UIActivity {
     
-    let playlist: Playlist
+    let uri: URL
     
-    init(playlist: Playlist) {
-        self.playlist = playlist
+    init(uri: URL) {
+        self.uri = uri
         super.init()
     }
     
@@ -39,34 +39,35 @@ class SpotifyActivity: UIActivity {
     }
     
     override func perform() {
-        let spotify = SpotifyManager.sharedInstance
+//        let spotify = SpotifyManager.sharedInstance
         
-        if SettingsTableViewController.loggedIn {
-            makePlaylist(spotify: spotify)
-        }
+//        if SettingsTableViewController.loggedIn {
+//            makePlaylist(spotify: spotify)
+        SpotifyManager.sharedInstance.openSpotify(uri: uri)
+//        }
     }
     
-    override var activityViewController: UIViewController? {
-        if !SettingsTableViewController.loggedIn {
-            let alert = UIAlertController(title: "Not logged in", message: "Please log in to Spotify in the Settings tab first", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            return alert
-        }
-        
-        return nil
-    }
+//    override var activityViewController: UIViewController? {
+//        if !SettingsTableViewController.loggedIn {
+//            let alert = UIAlertController(title: "Not logged in", message: "Please log in to Spotify in the Settings tab first", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//            return alert
+//        }
+//        
+//        return nil
+//    }
     
-    func makePlaylist(spotify: SpotifyManager) {
-        spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
-            self.playlist.spotifyURI = SpotifyManager.uriFrom(spotifyURI: uri.absoluteString)
-            print(uri)
-            spotify.openSpotify(uri: uri)
-            //            do {
-            // No need for completion handler as we can guarantee a new playlist is being created on Spotify
-            //                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true) {_ in }
-            //            } catch {
-            
-            //            }
-        }
-    }
+//    func makePlaylist(spotify: SpotifyManager) {
+//        spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
+//            self.playlist.spotifyURI = SpotifyManager.uriFrom(spotifyURI: uri.absoluteString)
+////            print(uri)
+//            spotify.openSpotify(uri: uri)
+//            //            do {
+//            // No need for completion handler as we can guarantee a new playlist is being created on Spotify
+//            //                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true) {_ in }
+//            //            } catch {
+//            
+//            //            }
+//        }
+//    }
 }
