@@ -30,6 +30,8 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(SelectViewController.makePlaylistButtonPressed()))
+        
         NotificationCenter.default.addObserver(forName: Notification.Name(feedbackKey), object: nil, queue: OperationQueue.main) { (Notification) in
             
 //            self.deletedTracks = Notification.object as! [(Playlist, [Song])]
@@ -75,6 +77,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
         
         let selectedCells = collectionView.indexPathsForSelectedItems
         print("selectedCells: \(selectedCells)")
+        print("selectedCriteria: \(selectedCriteria)")
         selectedIndexPath = IndexPath(row: 0, section: -1)
     }
     
@@ -112,7 +115,10 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
         vc.values = criterion.getAllValues()
         vc.delegate = self
         
-        selectedIndexPath = indexPath
+        let cell = collectionView.cellForItem(at: indexPath)
+        if !(cell?.isSelected)! {
+            selectedIndexPath = indexPath
+        }
         
         self.present(navController, animated: true, completion: nil)
     }
