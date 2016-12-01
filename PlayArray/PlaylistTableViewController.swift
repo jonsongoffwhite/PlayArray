@@ -14,6 +14,7 @@ class PlaylistTableViewController: UITableViewController {
     var showSpotifyButton = true
     var criteria: [Category] = []
     var uri: URL!
+    var shared: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +109,24 @@ class PlaylistTableViewController: UITableViewController {
 extension PlaylistTableViewController {
 
     func share() {
+        if SettingsTableViewController.loggedIn {
+            if !shared {
+                SpotifyManager.sharedInstance.makePlaylist(with: playlist.songs, called: playlist.name, completion: { (uri) in
+                    self.shared = true
+                    self.uri = uri
+                    self.showShareSheet(uri: uri)
+                })
+            } else {
+                self.showShareSheet(uri: uri)
+            }
+        } else {
+            let alert = UIAlertController(title: "Not logged in", message: "Please log in to Spotify on the Settings tab first", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func showShareSheet(uri: URL) {
         let spotifyActivity = SpotifyActivity(uri: uri)
         let activityProvider = ActivityProvider(uri: uri)
         let shareSheet = UIActivityViewController(activityItems: [activityProvider], applicationActivities: [spotifyActivity])
@@ -115,16 +134,5 @@ extension PlaylistTableViewController {
         shareSheet.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList]
         
         self.present(shareSheet, animated: true, completion: nil)
-//        let sharingItems = [AnyObject]()
-        
-//        shareSheet.completionWithItemsHandler = {
-//            (activity, completed, items, error) in
-//            if completed {
-//                SpotifyManager.sharedInstance.makePlaylist(with: self.playlist.songs, called: self.playlist.name, completion: { (uri) in
-//                    self.playlist.spotifyURI = SpotifyManager.uriFrom(spotifyURI: uri.absoluteString)
-//                    print("activity: \(activity)")
-//                })
-//            }
-//        }
     }
 }

@@ -153,16 +153,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
             backButton.title = "Back"
             self.navigationItem.backBarButtonItem = backButton
             
-            if SettingsTableViewController.loggedIn {
-                SpotifyManager.sharedInstance.makePlaylist(with: playlist.songs, called: playlist.name, completion: { (uri) in
-                    vc.uri = uri
-                    self.show(vc, sender: sender)
-                })
-            } else {
-                let alert = UIAlertController(title: "Not logged in", message: "Please log in to Spotify on the Settings tab first", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
+            self.show(vc, sender: sender)
         }
         
     }
