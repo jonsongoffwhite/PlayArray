@@ -109,13 +109,23 @@ class PlaylistTableViewController: UITableViewController {
 extension PlaylistTableViewController {
 
     func share() {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        
         if SettingsTableViewController.loggedIn {
             if !shared {
                 SpotifyManager.sharedInstance.makePlaylist(with: playlist.songs, called: playlist.name, completion: { (uri) in
                     self.shared = true
                     self.uri = uri
+                    
+                    spinner.stopAnimating()
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(PlaylistTableViewController.share))
+                    self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+                    
                     self.showShareSheet(uri: uri)
                 })
+                
+                spinner.startAnimating()
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: spinner)
             } else {
                 self.showShareSheet(uri: uri)
             }
@@ -124,6 +134,7 @@ extension PlaylistTableViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+        
     }
     
     func showShareSheet(uri: URL) {
