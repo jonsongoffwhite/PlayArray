@@ -10,8 +10,13 @@ import UIKit
 
 private let reuseIdentifier = "enumCell"
 
+protocol SelectEnumDelegate {
+    func passIndexPath(indexPath: IndexPath)
+}
+
 class SelectEnumTableViewController: UITableViewController {
     
+    var delegate: SelectEnumDelegate?
     var criterion: Category!
     var values: [Criteria]!
 
@@ -30,6 +35,7 @@ class SelectEnumTableViewController: UITableViewController {
     }
     
     func cancel() {
+        delegate?.passIndexPath(indexPath: IndexPath(row: 0, section: -1))
         self.dismiss(animated: true, completion: nil)
     }
     
