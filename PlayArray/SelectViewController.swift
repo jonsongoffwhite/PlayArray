@@ -21,7 +21,6 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
     var deletedTracks: [(Playlist, [Song])] = []
     
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var makePlaylistButton: UIButton!
     @IBOutlet weak var reviewDeletionsButton: UIButton!
     
     private var selectedIndexPath: IndexPath = IndexPath(row: 0, section: -1)
@@ -30,7 +29,8 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(SelectViewController.makePlaylistButtonPressed()))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(SelectViewController.createPlaylist))
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         NotificationCenter.default.addObserver(forName: Notification.Name(feedbackKey), object: nil, queue: OperationQueue.main) { (Notification) in
             
@@ -76,7 +76,6 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
             selectCell(indexPath: selectedIndexPath)
         }
         
-        let selectedCells = collectionView.indexPathsForSelectedItems
         selectedIndexPath = IndexPath(row: 0, section: -1)
     }
     
@@ -131,7 +130,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
      }
      */
     
-    @IBAction func makePlaylistButtonPressed(_ sender: AnyObject) {
+    func createPlaylist() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "playlistViewController") as! PlaylistTableViewController
@@ -154,10 +153,11 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
             backButton.title = "Back"
             self.navigationItem.backBarButtonItem = backButton
             
-            self.show(vc, sender: sender)
+            self.show(vc, sender: self)
         }
         
     }
+    
     @IBAction func reviewDeletionsButtonPressed(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -241,25 +241,16 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func selectCell(indexPath: IndexPath) {
         if selectedCriteria.count == 0 {
-            let upSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "WHOOP", ofType: "wav")!)
-            do {
-                player = try AVAudioPlayer(contentsOf: upSound as URL)
-            } catch {
-                
-            }
-            UIView.animate(withDuration: 0.3) {
-                //                player.play()
-                self.makePlaylistButton.frame = CGRect(x: self.makePlaylistButton.frame.origin.x, y: self.makePlaylistButton.frame.origin.y - 55, width: self.makePlaylistButton.frame.size.width, height: self.makePlaylistButton.frame.size.height)
-            }
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
         
         let cell = collectionView.cellForItem(at: indexPath) as! CriteriaCell
         
-        UIView.animate(withDuration: 0.13) {
+        UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.23, initialSpringVelocity: 9.0, options: .allowUserInteraction, animations: {
             cell.blurredImageView.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
             let blurView: APCustomBlurView = cell.blurredImageView.viewWithTag(100) as! APCustomBlurView
             blurView.setBlurRadius(10)
-        }
+            }, completion: nil)
         
         cell.checkBoxImageView.isHidden = false
         
@@ -269,28 +260,16 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if selectedCriteria.count == 1 {
-            let downSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "AWHOOP", ofType: "wav")!)
-            do {
-                player = try AVAudioPlayer(contentsOf: downSound as URL)
-            } catch {
-                
-            }
-            UIView.animate(withDuration: 0.3) {
-//                player.play()
-                self.makePlaylistButton.frame = CGRect(x: self.makePlaylistButton.frame.origin.x, y: self.makePlaylistButton.frame.origin.y + 55, width: self.makePlaylistButton.frame.size.width, height: self.makePlaylistButton.frame.size.height)
-            }
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
         
         let cell = collectionView.cellForItem(at: indexPath) as! CriteriaCell
-//        cell?.backgroundColor = UIColor(colorLiteralRed: 0, green: 155/255, blue: 205/255, alpha: 1)
         
-        UIView.animate(withDuration: 0.13) {
+        UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.23, initialSpringVelocity: 9.0, options: .allowUserInteraction, animations: {
             cell.blurredImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
             let blurView: APCustomBlurView = cell.blurredImageView.viewWithTag(100) as! APCustomBlurView
             blurView.setBlurRadius(1.5)
-//            let darkView = blurView.viewWithTag(200)
-//            darkView?.alpha = 0.3
-        }
+            }, completion: nil)
         
         cell.checkBoxImageView.isHidden = true
         
