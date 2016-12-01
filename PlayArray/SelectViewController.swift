@@ -143,6 +143,8 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
                 playlistName.append(", ")
             }
         }
+        
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
 
         PlaylistManager.getPlaylist(from: selectedCriteria) { (playlist, error) in
             vc.playlist = playlist
@@ -153,9 +155,13 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
             backButton.title = "Back"
             self.navigationItem.backBarButtonItem = backButton
             
+            spinner.stopAnimating()
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(SelectViewController.createPlaylist))
             self.show(vc, sender: self)
         }
         
+        spinner.startAnimating()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: spinner)
     }
     
     @IBAction func reviewDeletionsButtonPressed(_ sender: Any) {
