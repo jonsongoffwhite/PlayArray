@@ -80,66 +80,15 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
                 
                 if criteria.count > 1 {
                     
-                    // Create a UIAlertController
+                    // Create a ReviewCriteriaViewController
                     
-                    let title = "Criteria"
-                    let message = "Please select the criteria that you felt did not apply to this song: "
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "reviewCriteriaViewController") as! ReviewCriteriaViewController
                     
-                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+                    vc.dataSource = Array(criteria.values)
                     
-                    let margin:CGFloat = 8.0
-                    let rect = CGRect(x: margin, y: margin,
-                                  width: alertController.view.bounds.size.width - margin * 4.0, height: 300)
+                    self.show(vc, sender: self)
                     
-                    var tableView = UITableView(frame: rect)
-                    
-                    class AlertTableController: NSObject, UITableViewDelegate, UITableViewDataSource {
-                        
-                        let dataDictionary: [String: String]
-                        var dataSource: [(String, String)]
-                        
-                        
-                        init(with dataDictionary: [String: String]) {
-                            print("created AlertTableController")
-                            self.dataDictionary = dataDictionary
-                            dataSource = []
-                            super.init()
-                            convertDictionaryToArray()
-                        }
-                        
-                        func convertDictionaryToArray() {
-                            self.dataDictionary.forEach({ (key: String, value: String) in
-                                dataSource.append((key, value))
-                            })
-                        }
-                        
-                        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                            print("INNER CLASS CALLED")
-                            return dataSource.count
-                        }
-                        
-                        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                            
-                            let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
-                            let category = dataSource[indexPath.row].0
-                            let criterion = dataSource[indexPath.row].1
-                            cell.textLabel?.text = "\(category): \(criterion)"
-                            return cell
-                            
-                        }
-                    }
-                    
-                    let alertTableController = AlertTableController(with: criteria)
-                    tableView.dataSource = alertTableController
-                    tableView.delegate = alertTableController
-                    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-                    tableView.backgroundColor = UIColor.green
-                    
-                    alertController.view.addSubview(tableView)
-                    
-                    self.present(alertController, animated: true, completion:{
-                        // Completion
-                    })
                     
                     
                 
@@ -168,3 +117,16 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
         
     }
 }
+
+extension ReviewDeletionsViewController: CriteriaFeedbackDelegate {
+    
+    func getData() -> [String : String] {
+        return 
+    }
+    
+    func giveFeedback(criteria: [String : String]) {
+        <#code#>
+    }
+    
+}
+
