@@ -76,7 +76,6 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
             selectCell(indexPath: selectedIndexPath)
         }
         
-        let selectedCells = collectionView.indexPathsForSelectedItems
         selectedIndexPath = IndexPath(row: 0, section: -1)
     }
     
@@ -247,11 +246,11 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         
         let cell = collectionView.cellForItem(at: indexPath) as! CriteriaCell
         
-        UIView.animate(withDuration: 0.13) {
+        UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.23, initialSpringVelocity: 9.0, options: .allowUserInteraction, animations: {
             cell.blurredImageView.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
             let blurView: APCustomBlurView = cell.blurredImageView.viewWithTag(100) as! APCustomBlurView
             blurView.setBlurRadius(10)
-        }
+            }, completion: nil)
         
         cell.checkBoxImageView.isHidden = false
         
@@ -265,15 +264,12 @@ extension SelectViewController: UICollectionViewDataSource, UICollectionViewDele
         }
         
         let cell = collectionView.cellForItem(at: indexPath) as! CriteriaCell
-//        cell?.backgroundColor = UIColor(colorLiteralRed: 0, green: 155/255, blue: 205/255, alpha: 1)
         
-        UIView.animate(withDuration: 0.13) {
+        UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.23, initialSpringVelocity: 9.0, options: .allowUserInteraction, animations: {
             cell.blurredImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
             let blurView: APCustomBlurView = cell.blurredImageView.viewWithTag(100) as! APCustomBlurView
             blurView.setBlurRadius(1.5)
-//            let darkView = blurView.viewWithTag(200)
-//            darkView?.alpha = 0.3
-        }
+            }, completion: nil)
         
         cell.checkBoxImageView.isHidden = true
         
