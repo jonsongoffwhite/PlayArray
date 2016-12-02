@@ -9,35 +9,37 @@
 import Foundation
 
 public enum Genre: String, Criteria {
-    case rock = "rock"
-    case country = "country"
-    case indie = "indie"
-    case reggae = "reggae"
-    case pop = "pop"
-    case christianHymn = "christian hymn"
     case alternative = "alternative"
-    case soundtracks = "soundtracks"
-    case hipHop = "hip hop"
-    case electronic = "electronic"
-    case newAge = "new age"
-    case neo = "neo"
-    case classical = "classical"
-    case blues = "blues"
-    case international = "international"
-    case rap = "rap"
-    case jazz = "jazz"
     case ambient = "ambient"
-    case instrumental = "instrumental"
+    case blues = "blues"
+    case christianHymn = "christian hymn"
+    case classical = "classical"
+    case country = "country"
+    case electronic = "electronic"
     case folk = "folk"
+    case hipHop = "hip hop"
+    case indie = "indie"
+    case instrumental = "instrumental"
+    case international = "international"
+    case jazz = "jazz"
+    case neo = "neo"
+    case newAge = "new age"
+    case pop = "pop"
+    case rap = "rap"
+    case reggae = "reggae"
+    case rock = "rock"
+    case soundtracks = "soundtracks"
     
-    static let allValues = [Genre.rock, Genre.country, Genre.indie, Genre.reggae, Genre.pop, Genre.christianHymn, Genre.alternative, Genre.soundtracks, Genre.hipHop, Genre.electronic, Genre.newAge, Genre.neo, Genre.classical, Genre.blues, Genre.international, Genre.rap, Genre.jazz, Genre.ambient, Genre.instrumental, Genre.folk]
+    static let allValues: [Genre] = [.alternative, .ambient, .blues, .christianHymn, .classical, .country,
+                                     .electronic, .folk, .hipHop, .indie, instrumental, .international, .jazz,
+                                     .neo, .newAge, .pop, .rap, .reggae, .rock, .soundtracks]
 }
 
 class GenreCategory: Category {
     override func getData(completion: @escaping () -> Void) {
-        let rock = Genre.rock
-        current = rock.rawValue
-        self.add(criteria: rock)
+        let genre = Genre.alternative
+        current = genre.rawValue
+        self.add(criteria: genre)
         completion()
     }
     
