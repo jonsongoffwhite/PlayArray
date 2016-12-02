@@ -28,6 +28,8 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        reviewDeletionsButton.isHidden = true
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(SelectViewController.createPlaylist))
         self.navigationItem.rightBarButtonItem?.isEnabled = false
@@ -36,7 +38,8 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
             
 //            self.deletedTracks = Notification.object as! [(Playlist, [Song])]
             
-            // Eventually animate appearance of button
+            // Eventually animate appearance of button, for now - enable
+            self.reviewDeletionsButton.isHidden = false
 //            UIView.animate(withDuration: 0.3, animations: {
 //                self.reviewDeletionsButton.frame = CGRect(x: self.reviewDeletionsButton.frame.origin.x, y: self.reviewDeletionsButton.frame.origin.y - 55, width: self.reviewDeletionsButton.frame.size.width, height: self.reviewDeletionsButton.frame.size.height)
 //            })

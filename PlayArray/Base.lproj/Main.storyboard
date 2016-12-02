@@ -148,6 +148,44 @@
             </objects>
             <point key="canvasLocation" x="5453.6000000000004" y="-718.29085457271367"/>
         </scene>
+        <!--Review Criteria View Controller-->
+        <scene sceneID="URb-sV-oyP">
+            <objects>
+                <viewController storyboardIdentifier="reviewCriteriaViewController" id="bzI-NK-ATZ" customClass="ReviewCriteriaViewController" customModule="PlayArray" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="okT-Yz-Qe8"/>
+                        <viewControllerLayoutGuide type="bottom" id="tEd-I2-94Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ntp-pT-gKv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uQ6-Qo-iAL">
+                                <rect key="frame" x="16" y="20" width="343" height="627"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="criteriaCell" id="VQx-He-8TU">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VQx-He-8TU" id="2qU-cc-xbM">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="table" destination="uQ6-Qo-iAL" id="gw3-4f-3dT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JHA-cC-jgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6413.6000000000004" y="-1428.0359820089957"/>
+        </scene>
         <!--Review Deletions View Controller-->
         <scene sceneID="oFv-d5-6u6">
             <objects>
