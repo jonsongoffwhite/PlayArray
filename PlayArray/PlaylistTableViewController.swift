@@ -13,6 +13,8 @@ class PlaylistTableViewController: UITableViewController {
     var playlist: Playlist = Playlist(name: "", songs: [])
     var showSpotifyButton = true
     var criteria: [Category] = []
+    var uri: URL!
+    var shared: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,7 @@ class PlaylistTableViewController: UITableViewController {
         
         // Add button in navigation bar for exporting
         if showSpotifyButton {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open in Spotify", style: .plain, target: self, action: #selector(PlaylistTableViewController.openInSpotify))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(PlaylistTableViewController.share))
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         }
     }
@@ -106,16 +108,42 @@ class PlaylistTableViewController: UITableViewController {
 
 extension PlaylistTableViewController {
 
-    func openInSpotify() {
-        let spotify = SpotifyManager.sharedInstance
-        spotify.makePlaylist(with: playlist.songs, called: self.playlist.name) { uri in
-            self.playlist.spotifyURI = uri
-            do {
-                // No need for completion handler as we can guarantee a new playlist is being created on Spotify
-                try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true) {_ in }
-            } catch {
+    func share() {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        
+        if SettingsTableViewController.loggedIn {
+            if !shared {
+                SpotifyManager.sharedInstance.makePlaylist(with: playlist.songs, called: playlist.name, completion: { (uri) in
+                    self.shared = true
+                    self.uri = uri
+                    
+                    spinner.stopAnimating()
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(PlaylistTableViewController.share))
+                    self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+                    
+                    self.showShareSheet(uri: uri)
+                })
                 
+                spinner.startAnimating()
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: spinner)
+            } else {
+                self.showShareSheet(uri: uri)
             }
+        } else {
+            let alert = UIAlertController(title: "Not logged in", message: "Please log in to Spotify on the Settings tab first", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
+        
+    }
+    
+    func showShareSheet(uri: URL) {
+        let spotifyActivity = SpotifyActivity(uri: uri)
+        let activityProvider = ActivityProvider(uri: uri)
+        let shareSheet = UIActivityViewController(activityItems: [activityProvider], applicationActivities: [spotifyActivity])
+        
+        shareSheet.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList]
+        
+        self.present(shareSheet, animated: true, completion: nil)
     }
 }
