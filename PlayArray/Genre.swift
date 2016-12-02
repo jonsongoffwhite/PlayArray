@@ -37,7 +37,7 @@ public enum Genre: String, Criteria {
 
 class GenreCategory: Category {
     override func getData(completion: @escaping () -> Void) {
-        let genre = Genre.alternative
+        let genre = Genre.rock
         current = genre.rawValue
         self.add(criteria: genre)
         completion()
