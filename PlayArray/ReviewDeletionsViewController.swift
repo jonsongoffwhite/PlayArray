@@ -86,10 +86,14 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
                     let vc = storyboard.instantiateViewController(withIdentifier: "reviewCriteriaViewController") as! ReviewCriteriaViewController
                     
                     vc.dataSource = Array(criteria.values)
+                    vc.categories = Array(criteria.keys)
+                    vc.songId = item.1.id
+                    vc.delegate = self
                     
                     self.show(vc, sender: self)
                     
-                    
+                    self.alteredSongsList.remove(at: indexPath.row)
+                    self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
                     
                 
                 } else {
@@ -120,12 +124,17 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
 
 extension ReviewDeletionsViewController: CriteriaFeedbackDelegate {
     
-    func getData() -> [String : String] {
-        return 
-    }
-    
-    func giveFeedback(criteria: [String : String]) {
-        <#code#>
+    func giveFeedback(songId: String, criteria: [String : String]) {
+        
+        RequestManager.sharedInstance.giveFeedback(for: songId, with: criteria) { (error) in
+            
+            print("deleting \(songId)")
+            print("inappropriate for: ")
+            criteria.forEach({ (key: String, value: String) in
+                print("\(key) : \(value)")
+            })
+            
+        }
     }
     
 }

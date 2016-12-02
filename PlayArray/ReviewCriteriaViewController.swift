@@ -13,7 +13,9 @@ class ReviewCriteriaViewController: UIViewController, UITableViewDataSource, UIT
     
     @IBOutlet weak var table: UITableView!
     
-    var dataSource: [String] = []
+    var songId: String?
+    var categories: [String]?
+    var dataSource: [String]?
     
     var delegate: CriteriaFeedbackDelegate?
     
@@ -34,13 +36,13 @@ class ReviewCriteriaViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return dataSource!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "criteriaCell")!
-        cell.textLabel?.text = dataSource[indexPath.row]
+        cell.textLabel?.text = dataSource![indexPath.row]
         
         return cell
     }
@@ -61,16 +63,23 @@ extension ReviewCriteriaViewController {
             //Must select at least one
         } else {
             //Return the results
-            delegate?.giveFeedBack(criteria: <#T##[String : String]#>)
+            var inappropriate: [String: String] = [:]
+            table.indexPathsForSelectedRows?.forEach({ (indexPath) in
+                inappropriate[(categories![indexPath.row])] = dataSource![indexPath.row]
+            })
+            delegate?.giveFeedback(songId: songId!, criteria: inappropriate)
+            
+            print("about to dismiss")
+            self.navigationController!.popViewController(animated: true)
+            print("dismissed")
+            
         }
     }
     
 }
 
 protocol CriteriaFeedbackDelegate {
-
-    func getData() -> [String: String]
     
-    func giveFeedback(criteria: [String: String])
+    func giveFeedback(songId: String, criteria: [String: String])
     
 }
