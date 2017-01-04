@@ -11,6 +11,7 @@ import Foundation
 /// Contains information describing a song
 // Will eventually need to contain links to be used by Spotify etc.
 class Song {
+
     let id: String
     let spotifyId: String
     let title: String
