@@ -57,8 +57,8 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
         
         let item = alteredSongsList[indexPath.row]
         
-        cell.textLabel!.text = "\(item.0.name): \(item.1.title) - \(item.1.artist)"
-        //cell.detailTextLabel!.text = "Detail text"
+        cell.textLabel!.text = "\(item.1.title) - \(item.1.artist)"
+        cell.detailTextLabel!.text = item.0.name
         cell.delegate = self //optional
         
         //configure left buttons
@@ -119,6 +119,7 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
                         
                         alteredSongsList.remove(at: indexPath.row)
                         self.table.reloadData()
+                        self.popView()
 //                        self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
                     })
                 }
