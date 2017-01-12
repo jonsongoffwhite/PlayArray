@@ -117,7 +117,7 @@ class DataManager {
         
         do {
             try save(songs: songs, context: context, into: managedPlaylist!)
-            try save(criteria: criteria, context: context, into: managedPlaylist!)
+            try save(criteria: selectedCriteria, context: context, into: managedPlaylist!)
         } catch {
             print("Error saving playlist data: \(error)")
         }

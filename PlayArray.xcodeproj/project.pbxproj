@@ -19,6 +19,7 @@
 		7E60DF181DCBFDE900AD40FF /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E60DF151DCBFDE900AD40FF /* SpotifyMetadata.framework */; };
 		7E78D53A1DB27CA200D268C0 /* TimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */; };
 		7EF7F5DC1DEDF2BF0080D502 /* ReviewCriteriaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF7F5DB1DEDF2BF0080D502 /* ReviewCriteriaViewController.swift */; };
+		AF0CEF141E2807AA00800FB2 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CEF131E2807AA00800FB2 /* DataManager.swift */; };
 		AF16FD661DEF8A4800158FA3 /* ActivityProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF16FD651DEF8A4800158FA3 /* ActivityProvider.swift */; };
 		AF1C18DE1DC8E391003A3B18 /* AWHOOP.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */; };
 		AF1C18DF1DC8E391003A3B18 /* WHOOP.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */; };
@@ -28,7 +29,6 @@
 		AF3A38401DCA933B008479EB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF47AE311DCABDBB0014BE5D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4FD7541DB28C9F00D1604F /* Alamofire.framework */; };
 		AF4C7DEA1DD1F3B800E0CDC8 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4C7DE91DD1F3B800E0CDC8 /* SettingsTableViewController.swift */; };
-		AF4C7DEC1DD27AA800E0CDC8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4C7DEB1DD27AA800E0CDC8 /* DataManager.swift */; };
 		AF4C7DEE1DD3A8D800E0CDC8 /* SelectEnumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4C7DED1DD3A8D800E0CDC8 /* SelectEnumTableViewController.swift */; };
 		AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */; };
 		AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */; };
@@ -139,6 +139,7 @@
 		7E60DF151DCBFDE900AD40FF /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
 		7E78D5391DB27CA200D268C0 /* TimeOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOfDay.swift; sourceTree = "<group>"; };
 		7EF7F5DB1DEDF2BF0080D502 /* ReviewCriteriaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCriteriaViewController.swift; sourceTree = "<group>"; };
+		AF0CEF131E2807AA00800FB2 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		AF16FD651DEF8A4800158FA3 /* ActivityProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityProvider.swift; sourceTree = "<group>"; };
 		AF1C18DC1DC8E391003A3B18 /* AWHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AWHOOP.wav; sourceTree = "<group>"; };
 		AF1C18DD1DC8E391003A3B18 /* WHOOP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WHOOP.wav; sourceTree = "<group>"; };
@@ -146,7 +147,6 @@
 		AF2DD8CD1DEA266100751766 /* SpotifyActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyActivity.swift; sourceTree = "<group>"; };
 		AF360B281DC7D3E100981E53 /* CriteriaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CriteriaCell.swift; sourceTree = "<group>"; };
 		AF4C7DE91DD1F3B800E0CDC8 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		AF4C7DEB1DD27AA800E0CDC8 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		AF4C7DED1DD3A8D800E0CDC8 /* SelectEnumTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectEnumTableViewController.swift; sourceTree = "<group>"; };
 		AF7BED3F1DB8180A003051EC /* SavedPlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		AFE14D641DB41061005A1DD0 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
@@ -179,7 +179,6 @@
 		BF4FD7581DB292BE00D1604F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		BF4FD75C1DB2A66200D1604F /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		BF94C39E1DD0E07A00B7BEDE /* SpotifyPlaylistModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpotifyPlaylistModel.xcdatamodel; sourceTree = "<group>"; };
-		BFBE69F91DD2559100BBA578 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,9 +278,9 @@
 		BF4FD6561DB279B300D1604F /* PlayArray */ = {
 			isa = PBXGroup;
 			children = (
+				AF0CEF131E2807AA00800FB2 /* DataManager.swift */,
 				BF4FD6571DB279B300D1604F /* AppDelegate.swift */,
 				AF360B281DC7D3E100981E53 /* CriteriaCell.swift */,
-				BFBE69F91DD2559100BBA578 /* DataManager.swift */,
 				7E4430A71DB299E9007183ED /* DataQuery.swift */,
 				BF1CFC391DBA1ED4009BDB7B /* Playlist.swift */,
 				BF1CFC3C1DBA237A009BDB7B /* PlaylistManager.swift */,
@@ -293,14 +292,13 @@
 				AFF93C7B1DDD3EA80064B890 /* APCustomBlurView.swift */,
 				AF4C7DED1DD3A8D800E0CDC8 /* SelectEnumTableViewController.swift */,
 				7E4568641DDB7FA1007A1D34 /* ReviewDeletionsViewController.swift */,
+				7EF7F5DB1DEDF2BF0080D502 /* ReviewCriteriaViewController.swift */,
 				BF4FD75C1DB2A66200D1604F /* Song.swift */,
 				7E60DEFD1DCBFCC500AD40FF /* SpotifyManager.swift */,
-				7EF7F5DB1DEDF2BF0080D502 /* ReviewCriteriaViewController.swift */,
 				BF4FD65E1DB279B300D1604F /* Assets.xcassets */,
 				7E78D53B1DB27D4E00D268C0 /* Criteria */,
 				BF94C3A01DD0E08E00B7BEDE /* Models */,
 				AF4C7DE91DD1F3B800E0CDC8 /* SettingsTableViewController.swift */,
-				AF4C7DEB1DD27AA800E0CDC8 /* DataManager.swift */,
 				AF1C18E01DC8E611003A3B18 /* Sounds */,
 				BF4FD65B1DB279B300D1604F /* Main.storyboard */,
 				BF4FD6601DB279B300D1604F /* LaunchScreen.storyboard */,
@@ -588,10 +586,10 @@
 			files = (
 				AFF93C7C1DDD3EA80064B890 /* APCustomBlurView.swift in Sources */,
 				BF4FD75D1DB2A66200D1604F /* Song.swift in Sources */,
-				AF4C7DEC1DD27AA800E0CDC8 /* DataManager.swift in Sources */,
 				AF360B291DC7D3E100981E53 /* CriteriaCell.swift in Sources */,
 				AF7BED401DB8180A003051EC /* SavedPlaylistsTableViewController.swift in Sources */,
 				AF4C7DEE1DD3A8D800E0CDC8 /* SelectEnumTableViewController.swift in Sources */,
+				AF0CEF141E2807AA00800FB2 /* DataManager.swift in Sources */,
 				7E4430A21DB2910E007183ED /* Criteria.swift in Sources */,
 				AF16FD661DEF8A4800158FA3 /* ActivityProvider.swift in Sources */,
 				AFE14D651DB41061005A1DD0 /* PlaylistTableViewController.swift in Sources */,

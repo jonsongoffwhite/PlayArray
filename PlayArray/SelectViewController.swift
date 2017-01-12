@@ -28,22 +28,9 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        reviewDeletionsButton.isHidden = true
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(SelectViewController.createPlaylist))
         self.navigationItem.rightBarButtonItem?.isEnabled = false
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name(feedbackKey), object: nil, queue: OperationQueue.main) { (Notification) in
-            
-            self.deletedTracks = Notification.object as! [(Playlist, [Song])]
-            
-            // Eventually animate appearance of button, for now - enable
-            self.reviewDeletionsButton.isHidden = false
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.reviewDeletionsButton.frame = CGRect(x: self.reviewDeletionsButton.frame.origin.x, y: self.reviewDeletionsButton.frame.origin.y - 55, width: self.reviewDeletionsButton.frame.size.width, height: self.reviewDeletionsButton.frame.size.height)
-//            })
-        }
         
         locationManager = CLLocationManager()
         if CLLocationManager.authorizationStatus() == .notDetermined {
@@ -68,6 +55,22 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        reviewDeletionsButton.isHidden = true
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name(feedbackKey), object: nil, queue: OperationQueue.main) { (Notification) in
+            
+            if let alteredPlaylists = Notification.object as? [(Playlist, [Song])] {
+                self.deletedTracks = alteredPlaylists
+            }
+            //            self.deletedTracks = Notification.object as! [(Playlist, [Song])]
+            
+            // Eventually animate appearance of button, for now - enable
+            self.reviewDeletionsButton.isHidden = false
+            //            UIView.animate(withDuration: 0.3, animations: {
+            //                self.reviewDeletionsButton.frame = CGRect(x: self.reviewDeletionsButton.frame.origin.x, y: self.reviewDeletionsButton.frame.origin.y - 55, width: self.reviewDeletionsButton.frame.size.width, height: self.reviewDeletionsButton.frame.size.height)
+            //            })
+        }
+        
         let cells = collectionView.indexPathsForVisibleItems
         cells.forEach({ (i) in
             let cell = collectionView.cellForItem(at: i) as! CriteriaCell
@@ -171,7 +174,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "reviewDeletionsViewController") as! ReviewDeletionsViewController
-        vc.alteredSongs = self.deletedTracks
+        alteredSongs = self.deletedTracks
         self.show(vc, sender: sender)
         
     }

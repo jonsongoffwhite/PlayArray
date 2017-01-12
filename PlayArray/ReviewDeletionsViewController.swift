@@ -11,11 +11,12 @@ import UIKit
 import MGSwipeTableCell
 import RequestManager
 
+var alteredSongs: [(Playlist, [Song])] = []
+var alteredSongsList: [(Playlist, Song)] = []
+
 class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate {
     
     @IBOutlet weak var table: UITableView!
-    var alteredSongs: [(Playlist, [Song])] = []
-    var alteredSongsList: [(Playlist, Song)] = []
     
     override func viewDidLoad() {
         
@@ -31,6 +32,17 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
         
         self.table.delegate = self
         self.table.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        table.reloadData()
+        popView()
+    }
+    
+    func popView() {
+        if alteredSongsList.count == 0 {
+            self.navigationController!.popViewController(animated: true)
+        }
     }
     
     //TODO:
@@ -54,9 +66,10 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
         let leftButton = MGSwipeButton(title: "Not My Thing", backgroundColor: UIColor(red: 0.596, green: 0.761, blue: 0.38, alpha: 1))
         leftButton.callback = { (sender: MGSwipeTableCell!) -> Bool in
             
-            self.alteredSongsList.remove(at: indexPath.row)
-            
-            self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
+            alteredSongsList.remove(at: indexPath.row)
+            self.table.reloadData()
+            self.popView()
+//            self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
             
             return true
         }
@@ -78,6 +91,7 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
             do {
                 let criteria = try DataManager.getCriteria(for: item.0)
                 
+                
                 if criteria.count > 1 {
                     
                     // Create a ReviewCriteriaViewController
@@ -88,13 +102,11 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
                     vc.dataSource = Array(criteria.values)
                     vc.categories = Array(criteria.keys)
                     vc.songId = item.1.id
+                    vc.selectedIndexPath = indexPath.row
+                    print("row: \(indexPath.row)")
                     vc.delegate = self
                     
                     self.show(vc, sender: self)
-                    
-                    self.alteredSongsList.remove(at: indexPath.row)
-                    self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
-                    
                 
                 } else {
                     RequestManager.sharedInstance.giveFeedback(for: item.1.id, with: criteria, completion: { (error) in
@@ -105,8 +117,9 @@ class ReviewDeletionsViewController: UIViewController, UITableViewDataSource, UI
                         })
                         
                         
-                        self.alteredSongsList.remove(at: indexPath.row)
-                        self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
+                        alteredSongsList.remove(at: indexPath.row)
+                        self.table.reloadData()
+//                        self.table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
                     })
                 }
             } catch {

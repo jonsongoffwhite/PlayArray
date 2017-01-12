@@ -116,7 +116,7 @@ extension PlaylistTableViewController {
                 SpotifyManager.sharedInstance.makePlaylist(with: playlist.songs, called: playlist.name, completion: { (uri) in
                     self.shared = true
                     self.uri = uri
-                    self.playlist.spotifyURI = uri.absoluteString
+                    self.playlist.spotifyURI = SpotifyManager.uriFrom(spotifyURI: uri.absoluteString)
                     
                     do {
                         try DataManager.save(playlist: self.playlist, songs: self.playlist.songs, createNew: true, completion: { (songs) in

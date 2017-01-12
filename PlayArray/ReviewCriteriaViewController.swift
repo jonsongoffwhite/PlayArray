@@ -16,6 +16,7 @@ class ReviewCriteriaViewController: UIViewController, UITableViewDataSource, UIT
     var songId: String?
     var categories: [String]?
     var dataSource: [String]?
+    var selectedIndexPath: Int = 0
     
     var delegate: CriteriaFeedbackDelegate?
     
@@ -62,6 +63,8 @@ extension ReviewCriteriaViewController {
         if (table.indexPathsForSelectedRows?.count == 0) {
             //Must select at least one
         } else {
+            alteredSongsList.remove(at: selectedIndexPath)
+            
             //Return the results
             var inappropriate: [String: String] = [:]
             table.indexPathsForSelectedRows?.forEach({ (indexPath) in
