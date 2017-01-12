@@ -36,7 +36,7 @@ class SelectViewController: UIViewController, UIGestureRecognizerDelegate, Selec
         
         NotificationCenter.default.addObserver(forName: Notification.Name(feedbackKey), object: nil, queue: OperationQueue.main) { (Notification) in
             
-//            self.deletedTracks = Notification.object as! [(Playlist, [Song])]
+            self.deletedTracks = Notification.object as! [(Playlist, [Song])]
             
             // Eventually animate appearance of button, for now - enable
             self.reviewDeletionsButton.isHidden = false
