@@ -1,0 +1,4 @@
+language: objective-c
+xcode_project: PlayArray.xcodeproj
+xcode_scheme: PlayArray
+osx_image: xcode8 
